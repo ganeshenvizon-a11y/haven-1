@@ -1,0 +1,519 @@
+/**
+ * Vara Farm Haven — Main JavaScript File
+ * Handles scroll reveal animations, sticky mobile CTA behavior, and interactive initializations.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 0. Global Multi-Section Parallax Motion Controller
+    const initParallaxMotion = () => {
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+
+        // Query image containers & sections across all website sections
+        const heroSection = document.querySelector('.hero');
+        const ideaImg = document.querySelector('.idea-image-frame img');
+        const guntasImgs = document.querySelectorAll('.guntas-card-image img');
+        const dayImgs = document.querySelectorAll('.day-card-image img');
+        const weekendImg = document.querySelector('.weekend-home-image-frame img');
+        const galleryImgs = document.querySelectorAll('.gallery-card img');
+        const aboutSection = document.querySelector('.about-section');
+        const polaroidCards = document.querySelectorAll('.polaroid-card');
+
+        // Apply helper class & speed datasets for staggered depth
+        if (ideaImg) ideaImg.classList.add('parallax-img');
+
+        guntasImgs.forEach((img, idx) => {
+            img.classList.add('parallax-img');
+            img.dataset.speed = (0.12 + (idx % 2) * 0.06).toFixed(2);
+        });
+
+        dayImgs.forEach((img, idx) => {
+            img.classList.add('parallax-img');
+            img.dataset.speed = (0.10 + (idx % 3) * 0.04).toFixed(2);
+        });
+
+        if (weekendImg) weekendImg.classList.add('parallax-img');
+
+        galleryImgs.forEach((img, idx) => {
+            img.classList.add('parallax-img');
+            const speeds = [0.12, 0.18, 0.14, 0.20, 0.15, 0.22, 0.13, 0.17, 0.19];
+            img.dataset.speed = (speeds[idx % speeds.length]).toFixed(2);
+        });
+
+        polaroidCards.forEach((card, idx) => {
+            card.classList.add('parallax-card');
+            const speeds = [-0.15, 0.12, -0.08, 0.16, -0.12, 0.14];
+            card.dataset.speed = (speeds[idx % speeds.length]).toFixed(2);
+        });
+
+        let ticking = false;
+
+        const calcOffset = (container, speed = 0.15) => {
+            const rect = container.getBoundingClientRect();
+            const center = rect.top + rect.height / 2;
+            const viewportCenter = window.innerHeight / 2;
+            return (center - viewportCenter) * -speed;
+        };
+
+        const updateAllParallax = () => {
+            const viewportHeight = window.innerHeight;
+            const scrolled = window.scrollY;
+
+            // 1. Hero Section Parallax
+            if (heroSection) {
+                const heroHeight = heroSection.offsetHeight;
+                if (scrolled <= heroHeight + 100) {
+                    const translateY = scrolled * 0.3;
+                    heroSection.style.setProperty('--hero-parallax-y', `${translateY}px`);
+                }
+            }
+
+            // 2. The Idea Image Parallax
+            if (ideaImg && ideaImg.parentElement) {
+                const rect = ideaImg.parentElement.getBoundingClientRect();
+                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
+                    const offsetY = calcOffset(ideaImg.parentElement, 0.18);
+                    ideaImg.style.setProperty('--parallax-y', `${offsetY}px`);
+                }
+            }
+
+            // 3. Why 5 Guntas Cards Parallax
+            guntasImgs.forEach(img => {
+                if (!img.parentElement) return;
+                const rect = img.parentElement.getBoundingClientRect();
+                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
+                    const speed = parseFloat(img.dataset.speed) || 0.15;
+                    const offsetY = calcOffset(img.parentElement, speed);
+                    img.style.setProperty('--parallax-y', `${offsetY}px`);
+                }
+            });
+
+            // 4. A Day Here Cards Parallax
+            dayImgs.forEach(img => {
+                if (!img.parentElement) return;
+                const rect = img.parentElement.getBoundingClientRect();
+                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
+                    const speed = parseFloat(img.dataset.speed) || 0.12;
+                    const offsetY = calcOffset(img.parentElement, speed);
+                    img.style.setProperty('--parallax-y', `${offsetY}px`);
+                }
+            });
+
+            // 5. Weekend Home Image Parallax
+            if (weekendImg && weekendImg.parentElement) {
+                const rect = weekendImg.parentElement.getBoundingClientRect();
+                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
+                    const offsetY = calcOffset(weekendImg.parentElement, 0.20);
+                    weekendImg.style.setProperty('--parallax-y', `${offsetY}px`);
+                }
+            }
+
+            // 6. Gallery Grid Images Parallax
+            galleryImgs.forEach(img => {
+                if (!img.parentElement) return;
+                const rect = img.parentElement.getBoundingClientRect();
+                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
+                    const speed = parseFloat(img.dataset.speed) || 0.15;
+                    const offsetY = calcOffset(img.parentElement, speed);
+                    img.style.setProperty('--parallax-y', `${offsetY}px`);
+                }
+            });
+
+            // 7. About Section Background Parallax
+            if (aboutSection) {
+                const rect = aboutSection.getBoundingClientRect();
+                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
+                    const offsetY = calcOffset(aboutSection, 0.22);
+                    aboutSection.style.setProperty('--about-parallax-y', `${offsetY}px`);
+                }
+            }
+
+            // 8. Footer Polaroid Cards Parallax
+            polaroidCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
+                    const speed = parseFloat(card.dataset.speed) || 0.12;
+                    const offsetY = calcOffset(card, speed);
+                    card.style.setProperty('--polaroid-parallax-y', `${offsetY}px`);
+                }
+            });
+
+            ticking = false;
+        };
+
+        const onScroll = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateAllParallax);
+                ticking = true;
+            }
+        };
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        if (window.lenis) {
+            window.lenis.on('scroll', onScroll);
+        }
+        updateAllParallax();
+    };
+
+    initParallaxMotion();
+
+    // 0.5. GSAP ScrollTrigger Heading Text Reveal Animations
+    const initGsapHeadingReveals = () => {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+
+        // Register ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Sync GSAP ScrollTrigger with Lenis smooth scroll if present
+        if (window.lenis) {
+            window.lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                window.lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+        }
+
+        // Query all section headings across the entire website
+        const headings = document.querySelectorAll(
+            '.hero-heading, .section-heading, .idea-heading, .land-heading, ' +
+            '.why-guntas-heading, .connectivity-heading, .amenities-heading, ' +
+            '.day-here-heading, .weekend-home-heading, .master-plan-heading, ' +
+            '.gallery-heading, .about-heading, .enquiry-heading, .footer-invite-title'
+        );
+
+        headings.forEach((heading) => {
+            if (heading.getAttribute('data-gsap-initialized')) return;
+            heading.setAttribute('data-gsap-initialized', 'true');
+
+            // Preserve inner HTML structure while splitting text nodes into word reveal elements
+            const innerHTML = heading.innerHTML;
+            const lineHtmls = innerHTML.split(/<br\s*\/?>/i);
+
+            let newContent = '';
+            lineHtmls.forEach((lineHtml, lineIdx) => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = lineHtml.trim();
+
+                const processNode = (node) => {
+                    if (node.nodeType === Node.TEXT_NODE) {
+                        const words = node.textContent.split(/\s+/).filter(w => w.length > 0);
+                        return words.map(w => `<span class="gsap-heading-wrap"><span class="gsap-word-reveal">${w}</span></span>`).join(' ');
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        const tagName = node.tagName.toLowerCase();
+                        const attrs = Array.from(node.attributes).map(a => `${a.name}="${a.value}"`).join(' ');
+                        const inner = Array.from(node.childNodes).map(processNode).join(' ');
+                        return `<${tagName} ${attrs}>${inner}</${tagName}>`;
+                    }
+                    return '';
+                };
+
+                const processedLine = Array.from(tempDiv.childNodes).map(processNode).join(' ');
+                newContent += processedLine;
+                if (lineIdx < lineHtmls.length - 1) {
+                    newContent += '<br>';
+                }
+            });
+
+            heading.innerHTML = newContent;
+
+            const words = heading.querySelectorAll('.gsap-word-reveal');
+            if (words.length === 0) return;
+
+            // Hide words below overflow boundary
+            gsap.set(words, {
+                y: '115%',
+                rotate: 4,
+                opacity: 0
+            });
+
+            // Animate up as heading scrolls into viewport
+            gsap.to(words, {
+                y: '0%',
+                rotate: 0,
+                opacity: 1,
+                duration: 1.15,
+                ease: 'power3.out',
+                stagger: 0.045,
+                scrollTrigger: {
+                    trigger: heading,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none'
+                }
+            });
+        });
+    };
+
+    initGsapHeadingReveals();
+
+
+    // 1. Scroll Reveal Observer (Section 31 & 32)
+    const revealElements = document.querySelectorAll('.reveal, .image-reveal');
+
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const childReveals = entry.target.querySelectorAll('.image-reveal, .reveal');
+                    childReveals.forEach(child => child.classList.add('visible'));
+                    // Unobserve after animating once for optimal performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '150px 0px 100px 0px',
+            threshold: 0.01
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Immediate check for elements already visible or near top of viewport
+        const triggerInitialCheck = () => {
+            revealElements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight + 200 && rect.bottom > -100) {
+                    el.classList.add('visible');
+                    const childReveals = el.querySelectorAll('.image-reveal, .reveal');
+                    childReveals.forEach(child => child.classList.add('visible'));
+                }
+            });
+        };
+
+        triggerInitialCheck();
+        setTimeout(triggerInitialCheck, 100);
+        setTimeout(triggerInitialCheck, 500);
+    }
+
+    // 2. Mobile Sticky CTA Hide/Show when Enquiry Form is visible (Section 28)
+    const stickyCta = document.querySelector('.mobile-sticky-cta');
+    const enquirySection = document.querySelector('#enquiry');
+
+    if (stickyCta && enquirySection) {
+        const enquiryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    stickyCta.classList.add('hidden');
+                } else {
+                    stickyCta.classList.remove('hidden');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        enquiryObserver.observe(enquirySection);
+    }
+
+    // 3. Stat Number Counter Animation for Land & Pricing (Section 15)
+    const statsGrid = document.querySelector('.land-stats-grid');
+    if (statsGrid) {
+        const animateCounters = (container) => {
+            const numbers = container.querySelectorAll('.stat-number');
+            numbers.forEach(numEl => {
+                if (numEl.getAttribute('data-animated')) return;
+                numEl.setAttribute('data-animated', 'true');
+
+                const target = parseFloat(numEl.getAttribute('data-target'));
+                const decimals = parseInt(numEl.getAttribute('data-decimals') || '0', 10);
+                const duration = 1400;
+                const startTime = performance.now();
+
+                const updateCount = (currentTime) => {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = (target * easeProgress).toFixed(decimals);
+                    numEl.textContent = currentVal;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        numEl.textContent = decimals > 0 ? target.toFixed(decimals) : target.toString();
+                    }
+                };
+
+                requestAnimationFrame(updateCount);
+            });
+        };
+
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        statsObserver.observe(statsGrid);
+    }
+
+    // 4. Connectivity Map Interactive Hover Effects (Section 17)
+    const connectivitySection = document.querySelector('#connectivity');
+    if (connectivitySection) {
+        const connectivityItems = connectivitySection.querySelectorAll('.connectivity-item');
+
+        connectivityItems.forEach(item => {
+            const nodeTargetId = item.getAttribute('data-node');
+
+            item.addEventListener('mouseenter', () => {
+                connectivityItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                if (nodeTargetId) {
+                    const targetNode = connectivitySection.querySelector(`#node-${nodeTargetId}`);
+                    const targetInteractiveNode = connectivitySection.querySelector(`#node-${nodeTargetId}-node`);
+                    if (targetNode) {
+                        targetNode.style.filter = 'drop-shadow(0 0 10px #B0D236)';
+                        targetNode.style.transition = 'filter 0.3s ease';
+                    }
+                    if (targetInteractiveNode) {
+                        targetInteractiveNode.style.transform = 'scale(1.25)';
+                        targetInteractiveNode.style.transition = 'transform 0.3s ease';
+                    }
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                item.classList.remove('active');
+                if (nodeTargetId) {
+                    const targetNode = connectivitySection.querySelector(`#node-${nodeTargetId}`);
+                    const targetInteractiveNode = connectivitySection.querySelector(`#node-${nodeTargetId}-node`);
+                    if (targetNode) targetNode.style.filter = '';
+                    if (targetInteractiveNode) targetInteractiveNode.style.transform = '';
+                }
+            });
+        });
+    }
+
+    // 5. Section 19: A Day Here Horizontal Track Controls
+    const dayTrack = document.getElementById('day-here-track');
+    const dayPrevBtn = document.getElementById('day-prev');
+    const dayNextBtn = document.getElementById('day-next');
+    const dayProgressBar = document.getElementById('day-here-progress-bar');
+
+    if (dayTrack) {
+        const updateTrackProgress = () => {
+            const scrollLeft = dayTrack.scrollLeft;
+            const maxScroll = dayTrack.scrollWidth - dayTrack.clientWidth;
+            const progress = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+            if (dayProgressBar) {
+                const barWidth = Math.max(15, Math.min(100, progress));
+                dayProgressBar.style.width = `${barWidth}%`;
+            }
+        };
+
+        dayTrack.addEventListener('scroll', updateTrackProgress, { passive: true });
+        updateTrackProgress();
+
+        if (dayPrevBtn) {
+            dayPrevBtn.addEventListener('click', () => {
+                const cardWidth = dayTrack.querySelector('.day-card')?.offsetWidth || 380;
+                dayTrack.scrollBy({ left: -(cardWidth + 28), behavior: 'smooth' });
+            });
+        }
+
+        if (dayNextBtn) {
+            dayNextBtn.addEventListener('click', () => {
+                const cardWidth = dayTrack.querySelector('.day-card')?.offsetWidth || 380;
+                dayTrack.scrollBy({ left: cardWidth + 28, behavior: 'smooth' });
+            });
+        }
+
+        // Drag to scroll implementation for desktop mouse interaction
+        let isDown = false;
+        let startX;
+        let scrollLeftPos;
+
+        dayTrack.addEventListener('mousedown', (e) => {
+            isDown = true;
+            dayTrack.style.cursor = 'grabbing';
+            startX = e.pageX - dayTrack.offsetLeft;
+            scrollLeftPos = dayTrack.scrollLeft;
+        });
+
+        dayTrack.addEventListener('mouseleave', () => {
+            isDown = false;
+            dayTrack.style.cursor = 'default';
+        });
+
+        dayTrack.addEventListener('mouseup', () => {
+            isDown = false;
+            dayTrack.style.cursor = 'default';
+        });
+
+        dayTrack.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - dayTrack.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            dayTrack.scrollLeft = scrollLeftPos - walk;
+        });
+    }
+
+    // 6. Enquiry Form Validation & Submission (Section 45)
+    const enquiryForm = document.getElementById('enquiry-form');
+    if (enquiryForm) {
+        enquiryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let isValid = true;
+
+            // Full Name Validation
+            const fullNameInput = document.getElementById('full-name');
+            const fullNameGroup = document.getElementById('group-full-name');
+            if (!fullNameInput || !fullNameInput.value.trim()) {
+                fullNameGroup?.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                fullNameGroup?.classList.remove('is-invalid');
+            }
+
+            // Mobile Number Validation (10-digit Indian format check)
+            const mobileInput = document.getElementById('mobile-number');
+            const mobileGroup = document.getElementById('group-mobile-number');
+            const mobileRegex = /^[6-9]\d{9}$/;
+            if (!mobileInput || !mobileRegex.test(mobileInput.value.trim())) {
+                mobileGroup?.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                mobileGroup?.classList.remove('is-invalid');
+            }
+
+            // WhatsApp Number Validation (Optional field, but validate format if entered)
+            const whatsappInput = document.getElementById('whatsapp-number');
+            const whatsappGroup = document.getElementById('group-whatsapp-number');
+            if (whatsappInput && whatsappInput.value.trim().length > 0) {
+                if (!mobileRegex.test(whatsappInput.value.trim())) {
+                    whatsappGroup?.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    whatsappGroup?.classList.remove('is-invalid');
+                }
+            } else {
+                whatsappGroup?.classList.remove('is-invalid');
+            }
+
+            if (isValid) {
+                const successMsg = document.getElementById('form-success-msg');
+                if (successMsg) {
+                    successMsg.classList.add('is-visible');
+                    enquiryForm.reset();
+                    // Smoothly bring success notification into view
+                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }
+        });
+
+        // Clear invalid state on field input change
+        const formInputs = enquiryForm.querySelectorAll('.form-input');
+        formInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const group = input.closest('.form-group');
+                if (group) group.classList.remove('is-invalid');
+            });
+        });
+    }
+});

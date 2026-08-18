@@ -1,0 +1,564 @@
+/* ==========================================================================
+   VARA FARM HAVEN — RESPONSIVE STYLESHEET
+   Based on design.md (Sections 37 - 39)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Navigation Responsiveness (< 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Viewports (max-width: 767px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+
+    /* Navigation Adjustments */
+    .nav-actions .btn-primary {
+        display: none;
+    }
+
+    .brand-logo img {
+        height: 36px;
+    }
+
+    /* Hero Responsive Adjustments */
+    .hero {
+        padding-top: 120px;
+        padding-bottom: 50px;
+        align-items: center;
+    }
+
+    .hero-heading {
+        font-size: clamp(38px, 11vw, 56px);
+        line-height: 1.02;
+    }
+
+    .hero-subhead {
+        font-size: 16px;
+        margin-bottom: 28px;
+    }
+
+    .property-strip {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .spec-divider {
+        width: 100%;
+        height: 1px;
+    }
+
+    .hero-ctas {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-ctas .btn {
+        width: 100%;
+    }
+
+    /* Global Section Spacing for Mobile */
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    /* Mobile Sticky CTA (Section 28) */
+    .mobile-sticky-cta {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 990;
+        background: var(--vara-paper);
+        padding: 12px var(--page-padding);
+        border-top: 1px solid var(--vara-border);
+        box-shadow: 0 -4px 20px rgba(17, 21, 19, 0.1);
+        transition: transform var(--transition-base), opacity var(--transition-base);
+    }
+
+    .mobile-sticky-cta.hidden {
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .mobile-sticky-cta .btn {
+        width: 100%;
+    }
+
+    /* Land & Pricing Mobile */
+    .land-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .stat-card {
+        padding: 32px 24px;
+    }
+
+    /* Why 5 Guntas Mobile */
+    .why-guntas-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .guntas-card.card-wide,
+    .guntas-card.card-tall,
+    .guntas-card.card-medium,
+    .guntas-card.card-wide-alt {
+        grid-column: span 1;
+    }
+
+    .guntas-card-image,
+    .guntas-card.card-wide .guntas-card-image,
+    .guntas-card.card-tall .guntas-card-image,
+    .guntas-card.card-medium .guntas-card-image,
+    .guntas-card.card-wide-alt .guntas-card-image {
+        aspect-ratio: 16 / 10;
+    }
+
+    .guntas-card-content {
+        padding: 24px 20px;
+    }
+
+    /* Connectivity Mobile */
+    .connectivity-section {
+        min-height: auto;
+        padding: 60px 0;
+    }
+
+    .connectivity-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .connectivity-item {
+        padding: 14px 16px;
+        gap: 14px;
+    }
+
+    .connectivity-title {
+        font-size: 16px;
+    }
+
+    .connectivity-desc {
+        font-size: 14px;
+    }
+
+    /* Amenities Mobile */
+    .amenities-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .amenity-card {
+        padding: 24px 20px;
+    }
+
+    /* A Day Here Mobile (Vertical Editorial Layout) */
+    .day-here-track {
+        flex-direction: column;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        padding-inline: var(--page-padding);
+        gap: 24px;
+    }
+
+    .day-card {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+
+    .day-here-arrows,
+    .day-here-controls {
+        display: none;
+    }
+
+    /* Weekend Home Mobile */
+    .weekend-home-section {
+        padding: 48px 0;
+    }
+
+    .weekend-home-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .weekend-home-desc {
+        font-size: 16px;
+        margin-bottom: 28px;
+    }
+
+    .weekend-specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-bottom: 32px;
+    }
+
+    .weekend-spec-item {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .weekend-spec-item .spec-title {
+        font-size: 15px;
+    }
+
+    /* Master Plan Mobile Adjustments */
+    .master-plan-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .plot-filters-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        flex-wrap: nowrap;
+    }
+
+    .plot-filter-btn {
+        flex-shrink: 0;
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .map-controls {
+        align-self: flex-end;
+    }
+
+    .master-plan-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .master-detail-column {
+        position: static;
+    }
+
+    .plot-detail-card {
+        padding: 24px 20px;
+        gap: 16px;
+    }
+
+    .panel-metrics {
+        gap: 8px;
+    }
+
+    .metric-val {
+        font-size: 16px;
+    }
+
+    .master-map-legend {
+        padding: 12px 14px;
+        gap: 10px 16px;
+        justify-content: flex-start;
+    }
+
+    .legend-label {
+        font-size: 12px;
+    }
+
+    /* Gallery Mobile */
+    .gallery-section {
+        padding: 48px 0;
+    }
+
+    .gallery-filters-wrapper {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 12px;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 28px;
+        gap: 12px;
+    }
+
+    .gallery-filter-btn {
+        flex-shrink: 0;
+        font-size: 14px;
+    }
+
+    .filter-sep {
+        flex-shrink: 0;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 210px;
+        gap: 16px;
+    }
+
+    .span-3,
+    .span-4,
+    .span-6,
+    .span-8,
+    .span-12 {
+        grid-column: span 1;
+    }
+
+    .row-span-2 {
+        grid-row: span 1;
+    }
+
+    .gallery-card-overlay {
+        padding: 16px;
+        opacity: 1;
+        /* Always visible on touch devices */
+        background: linear-gradient(to top,
+                rgba(17, 21, 19, 0.85) 0%,
+                rgba(17, 21, 19, 0.2) 60%,
+                transparent 100%);
+    }
+
+    .gallery-item-title {
+        font-size: 17px;
+    }
+
+    .gallery-item-sub {
+        font-size: 13px;
+    }
+
+    .lightbox-container {
+        width: 96vw;
+        height: 94vh;
+        padding: 12px;
+    }
+
+    .lightbox-prev-btn {
+        left: 8px;
+    }
+
+    .lightbox-next-btn {
+        right: 8px;
+    }
+
+    .lightbox-close-btn {
+        top: 8px;
+        right: 8px;
+    }
+
+    .lightbox-caption-bar {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+
+    .lightbox-title {
+        font-size: 15px;
+    }
+
+    .lightbox-desc {
+        font-size: 12px;
+    }
+
+    /* About Vara Mobile */
+    .about-heading {
+        font-size: clamp(30px, 8vw, 42px);
+        margin-bottom: 20px;
+    }
+
+    .about-company {
+        font-size: 18px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+    }
+
+    .about-text {
+        font-size: 16px;
+        line-height: 1.65;
+    }
+
+    /* Enquiry Section Mobile */
+    .enquiry-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .form-row.grid-2 {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .enquiry-form-wrapper {
+        padding: 24px 20px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+
+    .contact-us-link {
+        justify-content: center;
+    }
+
+    /* Footer Mobile */
+    .site-footer {
+        padding: 60px 0 35px 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        margin-bottom: 40px;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .weekend-specs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet Viewports (min-width: 768px) and (max-width: 1023px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .navbar {
+        padding: 16px 0;
+    }
+
+    .navbar.scrolled {
+        padding: 12px 0;
+    }
+
+    .brand-logo img {
+        height: 38px;
+    }
+
+    .nav-actions {
+        gap: 16px;
+    }
+
+    .nav-actions .btn-primary {
+        display: inline-flex;
+        height: 44px;
+        padding: 0 20px;
+        font-size: 14px;
+    }
+
+    .hero-heading {
+        font-size: clamp(48px, 8vw, 72px);
+    }
+
+    .property-strip {
+        gap: 20px;
+        padding: 16px 20px;
+    }
+
+    .spec-value {
+        font-size: 19px;
+    }
+
+    /* Land & Pricing Tablet */
+    .land-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    /* Why 5 Guntas Tablet */
+    .why-guntas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .guntas-card.card-wide,
+    .guntas-card.card-tall,
+    .guntas-card.card-medium,
+    .guntas-card.card-wide-alt {
+        grid-column: span 1;
+    }
+
+    /* Amenities Tablet */
+    .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* Master Plan Tablet */
+    .master-plan-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .master-detail-column {
+        position: static;
+    }
+
+    /* Gallery Tablet */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 210px;
+        gap: 20px;
+    }
+
+    .span-3,
+    .span-4,
+    .span-6,
+    .span-8,
+    .span-12 {
+        grid-column: span 1;
+    }
+
+    .row-span-2 {
+        grid-row: span 1;
+    }
+
+    /* Footer Tablet */
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Desktop Viewports (min-width: 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+    .mobile-sticky-cta {
+        display: none;
+    }
+
+    .nav-links {
+        gap: clamp(20px, 2.5vw, 36px);
+    }
+
+    .nav-link {
+        font-size: 15px;
+    }
+}
