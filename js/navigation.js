@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Active Section IntersectionObserver
     const sections = document.querySelectorAll('section[id]');
-    
+
     if (sections.length > 0) {
         const observerOptions = {
             root: null,

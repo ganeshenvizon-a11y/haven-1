@@ -711,12 +711,11 @@ Amenities List:
 02. Solar Fencing — An added layer of perimeter security
 03. Water Connection — Motor-line provision, ready for your plot's needs
 04. Drip Irrigation — Planned connectivity to every plot for easy, efficient watering
-05. Entrance Arch — A striking identity right from the gate
+05. 13-Feet Blacktop Roads — Smooth, planned internal access throughout
 06. Avenue Plantation — Tree-lined internal roads for shade and greenery
-07. 13-Feet Blacktop Roads — Smooth, planned internal access throughout
-08. Swimming Pool — A refreshing break, right on-site
-09. Children's Play Zone — A dedicated space for kids to run and explore
-10. Park & Pergola — A green space to walk, gather, and unwind under open shade
+07. Swimming Pool — A refreshing break, right on-site
+08. Children's Play Zone — A dedicated space for kids to run and explore
+09. Park & Pergola — A green space to walk, gather, and unwind under open shade
 ```
 
 Use an editorial grid rather than conventional cards.

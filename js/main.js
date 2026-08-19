@@ -4,146 +4,29 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 0. Global Multi-Section Parallax Motion Controller
+    // 0. Hero Section Parallax Motion Controller
     const initParallaxMotion = () => {
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReduced) return;
 
-        // Query image containers & sections across all website sections
         const heroSection = document.querySelector('.hero');
-        const ideaImg = document.querySelector('.idea-image-frame img');
-        const guntasImgs = document.querySelectorAll('.guntas-card-image img');
-        const dayImgs = document.querySelectorAll('.day-card-image img');
-        const weekendImg = document.querySelector('.weekend-home-image-frame img');
-        const galleryImgs = document.querySelectorAll('.gallery-card img');
-        const aboutSection = document.querySelector('.about-section');
-        const polaroidCards = document.querySelectorAll('.polaroid-card');
-
-        // Apply helper class & speed datasets for staggered depth
-        if (ideaImg) ideaImg.classList.add('parallax-img');
-
-        guntasImgs.forEach((img, idx) => {
-            img.classList.add('parallax-img');
-            img.dataset.speed = (0.12 + (idx % 2) * 0.06).toFixed(2);
-        });
-
-        dayImgs.forEach((img, idx) => {
-            img.classList.add('parallax-img');
-            img.dataset.speed = (0.10 + (idx % 3) * 0.04).toFixed(2);
-        });
-
-        if (weekendImg) weekendImg.classList.add('parallax-img');
-
-        galleryImgs.forEach((img, idx) => {
-            img.classList.add('parallax-img');
-            const speeds = [0.12, 0.18, 0.14, 0.20, 0.15, 0.22, 0.13, 0.17, 0.19];
-            img.dataset.speed = (speeds[idx % speeds.length]).toFixed(2);
-        });
-
-        polaroidCards.forEach((card, idx) => {
-            card.classList.add('parallax-card');
-            const speeds = [-0.15, 0.12, -0.08, 0.16, -0.12, 0.14];
-            card.dataset.speed = (speeds[idx % speeds.length]).toFixed(2);
-        });
+        if (!heroSection) return;
 
         let ticking = false;
 
-        const calcOffset = (container, speed = 0.15) => {
-            const rect = container.getBoundingClientRect();
-            const center = rect.top + rect.height / 2;
-            const viewportCenter = window.innerHeight / 2;
-            return (center - viewportCenter) * -speed;
-        };
-
-        const updateAllParallax = () => {
-            const viewportHeight = window.innerHeight;
+        const updateHeroParallax = () => {
             const scrolled = window.scrollY;
-
-            // 1. Hero Section Parallax
-            if (heroSection) {
-                const heroHeight = heroSection.offsetHeight;
-                if (scrolled <= heroHeight + 100) {
-                    const translateY = scrolled * 0.3;
-                    heroSection.style.setProperty('--hero-parallax-y', `${translateY}px`);
-                }
+            const heroHeight = heroSection.offsetHeight;
+            if (scrolled <= heroHeight + 100) {
+                const translateY = scrolled * 0.3;
+                heroSection.style.setProperty('--hero-parallax-y', `${translateY}px`);
             }
-
-            // 2. The Idea Image Parallax
-            if (ideaImg && ideaImg.parentElement) {
-                const rect = ideaImg.parentElement.getBoundingClientRect();
-                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
-                    const offsetY = calcOffset(ideaImg.parentElement, 0.18);
-                    ideaImg.style.setProperty('--parallax-y', `${offsetY}px`);
-                }
-            }
-
-            // 3. Why 5 Guntas Cards Parallax
-            guntasImgs.forEach(img => {
-                if (!img.parentElement) return;
-                const rect = img.parentElement.getBoundingClientRect();
-                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
-                    const speed = parseFloat(img.dataset.speed) || 0.15;
-                    const offsetY = calcOffset(img.parentElement, speed);
-                    img.style.setProperty('--parallax-y', `${offsetY}px`);
-                }
-            });
-
-            // 4. A Day Here Cards Parallax
-            dayImgs.forEach(img => {
-                if (!img.parentElement) return;
-                const rect = img.parentElement.getBoundingClientRect();
-                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
-                    const speed = parseFloat(img.dataset.speed) || 0.12;
-                    const offsetY = calcOffset(img.parentElement, speed);
-                    img.style.setProperty('--parallax-y', `${offsetY}px`);
-                }
-            });
-
-            // 5. Weekend Home Image Parallax
-            if (weekendImg && weekendImg.parentElement) {
-                const rect = weekendImg.parentElement.getBoundingClientRect();
-                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
-                    const offsetY = calcOffset(weekendImg.parentElement, 0.20);
-                    weekendImg.style.setProperty('--parallax-y', `${offsetY}px`);
-                }
-            }
-
-            // 6. Gallery Grid Images Parallax
-            galleryImgs.forEach(img => {
-                if (!img.parentElement) return;
-                const rect = img.parentElement.getBoundingClientRect();
-                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
-                    const speed = parseFloat(img.dataset.speed) || 0.15;
-                    const offsetY = calcOffset(img.parentElement, speed);
-                    img.style.setProperty('--parallax-y', `${offsetY}px`);
-                }
-            });
-
-            // 7. About Section Background Parallax
-            if (aboutSection) {
-                const rect = aboutSection.getBoundingClientRect();
-                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
-                    const offsetY = calcOffset(aboutSection, 0.22);
-                    aboutSection.style.setProperty('--about-parallax-y', `${offsetY}px`);
-                }
-            }
-
-            // 8. Footer Polaroid Cards Parallax
-            polaroidCards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                if (rect.bottom > -100 && rect.top < viewportHeight + 100) {
-                    const speed = parseFloat(card.dataset.speed) || 0.12;
-                    const offsetY = calcOffset(card, speed);
-                    card.style.setProperty('--polaroid-parallax-y', `${offsetY}px`);
-                }
-            });
-
             ticking = false;
         };
 
         const onScroll = () => {
             if (!ticking) {
-                requestAnimationFrame(updateAllParallax);
+                requestAnimationFrame(updateHeroParallax);
                 ticking = true;
             }
         };
@@ -152,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.lenis) {
             window.lenis.on('scroll', onScroll);
         }
-        updateAllParallax();
+        updateHeroParallax();
     };
 
     initParallaxMotion();
