@@ -170,25 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(triggerInitialCheck, 500);
     }
 
-    // 2. Mobile Sticky CTA Hide/Show when Enquiry Form is visible (Section 28)
-    const stickyCta = document.querySelector('.mobile-sticky-cta');
-    const enquirySection = document.querySelector('#enquiry');
-
-    if (stickyCta && enquirySection) {
-        const enquiryObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    stickyCta.classList.add('hidden');
-                } else {
-                    stickyCta.classList.remove('hidden');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        enquiryObserver.observe(enquirySection);
-    }
+    // 2. Mobile Sticky CTA handling is managed in js/navigation.js (hides on scroll down & near enquiry section)
 
     // 3. Stat Number Counter Animation for Land & Pricing (Section 15)
     const statsGrid = document.querySelector('.land-stats-grid');
@@ -290,19 +272,26 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         dayTrack.addEventListener('scroll', updateTrackProgress, { passive: true });
+        window.addEventListener('resize', updateTrackProgress, { passive: true });
         updateTrackProgress();
 
         if (dayPrevBtn) {
             dayPrevBtn.addEventListener('click', () => {
-                const cardWidth = dayTrack.querySelector('.day-card')?.offsetWidth || 380;
-                dayTrack.scrollBy({ left: -(cardWidth + 28), behavior: 'smooth' });
+                const card = dayTrack.querySelector('.day-card');
+                const cardWidth = card ? card.offsetWidth : 360;
+                const trackStyle = window.getComputedStyle(dayTrack);
+                const gap = parseInt(trackStyle.gap) || 28;
+                dayTrack.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
             });
         }
 
         if (dayNextBtn) {
             dayNextBtn.addEventListener('click', () => {
-                const cardWidth = dayTrack.querySelector('.day-card')?.offsetWidth || 380;
-                dayTrack.scrollBy({ left: cardWidth + 28, behavior: 'smooth' });
+                const card = dayTrack.querySelector('.day-card');
+                const cardWidth = card ? card.offsetWidth : 360;
+                const trackStyle = window.getComputedStyle(dayTrack);
+                const gap = parseInt(trackStyle.gap) || 28;
+                dayTrack.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
             });
         }
 

@@ -31,7 +31,7 @@
         <div class="container nav-container">
             <!-- Brand Logo -->
             <a href="#home" class="brand-logo" aria-label="Vara Farm Haven Home">
-                <img src="assets/logo/Vara Logo.png" alt="Vara Logo" width="160" height="42">
+                <img src="assets/logo/Vara Logo.png" alt="Vara Logo" width="220" height="58">
             </a>
 
             <!-- Desktop Nav Links -->
@@ -80,18 +80,10 @@
                             <li><a href="#a-day-here" class="dropdown-item">A Day Here</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item has-dropdown">
+                    <li class="nav-item">
                         <a href="#weekend-home" class="nav-link">
                             Weekend Home
-                            <svg class="dropdown-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none"
-                                aria-hidden="true">
-                                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#weekend-home" class="dropdown-item">The Weekend Home</a></li>
-                        </ul>
                     </li>
                     <li class="nav-item has-dropdown">
                         <a href="#master-plan" class="nav-link">
@@ -164,9 +156,6 @@
                 </li>
                 <li class="mobile-nav-group">
                     <a href="#weekend-home" class="mobile-nav-link mobile-group-title">Weekend Home</a>
-                    <ul class="mobile-sub-links">
-                        <li><a href="#weekend-home" class="mobile-sub-link">The Weekend Home</a></li>
-                    </ul>
                 </li>
                 <li class="mobile-nav-group">
                     <a href="#master-plan" class="mobile-nav-link mobile-group-title">Master Plan</a>
@@ -202,7 +191,7 @@
 
                     <!-- Main Headline -->
                     <h1 class="hero-heading reveal reveal-delay-1">
-                        Beyond The City.<br>Yours Always.
+                        Beyond the city.<br>Yours Always.
                     </h1>
 
                     <!-- Editorial Subheadline -->
@@ -263,8 +252,8 @@
                     </div>
                     <div class="idea-content-col reveal reveal-delay-1">
                         <h2 class="section-heading idea-heading">
-                            What You Own Is Land.<br>
-                            What You Create Is Life.
+                            What you Own is Land.<br>
+                            What you Create is Life.
                         </h2>
                         <div class="idea-divider"></div>
                         <div class="idea-text-wrapper">
@@ -289,7 +278,7 @@
             <div class="container">
                 <div class="land-pricing-header reveal">
                     <h2 class="section-heading land-heading">
-                        Your Space, By the Numbers
+                        Your Space, by the Numbers
                     </h2>
                 </div>
 
@@ -340,7 +329,7 @@
             <div class="container">
                 <div class="why-guntas-header reveal">
                     <h2 class="section-heading why-guntas-heading">
-                        605 Yards. Endless Possibility.
+                        605 yards. Endless possibility.
                     </h2>
                 </div>
 
@@ -408,8 +397,8 @@
             <div class="container">
                 <div class="connectivity-header reveal">
                     <h2 class="section-heading connectivity-heading">
-                        Close Enough to Reach.<br>
-                        Far Enough to Escape.
+                        Close enough to Reach.<br>
+                        Far enough to Escape.
                     </h2>
                 </div>
 
@@ -673,7 +662,7 @@
             <div class="container">
                 <div class="amenities-header reveal">
                     <h2 class="section-heading amenities-heading">
-                        Everything Comes Together Here
+                        Everything comes<br> Together here
                     </h2>
                 </div>
 
@@ -869,7 +858,7 @@
             <div class="container">
                 <div class="day-here-header reveal">
                     <h2 class="section-heading day-here-heading">
-                        What a Weekend at Vara Farm Haven Looks Like
+                        What a weekend at Vara Farm Haven looks like
                     </h2>
                     <div class="day-here-arrows">
                         <button class="day-here-arrow prev" id="day-prev" aria-label="Previous step">
@@ -1024,7 +1013,7 @@
                     <!-- Content Column -->
                     <div class="weekend-home-content reveal">
                         <h2 class="section-heading weekend-home-heading">
-                            Your Weekend Has a New Address
+                            Your Weekend has a New Address
                         </h2>
                         <p class="weekend-home-desc">
                             A thoughtfully planned 2BHK, built for the moments in between — where the indoors meet the
@@ -1117,7 +1106,7 @@
                 <div class="master-plan-header reveal">
                     <h2 class="section-heading master-plan-heading">
                         See the Plan.<br>
-                        Find Your Space.
+                        Find your Space.
                     </h2>
                     <p class="master-plan-lead">
                         An interactive layout of plots, roads, greenery, and every amenity — click a plot to check its
@@ -1128,24 +1117,16 @@
                 <!-- Interactive Layout Toolbar (Filter Tabs & Zoom Controls) -->
                 <div class="master-plan-toolbar reveal reveal-delay-1">
                     <!-- Filter Buttons -->
-                    <div class="plot-filters-wrapper">
-                        <button class="plot-filter-btn active" data-filter="all">All Plots</button>
-                        <button class="plot-filter-btn" data-filter="available">
+                    <div class="plot-filters-wrapper" role="tablist" aria-label="Filter plot layout by status">
+                        <button class="plot-filter-btn filter-all active" data-filter="all">
+                            <span class="filter-dot dot-all"></span> All (20)
+                        </button>
+                        <button class="plot-filter-btn filter-available" data-filter="available">
                             <span class="filter-dot dot-available"></span> Available (16)
                         </button>
-                        <button class="plot-filter-btn" data-filter="booked">
+                        <button class="plot-filter-btn filter-reserved" data-filter="booked">
                             <span class="filter-dot dot-booked"></span> Reserved (4)
                         </button>
-                        <button class="plot-filter-btn" data-filter="corner">Corner Plots</button>
-                        <button class="plot-filter-btn" data-filter="near-amenities">Near Pool &amp; Park</button>
-                    </div>
-
-                    <!-- Viewport Zoom Controls -->
-                    <div class="map-controls">
-                        <button class="map-ctrl-btn" id="map-zoom-in" aria-label="Zoom In Map">+</button>
-                        <button class="map-ctrl-btn" id="map-zoom-out" aria-label="Zoom Out Map">&minus;</button>
-                        <button class="map-ctrl-btn reset-btn" id="map-zoom-reset"
-                            aria-label="Reset View">Reset</button>
                     </div>
                 </div>
 
@@ -1154,6 +1135,14 @@
                     <!-- SVG Interactive Map Wrapper -->
                     <div class="master-map-container">
                         <div class="master-map-wrapper">
+                            <!-- Floating Viewport Zoom Controls -->
+                            <div class="map-controls">
+                                <button class="map-ctrl-btn" id="map-zoom-in" aria-label="Zoom In Map">+</button>
+                                <button class="map-ctrl-btn" id="map-zoom-out" aria-label="Zoom Out Map">&minus;</button>
+                                <button class="map-ctrl-btn reset-btn" id="map-zoom-reset"
+                                    aria-label="Reset View">Reset</button>
+                            </div>
+
                             <svg id="master-map-svg" viewBox="0 0 1000 650" fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                                 aria-label="Interactive Master Plan Layout of Vara Farm Haven">
@@ -1785,21 +1774,39 @@
         </div>
 
         <!-- ==========================================
-             23. ABOUT VARA SECTION
+             23. ABOUT VARA SECTION (DIRECTOR'S PERSPECTIVE)
              ========================================== -->
         <section id="about" class="about-section section-padding">
             <div class="container">
-                <div class="about-wrapper reveal">
-                    <h2 class="about-heading">
-                        Better Land Deserves<br>Better Planning.
-                    </h2>
-                    <h3 class="about-company">
-                        Vara Real Estate &amp; Developers Pvt. Ltd.
-                    </h3>
-                    <p class="about-text">
-                        Better land deserves better planning. That belief shapes everything we build — land,
-                        infrastructure, and spaces designed for people to actually live in, not just own.
-                    </p>
+                <div class="about-grid reveal">
+                    <!-- Left Column: Founder Image Card (1/3 Width - 1:2 Ratio) -->
+                    <div class="about-founder-card">
+                        <div class="about-founder-img-wrapper">
+                            <img src="assets/images/founder_placeholder.jpg" alt="Founder & Managing Director - Vara Real Estate"
+                                loading="lazy" width="600" height="750" class="about-founder-img">
+                        </div>
+                        <div class="founder-info-bar">
+                            <span class="founder-name">Managing Director</span>
+                            <span class="founder-title">Vara Real Estate &amp; Developers</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Director's Message Content (2/3 Width - 1:2 Ratio) -->
+                    <div class="about-content">
+                        <h2 class="about-heading">
+                            "Better Land Deserves Better Planning."
+                        </h2>
+                        <div class="about-message">
+                            <p>
+                                We created <strong>Vara Farm Haven</strong> to give families an authentic green escape just an hour from Hyderabad — combining clear titles, 5-Gunta minimum plots, and long-term peace of mind.
+                            </p>
+                        </div>
+
+                        <div class="about-signature-block">
+                            <div class="signature-title">Managing Director</div>
+                            <div class="signature-company">Vara Real Estate &amp; Developers</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1813,7 +1820,7 @@
                     <!-- Left Column: Editorial Information -->
                     <div class="enquiry-info reveal">
                         <h2 class="section-heading enquiry-heading">
-                            Let's Start the<br>Conversation
+                            Let's start the<br>conversation
                         </h2>
                         <p class="enquiry-subhead">
                             Tell us what you're looking for, and our team will help you take the next step.
@@ -2006,7 +2013,7 @@
                     <div class="footer-top-left">
                         <h2 class="footer-invite-title">
                             Drop by for fresh air.<br>
-                            <span>At anytime.</span>
+                            <span>At any time.</span>
                         </h2>
                     </div>
                 </div>
@@ -2067,7 +2074,7 @@
                     <!-- Brand Column -->
                     <div class="footer-brand-col">
                         <a href="#home" class="footer-logo-link" aria-label="Vara Farm Haven Home">
-                            <img src="assets/logo/Vara Logo.png" alt="Vara Logo" width="160" height="42" loading="lazy">
+                            <img src="assets/logo/Vara Logo.png" alt="Vara Logo" width="220" height="58" loading="lazy">
                         </a>
                         <p class="footer-brand-tagline">
                             Own Land.<br>Build Homes.<br><span class="tagline-mute">Grow Memories.</span>

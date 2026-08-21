@@ -11,21 +11,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-link');
     const dropdownItems = document.querySelectorAll('.dropdown-item');
 
-    // 1. Header Scrolled State
+    const stickyCta = document.querySelector('.mobile-sticky-cta');
+    const enquirySection = document.querySelector('#enquiry');
+
+    let isMenuOpen = false;
+    let isEnquiryVisible = false;
+    let lastScrollY = window.scrollY;
+
+    // 1. Header & Mobile Sticky CTA Scrolled State & Hide on Scroll Down
     const handleScroll = () => {
-        if (window.scrollY > 40) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        const currentScrollY = window.scrollY;
+
+        if (navbar) {
+            if (currentScrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Hide header when scrolling down, show when scrolling up
+            if (currentScrollY > lastScrollY && currentScrollY > 80 && !isMenuOpen) {
+                navbar.classList.add('nav-hidden');
+            } else {
+                navbar.classList.remove('nav-hidden');
+            }
         }
+
+        // Hide sticky CTA when scrolling down or when enquiry section is visible
+        if (stickyCta) {
+            if (isEnquiryVisible || (currentScrollY > lastScrollY && currentScrollY > 80)) {
+                stickyCta.classList.add('hidden');
+            } else {
+                stickyCta.classList.remove('hidden');
+            }
+        }
+
+        lastScrollY = Math.max(0, currentScrollY);
     };
+
+    if (stickyCta && enquirySection) {
+        const enquiryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                isEnquiryVisible = entry.isIntersecting;
+                handleScroll();
+            });
+        }, { threshold: 0.1 });
+        enquiryObserver.observe(enquirySection);
+    }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
 
     // 2. Mobile Menu Toggle
-    let isMenuOpen = false;
-
     const toggleMobileMenu = () => {
         isMenuOpen = !isMenuOpen;
         if (isMenuOpen) {

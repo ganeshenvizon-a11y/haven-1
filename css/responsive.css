@@ -27,7 +27,7 @@
     }
 
     .brand-logo img {
-        height: 36px;
+        height: 46px;
     }
 
     /* Hero Responsive Adjustments */
@@ -99,6 +99,38 @@
         width: 100%;
     }
 
+    /* The Idea Mobile */
+    .idea-section {
+        min-height: auto;
+        padding: 50px 0;
+    }
+
+    .idea-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .idea-heading {
+        font-size: clamp(24px, 6.5vw, 34px);
+        margin-top: 0;
+        margin-bottom: 16px;
+        line-height: 1.15;
+    }
+
+    .idea-divider {
+        margin-bottom: 20px;
+    }
+
+    .idea-lead {
+        font-size: clamp(17px, 4.5vw, 20px);
+        margin-bottom: 14px;
+    }
+
+    .idea-body {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
     /* Land & Pricing Mobile */
     .land-stats-grid {
         grid-template-columns: 1fr;
@@ -168,23 +200,68 @@
         padding: 24px 20px;
     }
 
-    /* A Day Here Mobile (Vertical Editorial Layout) */
+    /* A Day Here Mobile Carousel */
+    .day-here-header {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+    }
+
+    .day-here-heading {
+        font-size: clamp(22px, 5.5vw, 32px);
+        flex: 1;
+        margin-bottom: 0;
+    }
+
+    .day-here-arrows {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+        margin-bottom: 2px;
+    }
+
+    .day-here-arrow {
+        width: 38px;
+        height: 38px;
+    }
+
     .day-here-track {
-        flex-direction: column;
-        overflow-x: visible;
-        scroll-snap-type: none;
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
         padding-inline: var(--page-padding);
-        gap: 24px;
+        padding-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
     }
 
     .day-card {
-        flex: 0 0 100%;
-        width: 100%;
+        flex: 0 0 clamp(270px, 82vw, 340px);
+        scroll-snap-align: start;
     }
 
-    .day-here-arrows,
+    .day-card-image {
+        height: clamp(160px, 44vw, 210px);
+    }
+
+    .day-card-content {
+        padding: 20px 18px;
+    }
+
     .day-here-controls {
-        display: none;
+        display: flex;
+        margin-top: 12px;
+        justify-content: center;
+    }
+
+    .day-here-progress {
+        max-width: 100%;
+        width: 100%;
     }
 
     /* Weekend Home Mobile */
@@ -219,32 +296,57 @@
 
     /* Master Plan Mobile Adjustments */
     .master-plan-toolbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+        margin-bottom: 20px;
+        width: 100%;
     }
 
     .plot-filters-wrapper {
+        display: flex;
+        flex-direction: row;
         width: 100%;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        justify-content: space-between;
+        overflow: visible;
         flex-wrap: nowrap;
     }
 
     .plot-filter-btn {
-        flex-shrink: 0;
-        padding: 8px 16px;
-        font-size: 13px;
+        flex: 1 1 0px;
+        justify-content: center;
+        padding: 10px 6px;
+        font-size: 12.5px;
+        white-space: nowrap;
+        text-align: center;
+        border-radius: 24px;
+        gap: 6px;
+    }
+
+    .filter-dot {
+        width: 7px;
+        height: 7px;
     }
 
     .map-controls {
-        align-self: flex-end;
+        top: 10px;
+        right: 10px;
+        padding: 3px;
+        gap: 2px;
+    }
+
+    .map-ctrl-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .map-ctrl-btn.reset-btn {
+        padding: 0 8px;
+        font-size: 12px;
     }
 
     .master-plan-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
     }
 
     .master-detail-column {
@@ -252,22 +354,28 @@
     }
 
     .plot-detail-card {
-        padding: 24px 20px;
+        padding: 20px 16px;
         gap: 16px;
+        border-radius: var(--radius-lg);
     }
 
     .panel-metrics {
-        gap: 8px;
+        gap: 6px;
     }
 
     .metric-val {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .master-map-legend {
-        padding: 12px 14px;
-        gap: 10px 16px;
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 12px;
+        padding: 14px 16px;
+    }
+
+    .legend-item {
+        gap: 6px;
     }
 
     .legend-label {
@@ -367,20 +475,33 @@
     }
 
     /* About Vara Mobile */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .about-founder-card {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .about-content {
+        text-align: center;
+        align-items: center;
+    }
+
     .about-heading {
-        font-size: clamp(30px, 8vw, 42px);
-        margin-bottom: 20px;
+        font-size: clamp(22px, 6vw, 30px);
+        margin-bottom: 16px;
     }
 
-    .about-company {
-        font-size: 18px;
-        margin-bottom: 20px;
-        padding-bottom: 16px;
-    }
-
-    .about-text {
-        font-size: 16px;
+    .about-message {
+        font-size: 15px;
         line-height: 1.65;
+    }
+
+    .about-signature-block {
+        text-align: center;
     }
 
     /* Enquiry Section Mobile */
@@ -443,6 +564,27 @@
         flex-direction: column;
         align-items: flex-start;
     }
+
+    /* A Day Here Small Mobile (<480px) */
+    .day-here-header {
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-end;
+    }
+
+    .day-card {
+        flex: 0 0 86vw;
+    }
+
+    .day-card-content {
+        padding: 18px 16px;
+    }
+
+    /* Idea Section Small Mobile (<480px) */
+    .idea-heading {
+        font-size: clamp(22px, 6.2vw, 28px);
+        line-height: 1.18;
+    }
 }
 
 /* --------------------------------------------------------------------------
@@ -458,7 +600,7 @@
     }
 
     .brand-logo img {
-        height: 38px;
+        height: 50px;
     }
 
     .nav-actions {
@@ -483,6 +625,31 @@
 
     .spec-value {
         font-size: 19px;
+    }
+
+    /* The Idea Tablet */
+    .idea-section {
+        min-height: auto;
+        padding: 70px 0;
+    }
+
+    .idea-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+
+    .idea-heading {
+        font-size: clamp(28px, 3.8vw, 42px);
+        margin-bottom: 20px;
+    }
+
+    .idea-lead {
+        font-size: clamp(17px, 2.2vw, 21px);
+        margin-bottom: 16px;
+    }
+
+    .idea-body {
+        font-size: 15px;
     }
 
     /* Land & Pricing Tablet */
@@ -537,6 +704,49 @@
 
     .row-span-2 {
         grid-row: span 1;
+    }
+
+    /* A Day Here Tablet */
+    .day-here-header {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        gap: 24px;
+    }
+
+    .day-here-heading {
+        font-size: clamp(26px, 3.8vw, 36px);
+        flex: 1;
+    }
+
+    .day-here-arrows {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+
+    .day-here-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .day-here-track {
+        gap: 20px;
+        padding-bottom: 24px;
+    }
+
+    .day-card {
+        flex: 0 0 clamp(300px, 44vw, 350px);
+    }
+
+    .day-card-content {
+        padding: 22px 20px;
+    }
+
+    .day-here-progress {
+        max-width: 280px;
     }
 
     /* Footer Tablet */

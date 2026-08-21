@@ -374,16 +374,22 @@ document.addEventListener('DOMContentLoaded', () => {
     plotElements.forEach(group => {
         const plotId = group.getAttribute('data-plot-id');
 
-        group.addEventListener('click', () => {
+        const selectPlot = () => {
             selectedPlotId = plotId;
             renderPlotDetails(plotId);
-        });
+            // On smaller viewports (mobile/tablet), scroll smoothly to plot detail panel
+            if (window.innerWidth < 992 && detailPanel) {
+                const cardTop = detailPanel.getBoundingClientRect().top + window.pageYOffset - 80;
+                window.scrollTo({ top: cardTop, behavior: 'smooth' });
+            }
+        };
+
+        group.addEventListener('click', selectPlot);
 
         group.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                selectedPlotId = plotId;
-                renderPlotDetails(plotId);
+                selectPlot();
             }
         });
     });
@@ -424,16 +430,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Zoom & Reset Controls Logic
+    // 4. Zoom & Touch/Mouse Pan Controls Logic
     if (svgMapContainer) {
-        const applyZoom = (zoomLevel) => {
-            currentZoom = Math.max(0.9, Math.min(1.8, zoomLevel));
+        let panX = 0;
+        let panY = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+
+        const applyTransform = () => {
             const innerG = svgMapContainer.querySelector('.map-viewport-group');
             if (innerG) {
-                innerG.style.transform = `scale(${currentZoom})`;
+                innerG.style.transform = `translate(${panX}px, ${panY}px) scale(${currentZoom})`;
                 innerG.style.transformOrigin = 'center center';
-                innerG.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
+                innerG.style.transition = isDragging ? 'none' : 'transform 0.3s cubic-bezier(0.25, 1, 0.5, 1)';
             }
+        };
+
+        const applyZoom = (zoomLevel) => {
+            currentZoom = Math.max(0.9, Math.min(1.8, zoomLevel));
+            if (currentZoom === 1) {
+                panX = 0;
+                panY = 0;
+            }
+            applyTransform();
         };
 
         if (zoomInBtn) {
@@ -444,6 +464,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (resetZoomBtn) {
             resetZoomBtn.addEventListener('click', () => applyZoom(1));
+        }
+
+        // Drag to Pan when zoomed
+        const wrapper = svgMapContainer.closest('.master-map-wrapper');
+        if (wrapper) {
+            const startPan = (clientX, clientY) => {
+                if (currentZoom <= 1) return;
+                isDragging = true;
+                startX = clientX - panX;
+                startY = clientY - panY;
+                wrapper.style.cursor = 'grabbing';
+            };
+
+            const movePan = (clientX, clientY) => {
+                if (!isDragging) return;
+                panX = clientX - startX;
+                panY = clientY - startY;
+                const maxPan = (currentZoom - 1) * 250;
+                panX = Math.max(-maxPan, Math.min(maxPan, panX));
+                panY = Math.max(-maxPan, Math.min(maxPan, panY));
+                applyTransform();
+            };
+
+            const endPan = () => {
+                if (!isDragging) return;
+                isDragging = false;
+                wrapper.style.cursor = 'grab';
+                applyTransform();
+            };
+
+            wrapper.addEventListener('mousedown', (e) => startPan(e.clientX, e.clientY));
+            window.addEventListener('mousemove', (e) => movePan(e.clientX, e.clientY));
+            window.addEventListener('mouseup', endPan);
+
+            wrapper.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    startPan(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: true });
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging && e.touches.length === 1) {
+                    movePan(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }, { passive: true });
+            window.addEventListener('touchend', endPan);
         }
     }
 
