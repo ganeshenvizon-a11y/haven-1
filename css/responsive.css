@@ -295,6 +295,12 @@
     }
 
     /* Master Plan Mobile Adjustments */
+    .master-plan-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
     .master-plan-toolbar {
         margin-bottom: 20px;
         width: 100%;
@@ -408,16 +414,21 @@
 
     .gallery-grid {
         grid-template-columns: 1fr;
-        grid-auto-rows: 210px;
+        grid-auto-rows: 230px;
         gap: 16px;
     }
 
+    .gallery-item.bento-hero,
+    .gallery-item.bento-wide,
+    .gallery-item.bento-standard,
+    .gallery-item.bento-full,
     .span-3,
     .span-4,
     .span-6,
     .span-8,
     .span-12 {
         grid-column: span 1;
+        grid-row: span 1;
     }
 
     .row-span-2 {
@@ -690,10 +701,22 @@
     /* Gallery Tablet */
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 210px;
+        grid-auto-rows: clamp(210px, 24vh, 250px);
         gap: 20px;
     }
 
+    .gallery-item.bento-hero {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .gallery-item.bento-wide,
+    .gallery-item.bento-full {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .gallery-item.bento-standard,
     .span-3,
     .span-4,
     .span-6,
