@@ -449,4 +449,63 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     initFooterGalleryDrag();
+
+    // 8. Back to Top Button with Circular Brand Scroll Progress Controller
+    const initBackToTop = () => {
+        const backToTopBtn = document.getElementById('backToTop');
+        if (!backToTopBtn) return;
+
+        const progressCircle = backToTopBtn.querySelector('.back-to-top-circle-progress');
+        const circumference = 2 * Math.PI * 21; // ~131.95px
+
+        if (progressCircle) {
+            progressCircle.style.strokeDasharray = `${circumference}`;
+            progressCircle.style.strokeDashoffset = `${circumference}`;
+        }
+
+        const updateScrollProgress = () => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+            if (scrollHeight > 0) {
+                const progress = Math.min(Math.max(scrollTop / scrollHeight, 0), 1);
+                if (progressCircle) {
+                    const offset = circumference - (progress * circumference);
+                    progressCircle.style.strokeDashoffset = `${offset}`;
+                }
+            }
+
+            // Show button after scrolling down 300px
+            if (scrollTop > 300) {
+                backToTopBtn.classList.add('is-visible');
+            } else {
+                backToTopBtn.classList.remove('is-visible');
+            }
+        };
+
+        // Scroll listeners (native scroll and Lenis smooth scroll)
+        window.addEventListener('scroll', updateScrollProgress, { passive: true });
+        if (window.lenis) {
+            window.lenis.on('scroll', updateScrollProgress);
+        }
+
+        // Initial progress calculation
+        updateScrollProgress();
+
+        // Smooth scroll to top on click
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (window.lenis) {
+                window.lenis.scrollTo(0, { duration: 1.2 });
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    };
+
+    initBackToTop();
 });
+
