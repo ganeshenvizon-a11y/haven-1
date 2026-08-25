@@ -388,4 +388,65 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // 7. Footer Polaroid Gallery Drag-to-Scroll Controller
+    const initFooterGalleryDrag = () => {
+        const gallery = document.querySelector('.footer-polaroid-gallery');
+        if (!gallery) return;
+
+        let isDown = false;
+        let startX = 0;
+        let scrollLeftPos = 0;
+        let hasMoved = false;
+
+        const handleStart = (e) => {
+            isDown = true;
+            hasMoved = false;
+            gallery.classList.add('is-dragging');
+            const pageX = e.pageX || (e.touches && e.touches[0].pageX);
+            startX = pageX - gallery.offsetLeft;
+            scrollLeftPos = gallery.scrollLeft;
+        };
+
+        const handleEnd = () => {
+            if (!isDown) return;
+            isDown = false;
+            gallery.classList.remove('is-dragging');
+        };
+
+        const handleMove = (e) => {
+            if (!isDown) return;
+            const pageX = e.pageX || (e.touches && e.touches[0].pageX);
+            if (pageX === undefined) return;
+
+            const x = pageX - gallery.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            if (Math.abs(walk) > 5) {
+                hasMoved = true;
+                if (e.cancelable) e.preventDefault();
+            }
+            gallery.scrollLeft = scrollLeftPos - walk;
+        };
+
+        // Mouse Drag Events
+        gallery.addEventListener('mousedown', handleStart);
+        gallery.addEventListener('mouseleave', handleEnd);
+        gallery.addEventListener('mouseup', handleEnd);
+        gallery.addEventListener('mousemove', handleMove);
+
+        // Touch Drag Events
+        gallery.addEventListener('touchstart', handleStart, { passive: true });
+        gallery.addEventListener('touchend', handleEnd, { passive: true });
+        gallery.addEventListener('touchmove', handleMove, { passive: false });
+
+        // Prevent accidental card clicks during drag
+        gallery.addEventListener('click', (e) => {
+            if (hasMoved) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true);
+    };
+
+    initFooterGalleryDrag();
 });
