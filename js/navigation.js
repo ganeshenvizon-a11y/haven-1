@@ -12,11 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const dropdownItems = document.querySelectorAll('.dropdown-item');
 
     const stickyCta = document.querySelector('.mobile-sticky-cta');
+    const heroSection = document.querySelector('.hero') || document.querySelector('#home');
     const enquirySection = document.querySelector('#enquiry');
 
     let isMenuOpen = false;
+    let isHeroVisible = false;
     let isEnquiryVisible = false;
     let lastScrollY = window.scrollY;
+
+    const checkHeroVisibility = () => {
+        if (!heroSection) return false;
+        const rect = heroSection.getBoundingClientRect();
+        return rect.bottom > 50 && rect.top < window.innerHeight;
+    };
 
     // 1. Header & Mobile Sticky CTA Scrolled State & Hide on Scroll Down
     const handleScroll = () => {
@@ -37,9 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Hide sticky CTA when scrolling down or when enquiry section is visible
+        const heroInView = isHeroVisible || checkHeroVisibility();
+
+        // Hide sticky CTA when at hero section, scrolling down, or when enquiry section is visible
         if (stickyCta) {
-            if (isEnquiryVisible || (currentScrollY > lastScrollY && currentScrollY > 80)) {
+            if (heroInView || isEnquiryVisible || (currentScrollY > lastScrollY && currentScrollY > 80)) {
                 stickyCta.classList.add('hidden');
             } else {
                 stickyCta.classList.remove('hidden');
@@ -49,14 +59,26 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScrollY = Math.max(0, currentScrollY);
     };
 
-    if (stickyCta && enquirySection) {
-        const enquiryObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                isEnquiryVisible = entry.isIntersecting;
-                handleScroll();
-            });
-        }, { threshold: 0.1 });
-        enquiryObserver.observe(enquirySection);
+    if (stickyCta) {
+        if (heroSection) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isHeroVisible = entry.isIntersecting;
+                    handleScroll();
+                });
+            }, { threshold: 0.05 });
+            heroObserver.observe(heroSection);
+        }
+
+        if (enquirySection) {
+            const enquiryObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    isEnquiryVisible = entry.isIntersecting;
+                    handleScroll();
+                });
+            }, { threshold: 0.1 });
+            enquiryObserver.observe(enquirySection);
+        }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
