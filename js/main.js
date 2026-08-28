@@ -507,5 +507,71 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     initBackToTop();
+
+    // 9. Floating Contact Widget (Social Media Quick Contact Stack Controller)
+    const initFloatingContactWidget = () => {
+        const widget = document.getElementById('floating-contact-widget');
+        const toggleBtn = document.getElementById('floating-contact-widget-toggle');
+        const hideBtn = document.getElementById('floating-contact-widget-hide');
+        if (!widget || !toggleBtn) return;
+
+        const links = widget.querySelectorAll('.floating-contact-widget__link');
+
+        const openWidget = () => {
+            widget.classList.add('is-open');
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            toggleBtn.setAttribute('aria-label', 'Close contact options');
+            links.forEach((link) => link.setAttribute('tabindex', '0'));
+            if (hideBtn) hideBtn.setAttribute('tabindex', '0');
+        };
+
+        const closeWidget = () => {
+            widget.classList.remove('is-open');
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.setAttribute('aria-label', 'Open contact options');
+            links.forEach((link) => link.setAttribute('tabindex', '-1'));
+            if (hideBtn) hideBtn.setAttribute('tabindex', '-1');
+        };
+
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (widget.classList.contains('is-open')) {
+                closeWidget();
+            } else {
+                openWidget();
+            }
+        });
+
+        if (hideBtn) {
+            hideBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeWidget();
+                toggleBtn.focus();
+            });
+        }
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (widget.classList.contains('is-open') && !widget.contains(e.target)) {
+                closeWidget();
+            }
+        });
+
+        // Close on Escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && widget.classList.contains('is-open')) {
+                closeWidget();
+                toggleBtn.focus();
+            }
+        });
+
+        // Trigger pulse animation once after delay
+        setTimeout(() => {
+            toggleBtn.classList.add('floating-contact-widget__toggle--pulse');
+        }, 1500);
+    };
+
+    initFloatingContactWidget();
 });
+
 
