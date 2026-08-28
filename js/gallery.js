@@ -1,6 +1,6 @@
 /**
  * Vara Farm Haven — Gallery & Lightbox Controller (Section 22)
- * Handles asymmetric masonry filtering and fully accessible lightbox modal.
+ * Handles asymmetric bento filtering, View More expander, and fully accessible lightbox modal.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const filterBtns = gallerySection.querySelectorAll('.gallery-filter-btn');
     const galleryItems = Array.from(gallerySection.querySelectorAll('.gallery-item'));
-    
+    const loadMoreBtn = document.getElementById('gallery-load-more-btn');
+    const loadMoreWrapper = document.getElementById('gallery-load-more-wrapper');
+
     const lightbox = document.getElementById('gallery-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxBadge = document.getElementById('lightbox-badge');
@@ -21,56 +23,128 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxNext = document.getElementById('lightbox-next');
     const lightboxOverlay = lightbox ? lightbox.querySelector('.lightbox-overlay') : null;
 
+    const INITIAL_LIMIT = 8;
+    let currentFilter = 'all';
+    let isExpanded = false;
     let visibleItems = [...galleryItems];
     let currentIndex = 0;
 
     // ==========================================
-    // 1. Gallery Category Filtering
+    // 1. Layout State Manager (Filter + Limit)
     // ==========================================
+    const applyLayoutState = () => {
+        const matchingItems = galleryItems.filter(item => {
+            const category = item.getAttribute('data-category');
+            return currentFilter === 'all' || category === currentFilter;
+        });
+
+        galleryItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            const matchesFilter = currentFilter === 'all' || category === currentFilter;
+
+            if (!matchesFilter) {
+                item.classList.add('is-hidden');
+                item.classList.remove('is-collapsed');
+                item.style.display = 'none';
+                item.style.opacity = '0';
+            }
+        });
+
+        if (currentFilter === 'all') {
+            if (!isExpanded && matchingItems.length > INITIAL_LIMIT) {
+                matchingItems.forEach((item, idx) => {
+                    if (idx < INITIAL_LIMIT) {
+                        item.classList.remove('is-hidden', 'is-collapsed');
+                        item.style.display = '';
+                        item.style.opacity = '1';
+                    } else {
+                        item.classList.add('is-collapsed');
+                        item.classList.remove('is-hidden');
+                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                    }
+                });
+
+                if (loadMoreWrapper) loadMoreWrapper.style.display = 'flex';
+                if (loadMoreBtn) {
+                    const span = loadMoreBtn.querySelector('span');
+                    const svg = loadMoreBtn.querySelector('svg');
+                    if (span) span.textContent = 'View More Gallery';
+                    if (svg) svg.style.transform = 'rotate(0deg)';
+                }
+            } else {
+                matchingItems.forEach(item => {
+                    item.classList.remove('is-hidden', 'is-collapsed');
+                    item.style.display = '';
+                    item.style.opacity = '1';
+                });
+
+                if (loadMoreWrapper) {
+                    if (matchingItems.length > INITIAL_LIMIT) {
+                        loadMoreWrapper.style.display = 'flex';
+                        if (loadMoreBtn) {
+                            const span = loadMoreBtn.querySelector('span');
+                            const svg = loadMoreBtn.querySelector('svg');
+                            if (span) span.textContent = 'Show Less';
+                            if (svg) svg.style.transform = 'rotate(180deg)';
+                        }
+                    } else {
+                        loadMoreWrapper.style.display = 'none';
+                    }
+                }
+            }
+        } else {
+            // Category filter selected: show all matching items directly
+            matchingItems.forEach(item => {
+                item.classList.remove('is-hidden', 'is-collapsed');
+                item.style.display = '';
+                item.style.opacity = '1';
+            });
+            if (loadMoreWrapper) loadMoreWrapper.style.display = 'none';
+        }
+
+        // Update active visible items list for Lightbox navigation
+        visibleItems = galleryItems.filter(item => {
+            const matchesFilter = currentFilter === 'all' || item.getAttribute('data-category') === currentFilter;
+            const isNotCollapsed = !item.classList.contains('is-collapsed');
+            return matchesFilter && isNotCollapsed;
+        });
+    };
+
+    // Category Filter tab click handler
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const filterValue = btn.getAttribute('data-filter');
+            currentFilter = btn.getAttribute('data-filter');
+            isExpanded = false;
 
-            // Update active tab button state
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            // Filter items with smooth transition
-            galleryItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                
-                if (filterValue === 'all' || category === filterValue) {
-                    item.classList.remove('is-hidden');
-                    item.style.display = '';
-                    setTimeout(() => {
-                        item.style.opacity = '1';
-                        item.style.transform = 'scale(1)';
-                    }, 20);
-                } else {
-                    item.classList.add('is-hidden');
-                    item.style.opacity = '0';
-                    item.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        item.style.display = 'none';
-                    }, 300);
-                }
-            });
-
-            // Update visible items array for Lightbox navigation
-            visibleItems = galleryItems.filter(item => {
-                const cat = item.getAttribute('data-category');
-                return filterValue === 'all' || cat === filterValue;
-            });
+            applyLayoutState();
         });
     });
 
+    // Load More toggle handler
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            applyLayoutState();
+
+            if (!isExpanded) {
+                gallerySection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    // Initialize layout on load
+    applyLayoutState();
+
     // ==========================================
-    // 2. Lightbox Modal Functions
+    // 2. Lightbox Modal Controller
     // ==========================================
     const updateLightboxContent = (index) => {
         if (visibleItems.length === 0) return;
         
-        // Loop index around bounds
         if (index < 0) {
             currentIndex = visibleItems.length - 1;
         } else if (index >= visibleItems.length) {
@@ -85,9 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryNames = {
             'aerial': 'Aerial Views',
             'sitedev': 'Site Development',
-            'roads': 'Roads',
+            'roads': 'Infrastructure',
             'greenery': 'Greenery',
-            'weekend': 'Weekend Home',
+            'weekend': 'Villa & Stay',
             'amenities': 'Amenities',
             'masterplan': 'Master Plan',
             'sitevisits': 'Site Visits'
@@ -137,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Keyboard trigger (Enter or Space)
         item.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -155,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxPrev) lightboxPrev.addEventListener('click', showPrev);
     if (lightboxNext) lightboxNext.addEventListener('click', showNext);
 
-    // Keyboard Shortcuts for Lightbox Navigation
+    // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
         if (!lightbox || !lightbox.classList.contains('is-active')) return;
 
@@ -187,10 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const swipeDistance = touchEndX - touchStartX;
         if (Math.abs(swipeDistance) > 40) {
             if (swipeDistance < 0) {
-                showNext(); // Swipe left -> Next
+                showNext();
             } else {
-                showPrev(); // Swipe right -> Prev
+                showPrev();
             }
         }
     };
 });
+
