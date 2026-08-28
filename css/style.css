@@ -3020,7 +3020,6 @@ a.contact-value:hover {
 
 .footer-polaroid-gallery img {
     -webkit-user-drag: none;
-    user-drag: none;
     pointer-events: none;
 }
 
