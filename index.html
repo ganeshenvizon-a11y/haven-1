@@ -249,7 +249,7 @@
                 <div class="idea-grid">
                     <div class="idea-image-col reveal">
                         <div class="idea-image-frame img-zoom-container image-reveal">
-                            <img src="assets/images/entrance_gate.jpg"
+                            <img src="assets/images/Entrance_3_Front-view 2.jpg"
                                 alt="Grand Entrance Arch and Main Boulevard at Vara Farm Haven" decoding="async"
                                 width="800" height="600">
                         </div>
@@ -354,7 +354,7 @@
                     <!-- Feature 2: Private Garden -->
                     <article class="guntas-card reveal reveal-delay-1">
                         <div class="guntas-card-image img-zoom-container">
-                            <img src="assets/images/garden_walkway.jpg" alt="Your Private Garden at Vara Farm Haven"
+                            <img src="assets/images/walking track.jpg" alt="Your Private Garden at Vara Farm Haven"
                                 loading="lazy" width="800" height="450">
                         </div>
                         <div class="guntas-card-content">
@@ -368,7 +368,7 @@
                     <!-- Feature 3: Family Escape -->
                     <article class="guntas-card reveal reveal-delay-2">
                         <div class="guntas-card-image img-zoom-container">
-                            <img src="assets/images/garden_walkway.jpg" alt="Your Family Escape at Vara Farm Haven"
+                            <img src="assets/images/Your Family Escape.jpg" alt="Your Family Escape at Vara Farm Haven"
                                 loading="lazy" width="800" height="450">
                         </div>
                         <div class="guntas-card-content">
@@ -381,7 +381,7 @@
                     <!-- Feature 4: Long-Term Asset -->
                     <article class="guntas-card reveal reveal-delay-3">
                         <div class="guntas-card-image img-zoom-container">
-                            <img src="assets/images/plot_view.jpg" alt="Your Long-Term Asset at Vara Farm Haven"
+                            <img src="assets/images/Bird View2_V2_Ext.jpg" alt="Your Long-Term Asset at Vara Farm Haven"
                                 loading="lazy" width="800" height="450">
                         </div>
                         <div class="guntas-card-content">
@@ -399,265 +399,214 @@
              ========================================== -->
         <section id="connectivity" class="connectivity-section section-padding">
             <div class="container">
+                <!-- Section Header -->
                 <div class="connectivity-header reveal">
                     <h2 class="section-heading connectivity-heading">
-                        Close Enough to Reach.<br>
-                        Far Enough to Escape.
+                        <span class="heading-line">Close Enough to Reach.</span>
+                        <span class="heading-line">Far Enough to Escape.</span>
                     </h2>
+                    <p class="connectivity-lead">
+                        Positioned seamlessly along the high-growth <strong>NH-44 Hyderabad–Bengaluru Highway</strong> corridor and the <strong>Balanagar–Gunded Road</strong>, Vara Farm Haven gives you the rare luxury of reaching your private sanctuary in just under an hour from Hyderabad.
+                    </p>
                 </div>
 
+                <!-- Main Layout Grid: Map Showcase (Left) + Connectivity Corridors (Right) -->
                 <div class="connectivity-grid">
-                    <!-- Map/Graphic Column -->
-                    <div class="connectivity-map-wrapper reveal">
-                        <div class="connectivity-map-container">
-                            <svg class="connectivity-map-svg" viewBox="0 0 700 500" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-label="Connectivity Map showing routes to Vara Farm Haven">
-                                <defs>
-                                    <!-- Background grid pattern -->
-                                    <pattern id="map-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.05)"
-                                            stroke-width="1" />
-                                    </pattern>
+                    <!-- Map Showcase Column -->
+                    <div class="connectivity-map-column reveal reveal-delay-1">
+                        <div class="connectivity-map-showcase" id="connectivity-map-card">
+                            <!-- Header Action Bar -->
+                            <div class="map-showcase-header">
+                                <div class="map-showcase-title-wrap">
+                                    <h3 class="map-showcase-title">Official Route Map</h3>
+                                    <span class="map-zoom-badge" id="roadmap-zoom-badge">100%</span>
+                                </div>
+                                <div class="map-header-actions">
+                                    <button type="button" class="btn-map-expand" id="connectivity-map-expand-btn" aria-label="Open Fullscreen Roadmap Lightbox">
+                                        <i class="fa-solid fa-expand"></i> Fullscreen Map
+                                    </button>
+                                </div>
+                            </div>
 
-                                    <!-- Route Glow Filters -->
-                                    <filter id="lime-glow" x="-20%" y="-20%" width="140%" height="140%">
-                                        <feGaussianBlur stdDeviation="5" result="blur" />
-                                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                                    </filter>
+                            <!-- Map Image Container with Interactive Zoom Controls -->
+                            <div class="map-image-wrapper" id="connectivity-map-wrapper">
+                                <!-- Floating Zoom Controls -->
+                                <div class="roadmap-zoom-controls" aria-label="Roadmap Zoom and View Controls">
+                                    <button type="button" class="roadmap-ctrl-btn" id="roadmap-zoom-in" aria-label="Zoom in road map" title="Zoom In (+)">
+                                        <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                    <button type="button" class="roadmap-ctrl-btn" id="roadmap-zoom-out" aria-label="Zoom out road map" title="Zoom Out (-)">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="roadmap-ctrl-btn roadmap-reset-btn" id="roadmap-zoom-reset" aria-label="Reset zoom level" title="Reset View">
+                                        <i class="fa-solid fa-rotate-left"></i>
+                                        <span>Reset</span>
+                                    </button>
+                                </div>
 
-                                    <filter id="destination-glow" x="-50%" y="-50%" width="200%" height="200%">
-                                        <feGaussianBlur stdDeviation="8" result="blur" />
-                                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                                    </filter>
-                                </defs>
+                                <!-- Zoom & Pan Transform Stage -->
+                                <div class="roadmap-stage" id="roadmap-stage">
+                                    <img src="assets/images/vara road map-01 1.jpg"
+                                        alt="Vara Farm Haven Official Road Map showing connectivity from Hyderabad, ORR, Airport, Shadnagar to Balanagar and Gunded"
+                                        loading="lazy" width="1400" height="990" class="connectivity-roadmap-img" id="connectivity-roadmap-img" draggable="false">
+                                </div>
 
-                                <!-- Grid Overlay -->
-                                <rect width="700" height="500" fill="url(#map-grid)" />
-
-                                <!-- Outer Ring Road (ORR) Loop -->
-                                <g class="map-feature" id="node-item-orr">
-                                    <path class="map-road-orr"
-                                        d="M 120 70 C 260 30, 480 30, 620 90 C 660 160, 640 260, 580 320"
-                                        stroke="rgba(255, 255, 255, 0.18)" stroke-width="4" stroke-dasharray="8 6" />
-                                    <text x="350" y="45" class="map-label-sub" text-anchor="middle">Outer Ring Road
-                                        (ORR)</text>
-                                </g>
-
-                                <!-- Regional Ring Road (RRR) Alignment -->
-                                <g class="map-feature" id="node-item-rrr">
-                                    <path class="map-road-rrr" d="M 80 310 C 220 280, 480 330, 650 380"
-                                        stroke="rgba(176, 210, 54, 0.4)" stroke-width="3" stroke-dasharray="6 4" />
-                                    <text x="490" y="325" class="map-label-accent">Proposed RRR Alignment</text>
-                                </g>
-
-                                <!-- NH-44 Highway Corridor Line -->
-                                <g class="map-feature" id="node-item-nh44">
-                                    <path class="map-route-highway route-path"
-                                        d="M 450 60 L 410 160 L 340 300 L 260 440" stroke="rgba(255, 255, 255, 0.25)"
-                                        stroke-width="6" stroke-linecap="round" />
-                                    <path class="map-route-highway-active route-path-active"
-                                        d="M 450 60 L 410 160 L 340 300 L 260 440" stroke="var(--vara-lime)"
-                                        stroke-width="4" stroke-linecap="round" filter="url(#lime-glow)" />
-                                </g>
-
-                                <!-- Balanagar - Gunded Connecting Road -->
-                                <g class="map-feature" id="node-item-gunded">
-                                    <path class="map-route-local route-local-active" d="M 340 300 L 210 330 L 150 370"
-                                        stroke="var(--vara-lime)" stroke-width="5" stroke-linecap="round"
-                                        stroke-dasharray="6 4" filter="url(#lime-glow)" />
-                                </g>
-
-                                <!-- Rail Line -->
-                                <g class="map-feature" id="node-item-rail">
-                                    <path class="map-rail-line" d="M 280 60 L 240 180 L 170 340 L 110 450"
-                                        stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="4 4" stroke-width="2.5" />
-                                </g>
-
-                                <!-- Landmarks / Nodes -->
-                                <!-- Hyderabad Central (Top) -->
-                                <g class="map-node">
-                                    <circle cx="450" cy="60" r="7" fill="#FFFFFF" />
-                                    <circle cx="450" cy="60" r="14" fill="rgba(255, 255, 255, 0.15)" />
-                                    <text x="470" y="65" class="map-label-main">Hyderabad City</text>
-                                </g>
-
-                                <!-- Rajiv Gandhi International Airport -->
-                                <g class="map-node map-node-interactive" id="node-item-airport">
-                                    <circle cx="560" cy="150" r="7" fill="#FFFFFF" />
-                                    <text x="575" y="155" class="map-label-main">RGIA Airport</text>
-                                    <path d="M 560 150 L 410 160" stroke="rgba(255, 255, 255, 0.25)" stroke-width="2"
-                                        stroke-dasharray="4 4" />
-                                </g>
-
-                                <!-- Rail Station Node -->
-                                <g class="map-node map-node-interactive" id="node-item-rail-node">
-                                    <circle cx="240" cy="180" r="6" fill="var(--vara-sand)" />
-                                    <text x="140" y="185" class="map-label-sub">Shadnagar / Balanagar Rail</text>
-                                </g>
-
-                                <!-- NH-44 Junction / Balanagar Junction -->
-                                <g class="map-node map-node-interactive" id="node-item-nh44-node">
-                                    <circle cx="340" cy="300" r="8" fill="var(--vara-lime)" />
-                                    <text x="358" y="295" class="map-label-main">NH-44 Junction</text>
-                                    <text x="358" y="312" class="map-label-sub">(Hyd–Bengaluru Highway)</text>
-                                </g>
-
-                                <!-- Gunded Road / RRR Interchange -->
-                                <g class="map-node map-node-interactive" id="node-item-gunded-node">
-                                    <circle cx="210" cy="330" r="6" fill="var(--vara-lime)" />
-                                    <text x="225" y="350" class="map-label-sub">Balanagar–Gunded Road</text>
-                                </g>
-
-                                <!-- DESTINATION NODE: VARA FARM HAVEN -->
-                                <g class="map-destination-node" id="node-item-destination">
-                                    <!-- Radar Pulse Circles -->
-                                    <circle cx="150" cy="370" r="32" class="destination-pulse" fill="none"
-                                        stroke="var(--vara-lime)" stroke-width="1.5" />
-                                    <circle cx="150" cy="370" r="20" class="destination-pulse-inner" fill="none"
-                                        stroke="var(--vara-lime)" stroke-width="2" />
-                                    <circle cx="150" cy="370" r="10" fill="var(--vara-lime)"
-                                        filter="url(#destination-glow)" />
-                                    <circle cx="150" cy="370" r="4" fill="var(--vara-green)" />
-
-                                    <!-- Destination Pin Card -->
-                                    <g transform="translate(60, 395)">
-                                        <rect x="0" y="0" width="170" height="50" rx="8" fill="var(--vara-green)"
-                                            stroke="var(--vara-lime)" stroke-width="1.5" filter="url(#lime-glow)" />
-                                        <text x="16" y="22" font-size="13" font-weight="700" fill="#FFFFFF"
-                                            letter-spacing="0.04em">VARA FARM HAVEN</text>
-                                        <text x="16" y="38" font-size="11" font-weight="600"
-                                            fill="var(--vara-lime)">Your Sanctuary</text>
-                                    </g>
-                                </g>
-                            </svg>
+                                <div class="map-hover-hint" id="roadmap-hover-hint">
+                                    <i class="fa-solid fa-up-down-left-right"></i> Drag to Pan &bull; Use Controls or Scroll to Zoom
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Details List Column -->
-                    <div class="connectivity-list-wrapper reveal reveal-delay-1">
+                    <div class="connectivity-list-wrapper reveal reveal-delay-2">
+                        <div class="connectivity-corridors-header">
+                            <h3 class="corridors-title">Key Corridors &amp; Landmarks</h3>
+                        </div>
+
                         <ul class="connectivity-list">
-                            <!-- NH-44 -->
-                            <li class="connectivity-item" data-node="item-nh44">
+                            <!-- 01: NH-44 Highway -->
+                            <li class="connectivity-item active" data-corridor="nh44">
                                 <div class="connectivity-icon-box">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="4" y="3" width="16" height="18" rx="2"></rect>
-                                        <line x1="12" y1="3" x2="12" y2="21"></line>
-                                        <line x1="8" y1="7" x2="8" y2="9"></line>
-                                        <line x1="8" y1="15" x2="8" y2="17"></line>
-                                        <line x1="16" y1="7" x2="16" y2="9"></line>
-                                        <line x1="16" y1="15" x2="16" y2="17"></line>
-                                    </svg>
+                                    <i class="fa-solid fa-road-circle-check"></i>
                                 </div>
                                 <div class="connectivity-item-content">
                                     <div class="connectivity-item-header">
-                                        <h3 class="connectivity-title">NH-44</h3>
+                                        <h4 class="connectivity-title">NH-44 Bangalore Express Corridor</h4>
                                     </div>
-                                    <p class="connectivity-desc">Direct access to the Hyderabad–Bengaluru highway
-                                        corridor</p>
+                                    <p class="connectivity-desc">
+                                        Fast 6-lane National Highway connecting Hyderabad directly to Bengaluru. Uninterrupted, smooth drive from the city.
+                                    </p>
                                 </div>
                             </li>
 
-                            <!-- Balanagar–Gunded Road -->
-                            <li class="connectivity-item" data-node="item-gunded">
+                            <!-- 02: Proposed RRR Alignment -->
+                            <li class="connectivity-item" data-corridor="rrr">
                                 <div class="connectivity-icon-box">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M18 6L6 18"></path>
-                                        <path d="M8 6h10v10"></path>
-                                    </svg>
+                                    <i class="fa-solid fa-circle-nodes"></i>
                                 </div>
                                 <div class="connectivity-item-content">
                                     <div class="connectivity-item-header">
-                                        <h3 class="connectivity-title">Balanagar–Gunded Road</h3>
+                                        <h4 class="connectivity-title">Proposed Regional Ring Road (RRR)</h4>
                                     </div>
-                                    <p class="connectivity-desc">Straightforward approach to the project</p>
+                                    <p class="connectivity-desc">
+                                        Government proposed RRR passes right through Gunded, Balanagar Mandal—driving massive regional infrastructure and property appreciation.
+                                    </p>
                                 </div>
                             </li>
 
-                            <!-- Regional Ring Road -->
-                            <li class="connectivity-item" data-node="item-rrr">
+                            <!-- 03: Airport & ORR Junction -->
+                            <li class="connectivity-item" data-corridor="airport">
                                 <div class="connectivity-icon-box">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="9"></circle>
-                                        <path d="M12 3v18"></path>
-                                    </svg>
+                                    <i class="fa-solid fa-plane-departure"></i>
                                 </div>
                                 <div class="connectivity-item-content">
                                     <div class="connectivity-item-header">
-                                        <h3 class="connectivity-title">Regional Ring Road</h3>
+                                        <h4 class="connectivity-title">RGIA Airport &amp; Outer Ring Road</h4>
                                     </div>
-                                    <p class="connectivity-desc">Proposed RRR alignment passes through Gunded, Balanagar
-                                        Mandal</p>
+                                    <p class="connectivity-desc">
+                                        Direct straight-line highway access to Rajiv Gandhi International Airport (Shamshabad) and the ORR network connecting to Gachibowli.
+                                    </p>
                                 </div>
                             </li>
 
-                            <!-- ORR -->
-                            <li class="connectivity-item" data-node="item-orr">
+                            <!-- 04: Shadnagar Economic & Educational Hub -->
+                            <li class="connectivity-item" data-corridor="shadnagar">
                                 <div class="connectivity-icon-box">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <circle cx="12" cy="12" r="6"></circle>
-                                        <circle cx="12" cy="12" r="2"></circle>
-                                    </svg>
+                                    <i class="fa-solid fa-city"></i>
                                 </div>
                                 <div class="connectivity-item-content">
                                     <div class="connectivity-item-header">
-                                        <h3 class="connectivity-title">ORR</h3>
+                                        <h4 class="connectivity-title">Shadnagar Economic Hub</h4>
                                     </div>
-                                    <p class="connectivity-desc">Connects onward to Hyderabad's Outer Ring Road</p>
+                                    <p class="connectivity-desc">
+                                        Close to corporate giants like P&amp;G, Johnson &amp; Johnson, DLF, Adani Data Center, and Symbiosis International University.
+                                    </p>
                                 </div>
                             </li>
 
-                            <!-- Rail -->
-                            <li class="connectivity-item" data-node="item-rail">
+                            <!-- 05: Balanagar Rail & Dedicated Gunded Road -->
+                            <li class="connectivity-item" data-corridor="balanagar">
                                 <div class="connectivity-icon-box">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="4" y="3" width="16" height="16" rx="2"></rect>
-                                        <path d="M4 11h16"></path>
-                                        <path d="M12 3v8"></path>
-                                        <path d="m8 19-3 3"></path>
-                                        <path d="m16 19 3 3"></path>
-                                        <circle cx="8" cy="15" r="1"></circle>
-                                        <circle cx="16" cy="15" r="1"></circle>
-                                    </svg>
+                                    <i class="fa-solid fa-signs-post"></i>
                                 </div>
                                 <div class="connectivity-item-content">
                                     <div class="connectivity-item-header">
-                                        <h3 class="connectivity-title">Rail</h3>
+                                        <h4 class="connectivity-title">Balanagar Station &amp; Gunded Road</h4>
                                     </div>
-                                    <p class="connectivity-desc">Nearby stations via Balanagar / Ranga Reddy Guda /
-                                        Shadnagar</p>
-                                </div>
-                            </li>
-
-                            <!-- Airport -->
-                            <li class="connectivity-item" data-node="item-airport">
-                                <div class="connectivity-icon-box">
-                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path
-                                            d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.7 5.2c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div class="connectivity-item-content">
-                                    <div class="connectivity-item-header">
-                                        <h3 class="connectivity-title">Airport</h3>
-                                    </div>
-                                    <p class="connectivity-desc">Direct road connectivity to Rajiv Gandhi International
-                                        Airport</p>
+                                    <p class="connectivity-desc">
+                                        Balanagar Railway Station on the Hyd-Kurnool line; smooth scenic blacktop road from Balanagar via Gunded straight to Nerellapalli.
+                                    </p>
                                 </div>
                             </li>
                         </ul>
+
+                        <!-- Download Map / Location Enquiry CTA Card -->
+                        <div class="connectivity-quick-cta">
+                            <div class="cta-inner-text">
+                                <strong>Plan your site visit this weekend</strong>
+                                <span>Get customized driving directions sent directly to your WhatsApp.</span>
+                            </div>
+                            <a href="#enquiry" class="btn btn-sm btn-primary">
+                                Get Directions <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Commute Metrics Strip (Placed After Grid) -->
+                <div class="connectivity-commute-strip reveal reveal-delay-3">
+                    <div class="commute-strip-item">
+                        <span class="commute-strip-time"><i class="fa-solid fa-bolt"></i> 5 Mins</span>
+                        <span class="commute-strip-label">NH-44 Highway</span>
+                    </div>
+                    <div class="commute-strip-divider"></div>
+                    <div class="commute-strip-item">
+                        <span class="commute-strip-time">10 Mins</span>
+                        <span class="commute-strip-label">Proposed RRR</span>
+                    </div>
+                    <div class="commute-strip-divider"></div>
+                    <div class="commute-strip-item">
+                        <span class="commute-strip-time">20 Mins</span>
+                        <span class="commute-strip-label">Shadnagar Hub</span>
+                    </div>
+                    <div class="commute-strip-divider"></div>
+                    <div class="commute-strip-item">
+                        <span class="commute-strip-time">45 Mins</span>
+                        <span class="commute-strip-label">RGIA Airport</span>
+                    </div>
+                    <div class="commute-strip-divider"></div>
+                    <div class="commute-strip-item">
+                        <span class="commute-strip-time">60 Mins</span>
+                        <span class="commute-strip-label">Financial Dist. / ORR</span>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Fullscreen Connectivity Roadmap Lightbox Modal -->
+        <div id="roadmap-modal" class="master-plan-modal roadmap-modal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="modal-backdrop" id="roadmap-modal-backdrop"></div>
+            <div class="modal-container">
+                <div class="modal-header">
+                    <div class="modal-title-group">
+                        <h3 class="modal-title">Vara Farm Haven — Official Location &amp; Roadmap</h3>
+                        <p class="modal-subtitle">Direct Highway Connectivity from Hyderabad, ORR, RGIA Airport &amp; Proposed RRR Corridor</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a href="assets/images/vara road map-01 1.jpg" download="Vara_Farm_Haven_Roadmap.jpg" class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-download"></i> Download Map
+                        </a>
+                        <button type="button" class="modal-close-btn" id="roadmap-modal-close-btn" aria-label="Close Roadmap View">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body" data-lenis-prevent style="background: #ffffff; display: flex; align-items: center; justify-content: center; overflow: auto; padding: 16px;">
+                    <img src="assets/images/vara road map-01 1.jpg" alt="Vara Farm Haven Full Official Road Map" class="modal-blueprint-img" style="max-height: 80vh; width: auto; max-width: 100%; object-fit: contain;">
+                </div>
+            </div>
+        </div>
 
         <!-- ==========================================
              18. AMENITIES SECTION
@@ -887,7 +836,7 @@
                     <!-- Step 01: Morning -->
                     <article class="day-card" data-step="1">
                         <div class="day-card-image img-zoom-container">
-                            <img src="assets/images/entrance_gate.jpg"
+                            <img src="assets/images/Wake up to open skies 1.jpg"
                                 alt="Morning open skies and entrance at Vara Farm Haven" loading="lazy" width="600"
                                 height="380">
                         </div>
@@ -904,7 +853,7 @@
                     <!-- Step 02: Walk -->
                     <article class="day-card" data-step="2">
                         <div class="day-card-image img-zoom-container">
-                            <img src="assets/images/garden_walkway.jpg" alt="Tree-lined avenue walk at Vara Farm Haven"
+                            <img src="assets/images/walking track.jpg" alt="Tree-lined avenue walk at Vara Farm Haven"
                                 loading="lazy" width="600" height="380">
                         </div>
                         <div class="day-card-content">
@@ -936,7 +885,7 @@
                     <!-- Step 04: Family Lunch -->
                     <article class="day-card" data-step="4">
                         <div class="day-card-image img-zoom-container">
-                            <img src="assets/images/garden_walkway.jpg" alt="Family lunch outdoors at Vara Farm Haven"
+                            <img src="assets/images/family_lunch.jpg" alt="Family lunch outdoors at Vara Farm Haven"
                                 loading="lazy" width="600" height="380">
                         </div>
                         <div class="day-card-content">
@@ -985,7 +934,7 @@
                     <!-- Step 07: Stay the Night -->
                     <article class="day-card" data-step="7">
                         <div class="day-card-image img-zoom-container">
-                            <img src="assets/images/pool_gazebo.jpg"
+                            <img src="assets/images/day-end.jpg"
                                 alt="Stay the night at Vara Farm Haven weekend home" loading="lazy" width="600"
                                 height="380">
                         </div>
@@ -1122,324 +1071,186 @@
                 <!-- Interactive Layout Toolbar (Filter Tabs & Zoom Controls) -->
                 <div class="master-plan-toolbar reveal reveal-delay-1">
                     <!-- Filter Buttons -->
-                    <div class="plot-filters-wrapper" role="tablist" aria-label="Filter plot layout by status">
+                    <div class="plot-filters-wrapper" role="tablist" aria-label="Filter plot layout by gunta size">
                         <button class="plot-filter-btn filter-all active" data-filter="all">
-                            <span class="filter-dot dot-all"></span> All (20)
+                            <span class="filter-dot dot-all"></span> All Plots (24)
                         </button>
-                        <button class="plot-filter-btn filter-available" data-filter="available">
-                            <span class="filter-dot dot-available"></span> Available (16)
+                        <button class="plot-filter-btn filter-5" data-filter="5">
+                            <span class="filter-dot dot-available"></span> 5 Guntas (13)
                         </button>
-                        <button class="plot-filter-btn filter-reserved" data-filter="booked">
-                            <span class="filter-dot dot-booked"></span> Reserved (4)
+                        <button class="plot-filter-btn filter-5plus" data-filter="5plus">
+                            <span class="filter-dot dot-available"></span> 5+ Guntas (8)
+                        </button>
+                        <button class="plot-filter-btn filter-10plus" data-filter="10plus">
+                            <span class="filter-dot dot-estate"></span> 10 or 10+ Guntas (3)
+                        </button>
+                    </div>
+
+                    <!-- Action Controls -->
+                    <div class="master-plan-quick-actions">
+                        <button type="button" class="btn btn-sm btn-plan-action" id="map-fullscreen-btn" aria-label="Open Fullscreen Master Plan">
+                            <i class="fa-solid fa-expand"></i> Fullscreen Plan
                         </button>
                     </div>
                 </div>
 
-                <!-- Main Layout Grid: Interactive SVG Map (Left) + Detail Panel (Right) -->
+                <!-- Main Layout Grid: Interactive Blueprint Viewer (Left) + Detail Panel (Right) -->
                 <div class="master-plan-grid reveal reveal-delay-2">
-                    <!-- SVG Interactive Map Wrapper -->
+                    <!-- Master Plan Interactive Stage Wrapper -->
                     <div class="master-map-container">
-                        <div class="master-map-wrapper">
-                            <!-- Floating Viewport Zoom Controls -->
+                        <!-- Canvas Viewport with Pan/Zoom and Pins -->
+                        <div class="master-map-wrapper master-plan-canvas-wrapper" data-lenis-prevent>
+                            <!-- Floating Zoom Controls -->
                             <div class="map-controls">
-                                <button class="map-ctrl-btn" id="map-zoom-in" aria-label="Zoom In Map">+</button>
-                                <button class="map-ctrl-btn" id="map-zoom-out"
-                                    aria-label="Zoom Out Map">&minus;</button>
-                                <button class="map-ctrl-btn reset-btn" id="map-zoom-reset"
-                                    aria-label="Reset View">Reset</button>
+                                <button class="map-ctrl-btn" id="map-zoom-in" aria-label="Zoom In Plan">+</button>
+                                <button class="map-ctrl-btn" id="map-zoom-out" aria-label="Zoom Out Plan">&minus;</button>
+                                <button class="map-ctrl-btn reset-btn" id="map-zoom-reset" aria-label="Reset View">Reset</button>
                             </div>
 
-                            <svg id="master-map-svg" viewBox="0 0 1000 650" fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-label="Interactive Master Plan Layout of Vara Farm Haven">
-                                <g class="map-viewport-group">
-                                    <!-- Canvas Background & Boundary -->
-                                    <rect width="1000" height="650" rx="12" fill="#F4F6F2" stroke="var(--vara-border)"
-                                        stroke-width="2" />
+                            <div class="blueprint-zoom-container" id="blueprint-zoom-container">
+                                <!-- Official Blueprint Image -->
+                                <img src="assets/images/FarmHaven_Master Plan_Web.jpg"
+                                    alt="Vara Farm Haven Official Master Plan Layout"
+                                    id="master-plan-blueprint"
+                                    class="master-plan-blueprint-img"
+                                    loading="eager"
+                                    width="1600"
+                                    height="1131"
+                                    draggable="false">
 
-                                    <!-- Perimeter Solar Fencing / Boundary Line -->
-                                    <rect x="30" y="30" width="940" height="590" rx="8" fill="none"
-                                        stroke="var(--vara-green)" stroke-width="2" stroke-dasharray="6 4"
-                                        opacity="0.6" />
-                                    <text x="40" y="25" class="svg-text-sub" font-size="11"
-                                        fill="var(--vara-slate)">PERIMETER COMPOUND WALL &amp; SOLAR FENCING</text>
+                                <!-- Interactive Hotspot Pins Layer -->
+                                <div class="plot-pins-layer" aria-label="Interactive Plot Pins">
+                                    <!-- Plot 01 (10.55 Gts) -->
+                                    <div class="plot-pin pin-estate" style="left: 16%; top: 22%;" data-plot-id="plot-1" tabindex="0" role="button" aria-label="Plot 01, 10.55 Guntas">
+                                        <span class="pin-badge">01</span>
+                                    </div>
 
-                                    <!-- Roads Network (13-Feet Blacktop Roads) -->
-                                    <!-- Main Central Entrance Road & Internal Loops -->
-                                    <path d="M 30 580 L 940 580" stroke="#3A423D" stroke-width="32"
-                                        stroke-linecap="round" />
-                                    <path d="M 30 580 L 940 580" stroke="#E2E7DF" stroke-width="2"
-                                        stroke-linecap="round" stroke-dasharray="8 8" />
+                                    <!-- Plot 02 (10 Gts) -->
+                                    <div class="plot-pin pin-estate" style="left: 16%; top: 35%;" data-plot-id="plot-2" tabindex="0" role="button" aria-label="Plot 02, 10 Guntas">
+                                        <span class="pin-badge">02</span>
+                                    </div>
 
-                                    <path d="M 360 580 L 360 40 L 520 40 L 520 580" stroke="#3A423D" stroke-width="28"
-                                        stroke-linejoin="round" />
-                                    <path d="M 360 580 L 360 40 L 520 40 L 520 580" stroke="#E2E7DF" stroke-width="2"
-                                        stroke-linejoin="round" stroke-dasharray="6 6" />
+                                    <!-- Plot 03 (10 Gts) -->
+                                    <div class="plot-pin pin-estate" style="left: 16%; top: 49%;" data-plot-id="plot-3" tabindex="0" role="button" aria-label="Plot 03, 10 Guntas">
+                                        <span class="pin-badge">03</span>
+                                    </div>
 
-                                    <path d="M 520 380 L 940 380" stroke="#3A423D" stroke-width="26" />
-                                    <path d="M 520 380 L 940 380" stroke="#E2E7DF" stroke-width="2"
-                                        stroke-dasharray="6 6" />
+                                    <!-- Plot 04 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 29%; top: 50%;" data-plot-id="plot-4" tabindex="0" role="button" aria-label="Plot 04, 5 Guntas">
+                                        <span class="pin-badge">04</span>
+                                    </div>
 
-                                    <path d="M 30 290 L 360 290" stroke="#3A423D" stroke-width="26" />
-                                    <path d="M 30 290 L 360 290" stroke="#E2E7DF" stroke-width="2"
-                                        stroke-dasharray="6 6" />
+                                    <!-- Plot 05 (4.58 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 35%; top: 50%;" data-plot-id="plot-5" tabindex="0" role="button" aria-label="Plot 05, 4.58 Guntas">
+                                        <span class="pin-badge">05</span>
+                                    </div>
 
-                                    <!-- Road Labels -->
-                                    <text x="180" y="584" font-size="11" font-weight="700" fill="#FFFFFF"
-                                        letter-spacing="0.08em" text-anchor="middle">13-FT BLACKTOP MAIN AVENUE
-                                        ROAD</text>
-                                    <text x="360" y="340" font-size="10" font-weight="700" fill="#FFFFFF"
-                                        letter-spacing="0.05em" text-anchor="middle"
-                                        transform="rotate(-90 360 340)">INTERNAL BLACKTOP ACCESS</text>
+                                    <!-- Plot 06 (7.87 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 28.5%; top: 37%;" data-plot-id="plot-6" tabindex="0" role="button" aria-label="Plot 06, 7.87 Guntas">
+                                        <span class="pin-badge">06</span>
+                                    </div>
 
-                                    <!-- Amenity Zones -->
-                                    <!-- 1. Park & Pergola -->
-                                    <g class="amenity-svg-zone">
-                                        <rect x="385" y="240" width="120" height="110" rx="8" fill="#DDECCB"
-                                            stroke="#8CBF54" stroke-width="1.5" />
-                                        <circle cx="445" cy="275" r="22" fill="#B0D236" opacity="0.4" />
-                                        <path d="M 435 275 L 455 275 M 445 265 L 445 285" stroke="var(--vara-green)"
-                                            stroke-width="2" />
-                                        <text x="445" y="315" font-size="11" font-weight="700" fill="var(--vara-green)"
-                                            text-anchor="middle">PARK &amp; PERGOLA</text>
-                                        <text x="445" y="330" font-size="9" font-weight="600" fill="var(--vara-slate)"
-                                            text-anchor="middle">Green Zone</text>
-                                    </g>
+                                    <!-- Plot 07 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 26.5%; top: 19%;" data-plot-id="plot-7" tabindex="0" role="button" aria-label="Plot 07, 5 Guntas">
+                                        <span class="pin-badge">07</span>
+                                    </div>
 
-                                    <!-- 2. Swimming Pool -->
-                                    <g class="amenity-svg-zone">
-                                        <rect x="545" y="240" width="130" height="110" rx="8" fill="#D5EFFC"
-                                            stroke="#3DA5DE" stroke-width="1.5" />
-                                        <rect x="560" y="255" width="100" height="50" rx="6" fill="#3DA5DE" />
-                                        <path d="M 570 275 Q 585 270 600 275 T 630 275 T 650 275" stroke="#FFFFFF"
-                                            stroke-width="2" fill="none" />
-                                        <text x="610" y="325" font-size="11" font-weight="700" fill="#1B608A"
-                                            text-anchor="middle">SWIMMING POOL</text>
-                                        <text x="610" y="338" font-size="9" font-weight="600" fill="var(--vara-slate)"
-                                            text-anchor="middle">On-Site Amenity</text>
-                                    </g>
+                                    <!-- Temple & Spiritual Zone -->
+                                    <div class="plot-pin pin-amenity" style="left: 34.5%; top: 19%;" data-plot-id="temple-zone" tabindex="0" role="button" aria-label="Community Temple Zone">
+                                        <span class="pin-badge"><i class="fa-solid fa-place-of-worship"></i> Temple</span>
+                                    </div>
 
-                                    <!-- 3. Children's Play Zone -->
-                                    <g class="amenity-svg-zone">
-                                        <rect x="385" y="70" width="120" height="140" rx="8" fill="#F4E9D5"
-                                            stroke="#D3B887" stroke-width="1.5" />
-                                        <circle cx="445" cy="120" r="18" fill="#E8CD97" />
-                                        <text x="445" y="165" font-size="11" font-weight="700" fill="#6B5226"
-                                            text-anchor="middle">CHILDREN'S</text>
-                                        <text x="445" y="180" font-size="11" font-weight="700" fill="#6B5226"
-                                            text-anchor="middle">PLAY ZONE</text>
-                                    </g>
+                                    <!-- Plot 08 (8.16 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 46%; top: 25%;" data-plot-id="plot-8" tabindex="0" role="button" aria-label="Plot 08, 8.16 Guntas">
+                                        <span class="pin-badge">08</span>
+                                    </div>
 
-                                    <!-- 4. Entrance Arch Gate Marker -->
-                                    <g class="amenity-svg-zone" transform="translate(35, 530)">
-                                        <rect x="0" y="0" width="100" height="35" rx="6" fill="var(--vara-green)"
-                                            stroke="var(--vara-lime)" stroke-width="1.5" />
-                                        <text x="50" y="22" font-size="11" font-weight="700" fill="#FFFFFF"
-                                            text-anchor="middle" letter-spacing="0.04em">ENTRANCE ARCH</text>
-                                    </g>
+                                    <!-- Plot 09 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 46%; top: 39%;" data-plot-id="plot-9" tabindex="0" role="button" aria-label="Plot 09, 5 Guntas">
+                                        <span class="pin-badge">09</span>
+                                    </div>
 
-                                    <!-- Avenue Trees (Green Circles) -->
-                                    <g class="avenue-trees">
-                                        <circle cx="160" cy="560" r="5" fill="#8CBF54" />
-                                        <circle cx="220" cy="560" r="5" fill="#8CBF54" />
-                                        <circle cx="280" cy="560" r="5" fill="#8CBF54" />
-                                        <circle cx="580" cy="560" r="5" fill="#8CBF54" />
-                                        <circle cx="640" cy="560" r="5" fill="#8CBF54" />
-                                        <circle cx="700" cy="560" r="5" fill="#8CBF54" />
-                                        <circle cx="342" cy="180" r="5" fill="#8CBF54" />
-                                        <circle cx="342" cy="240" r="5" fill="#8CBF54" />
-                                        <circle cx="538" cy="180" r="5" fill="#8CBF54" />
-                                        <circle cx="538" cy="240" r="5" fill="#8CBF54" />
-                                    </g>
+                                    <!-- Plot 10 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 46%; top: 50%;" data-plot-id="plot-10" tabindex="0" role="button" aria-label="Plot 10, 5 Guntas">
+                                        <span class="pin-badge">10</span>
+                                    </div>
 
-                                    <!-- ==========================================
-                                         FARM PLOTS (20 Interactive SVG Polygon/Rect Elements)
-                                         ========================================== -->
+                                    <!-- Plot 11 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 46%; top: 60%;" data-plot-id="plot-11" tabindex="0" role="button" aria-label="Plot 11, 5 Guntas">
+                                        <span class="pin-badge">11</span>
+                                    </div>
 
-                                    <!-- SOUTH ROW (Bottom Side of Main Road) -->
-                                    <!-- Plot 001 (Corner, Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-001" tabindex="0" role="button"
-                                        aria-label="Plot 001 Available 605 Sq Yds">
-                                        <rect x="45" y="440" width="90" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="90" y="488" class="plot-num-text">001</text>
-                                        <text x="90" y="506" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="90" y="522" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 12 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 46%; top: 70%;" data-plot-id="plot-12" tabindex="0" role="button" aria-label="Plot 12, 5 Guntas">
+                                        <span class="pin-badge">12</span>
+                                    </div>
 
-                                    <!-- Plot 002 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-002" tabindex="0" role="button"
-                                        aria-label="Plot 002 Available 605 Sq Yds">
-                                        <rect x="145" y="440" width="90" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="190" y="488" class="plot-num-text">002</text>
-                                        <text x="190" y="506" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="190" y="522" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 13 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 46%; top: 79%;" data-plot-id="plot-13" tabindex="0" role="button" aria-label="Plot 13, 5 Guntas">
+                                        <span class="pin-badge">13</span>
+                                    </div>
 
-                                    <!-- Plot 003 (6 Guntas, Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-003" tabindex="0" role="button"
-                                        aria-label="Plot 003 Available 726 Sq Yds">
-                                        <rect x="245" y="440" width="100" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="295" y="488" class="plot-num-text">003</text>
-                                        <text x="295" y="506" class="plot-size-text">726 Sq.Yds</text>
-                                        <text x="295" y="522" class="plot-status-tag">6 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 14 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 54.5%; top: 79%;" data-plot-id="plot-14" tabindex="0" role="button" aria-label="Plot 14, 5 Guntas">
+                                        <span class="pin-badge">14</span>
+                                    </div>
 
-                                    <!-- Plot 004 (Booked) -->
-                                    <g class="master-plot-group" data-plot-id="plot-004" tabindex="0" role="button"
-                                        aria-label="Plot 004 Reserved">
-                                        <rect x="535" y="440" width="90" height="110" rx="6"
-                                            class="master-plot status-booked" />
-                                        <text x="580" y="488" class="plot-num-text">004</text>
-                                        <text x="580" y="506" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="580" y="522" class="plot-status-tag">RESERVED</text>
-                                    </g>
+                                    <!-- Plot 15 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 54.5%; top: 70%;" data-plot-id="plot-15" tabindex="0" role="button" aria-label="Plot 15, 5 Guntas">
+                                        <span class="pin-badge">15</span>
+                                    </div>
 
-                                    <!-- Plot 013 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-013" tabindex="0" role="button"
-                                        aria-label="Plot 013 Available 605 Sq Yds">
-                                        <rect x="635" y="440" width="90" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="680" y="488" class="plot-num-text">013</text>
-                                        <text x="680" y="506" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="680" y="522" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 16 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 54.5%; top: 60%;" data-plot-id="plot-16" tabindex="0" role="button" aria-label="Plot 16, 5 Guntas">
+                                        <span class="pin-badge">16</span>
+                                    </div>
 
-                                    <!-- Plot 014 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-014" tabindex="0" role="button"
-                                        aria-label="Plot 014 Available 605 Sq Yds">
-                                        <rect x="735" y="440" width="90" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="780" y="488" class="plot-num-text">014</text>
-                                        <text x="780" y="506" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="780" y="522" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 17 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 54.5%; top: 50%;" data-plot-id="plot-17" tabindex="0" role="button" aria-label="Plot 17, 5 Guntas">
+                                        <span class="pin-badge">17</span>
+                                    </div>
 
-                                    <!-- Plot 015 (6 Guntas, Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-015" tabindex="0" role="button"
-                                        aria-label="Plot 015 Available 726 Sq Yds">
-                                        <rect x="835" y="440" width="110" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="890" y="488" class="plot-num-text">015</text>
-                                        <text x="890" y="506" class="plot-size-text">726 Sq.Yds</text>
-                                        <text x="890" y="522" class="plot-status-tag">6 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 18 (5 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 54.5%; top: 39%;" data-plot-id="plot-18" tabindex="0" role="button" aria-label="Plot 18, 5 Guntas">
+                                        <span class="pin-badge">18</span>
+                                    </div>
 
-                                    <!-- MIDDLE LEFT PLOTS -->
-                                    <!-- Plot 016 (Booked) -->
-                                    <g class="master-plot-group" data-plot-id="plot-016" tabindex="0" role="button"
-                                        aria-label="Plot 016 Reserved">
-                                        <rect x="45" y="315" width="140" height="100" rx="6"
-                                            class="master-plot status-booked" />
-                                        <text x="115" y="358" class="plot-num-text">016</text>
-                                        <text x="115" y="376" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="115" y="392" class="plot-status-tag">RESERVED</text>
-                                    </g>
+                                    <!-- Plot 19 (8.16 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 54.5%; top: 25%;" data-plot-id="plot-19" tabindex="0" role="button" aria-label="Plot 19, 8.16 Guntas">
+                                        <span class="pin-badge">19</span>
+                                    </div>
 
-                                    <!-- Plot 017 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-017" tabindex="0" role="button"
-                                        aria-label="Plot 017 Available 605 Sq Yds">
-                                        <rect x="195" y="315" width="140" height="100" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="265" y="358" class="plot-num-text">017</text>
-                                        <text x="265" y="376" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="265" y="392" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 21 (7.94 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 69.5%; top: 69%;" data-plot-id="plot-21" tabindex="0" role="button" aria-label="Plot 21, 7.94 Guntas">
+                                        <span class="pin-badge">21</span>
+                                    </div>
 
-                                    <!-- Plot 018 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-018" tabindex="0" role="button"
-                                        aria-label="Plot 018 Available 605 Sq Yds">
-                                        <rect x="45" y="175" width="140" height="100" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="115" y="218" class="plot-num-text">018</text>
-                                        <text x="115" y="236" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="115" y="252" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 22 (7.63 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 69.5%; top: 59%;" data-plot-id="plot-22" tabindex="0" role="button" aria-label="Plot 22, 7.63 Guntas">
+                                        <span class="pin-badge">22</span>
+                                    </div>
 
-                                    <!-- Plot 019 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-019" tabindex="0" role="button"
-                                        aria-label="Plot 019 Available 605 Sq Yds">
-                                        <rect x="195" y="175" width="140" height="100" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="265" y="218" class="plot-num-text">019</text>
-                                        <text x="265" y="236" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="265" y="252" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 23 (7.33 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 69.5%; top: 49%;" data-plot-id="plot-23" tabindex="0" role="button" aria-label="Plot 23, 7.33 Guntas">
+                                        <span class="pin-badge">23</span>
+                                    </div>
 
-                                    <!-- TOP LEFT CORNER PLOT -->
-                                    <!-- Plot 020 (7 Guntas, Available, Corner) -->
-                                    <g class="master-plot-group" data-plot-id="plot-020" tabindex="0" role="button"
-                                        aria-label="Plot 020 Available 847 Sq Yds Corner">
-                                        <rect x="45" y="50" width="290" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="190" y="98" class="plot-num-text">020</text>
-                                        <text x="190" y="116" class="plot-size-text">847 Sq.Yds (7 Guntas)</text>
-                                        <text x="190" y="132" class="plot-status-tag">FLAGSHIP CORNER ESTATE</text>
-                                    </g>
+                                    <!-- Plot 24 (6.56 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 69.5%; top: 39%;" data-plot-id="plot-24" tabindex="0" role="button" aria-label="Plot 24, 6.56 Guntas">
+                                        <span class="pin-badge">24</span>
+                                    </div>
 
-                                    <!-- MIDDLE & EAST RIGHT PLOTS -->
-                                    <!-- Plot 005 (Corner, Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-005" tabindex="0" role="button"
-                                        aria-label="Plot 005 Available 605 Sq Yds">
-                                        <rect x="690" y="240" width="120" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="750" y="288" class="plot-num-text">005</text>
-                                        <text x="750" y="306" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="750" y="322" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
+                                    <!-- Plot 25 (8.50 Gts) -->
+                                    <div class="plot-pin pin-available" style="left: 69.5%; top: 26%;" data-plot-id="plot-25" tabindex="0" role="button" aria-label="Plot 25, 8.50 Guntas">
+                                        <span class="pin-badge">25</span>
+                                    </div>
 
-                                    <!-- Plot 006 (7 Guntas, Available, Corner Estate) -->
-                                    <g class="master-plot-group" data-plot-id="plot-006" tabindex="0" role="button"
-                                        aria-label="Plot 006 Available 847 Sq Yds">
-                                        <rect x="825" y="240" width="120" height="110" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="885" y="288" class="plot-num-text">006</text>
-                                        <text x="885" y="306" class="plot-size-text">847 Sq.Yds</text>
-                                        <text x="885" y="322" class="plot-status-tag">7 GUNTAS</text>
-                                    </g>
-
-                                    <!-- TOP RIGHT NORTH PLOTS -->
-                                    <!-- Plot 007 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-007" tabindex="0" role="button"
-                                        aria-label="Plot 007 Available 605 Sq Yds">
-                                        <rect x="535" y="50" width="120" height="160" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="595" y="120" class="plot-num-text">007</text>
-                                        <text x="595" y="138" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="595" y="154" class="plot-status-tag">5 GUNTAS</text>
-                                    </g>
-
-                                    <!-- Plot 008 (Booked) -->
-                                    <g class="master-plot-group" data-plot-id="plot-008" tabindex="0" role="button"
-                                        aria-label="Plot 008 Reserved">
-                                        <rect x="665" y="50" width="120" height="160" rx="6"
-                                            class="master-plot status-booked" />
-                                        <text x="725" y="120" class="plot-num-text">008</text>
-                                        <text x="725" y="138" class="plot-size-text">605 Sq.Yds</text>
-                                        <text x="725" y="154" class="plot-status-tag">RESERVED</text>
-                                    </g>
-
-                                    <!-- Plot 009 (Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-009" tabindex="0" role="button"
-                                        aria-label="Plot 009 Available 605 Sq Yds">
-                                        <rect x="795" y="50" width="150" height="80" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="870" y="86" class="plot-num-text">009</text>
-                                        <text x="870" y="104" class="plot-size-text">605 Sq.Yds (5 Guntas)</text>
-                                    </g>
-
-                                    <!-- Plot 010 (6 Guntas, Available) -->
-                                    <g class="master-plot-group" data-plot-id="plot-010" tabindex="0" role="button"
-                                        aria-label="Plot 010 Available 726 Sq Yds">
-                                        <rect x="795" y="140" width="150" height="80" rx="6"
-                                            class="master-plot status-available" />
-                                        <text x="870" y="176" class="plot-num-text">010</text>
-                                        <text x="870" y="194" class="plot-size-text">726 Sq.Yds (6 Guntas)</text>
-                                    </g>
-                                </g>
-                            </svg>
+                                    <!-- Amenities Sector Hotspot -->
+                                    <div class="plot-pin pin-amenity" style="left: 71.5%; top: 80%;" data-plot-id="amenities-hub" tabindex="0" role="button" aria-label="Clubhouse and Amenities Hub">
+                                        <span class="pin-badge"><i class="fa-solid fa-person-swimming"></i> Pool &amp; Hub</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Map Legend Footer -->
@@ -1449,16 +1260,51 @@
                                 <span class="legend-label">Available Plot</span>
                             </div>
                             <div class="legend-item">
-                                <span class="legend-box selected-box"></span>
-                                <span class="legend-label">Selected Plot</span>
-                            </div>
-                            <div class="legend-item">
-                                <span class="legend-box booked-box"></span>
-                                <span class="legend-label">Reserved / Booked</span>
+                                <span class="legend-box estate-box"></span>
+                                <span class="legend-label">Grand Estate (10+ Gts)</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-box amenity-box"></span>
-                                <span class="legend-label">Amenities &amp; Parks</span>
+                                <span class="legend-label">Temple &amp; Amenities</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-box road-box"></span>
+                                <span class="legend-label">40-FT / 33-FT Roads</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Plot Selector Strip -->
+                        <div class="plot-quick-selector">
+                            <div class="quick-selector-header">
+                                <span><i class="fa-solid fa-hand-pointer"></i> Tap Any Plot to Inspect:</span>
+                            </div>
+                            <div class="plot-chips-tray" role="group" aria-label="Quick Select Plots">
+                                <button class="plot-chip-btn active" data-plot-id="plot-1">01 <small>10.55G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-2">02 <small>10G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-3">03 <small>10G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-4">04 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-5">05 <small>4.58G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-6">06 <small>7.87G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-7">07 <small>5G</small></button>
+                                <button class="plot-chip-btn chip-amenity" data-plot-id="temple-zone"><i class="fa-solid fa-place-of-worship"></i> Temple</button>
+                                <button class="plot-chip-btn" data-plot-id="plot-8">08 <small>8.16G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-9">09 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-10">10 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-11">11 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-12">12 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-13">13 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-14">14 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-15">15 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-16">16 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-17">17 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-18">18 <small>5G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-19">19 <small>8.16G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-21">21 <small>7.94G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-22">22 <small>7.63G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-23">23 <small>7.33G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-24">24 <small>6.56G</small></button>
+                                <button class="plot-chip-btn" data-plot-id="plot-25">25 <small>8.50G</small></button>
+                                <button class="plot-chip-btn chip-amenity" data-plot-id="amenities-hub">Pool &amp; Hub</button>
                             </div>
                         </div>
                     </div>
@@ -1470,8 +1316,75 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Master Plan Infrastructure Highlights (Bento Grid) -->
+                <div class="master-plan-highlights reveal reveal-delay-3">
+                    <div class="plan-highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-road-barrier"></i>
+                        </div>
+                        <div class="highlight-body">
+                            <h4 class="highlight-title">40-FT &amp; 33-FT BT Roads</h4>
+                            <p class="highlight-text">Generous arterial blacktop boulevards with pre-cast concrete kerb stones and avenue plantations.</p>
+                        </div>
+                    </div>
+
+                    <div class="plan-highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-place-of-worship"></i>
+                        </div>
+                        <div class="highlight-body">
+                            <h4 class="highlight-title">Temple &amp; Spiritual Greens</h4>
+                            <p class="highlight-text">Dedicated community temple zone and meditation park surrounded by flowering shade trees.</p>
+                        </div>
+                    </div>
+
+                    <div class="plan-highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-person-swimming"></i>
+                        </div>
+                        <div class="highlight-body">
+                            <h4 class="highlight-title">Clubhouse, Pool &amp; Play Zone</h4>
+                            <p class="highlight-text">Luxury swimming pool, shaded pergola pavilion, and safe children's open recreation space.</p>
+                        </div>
+                    </div>
+
+                    <div class="plan-highlight-card">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="highlight-body">
+                            <h4 class="highlight-title">Gated Security &amp; Utilities</h4>
+                            <p class="highlight-text">Compound wall, perimeter solar fencing, drip irrigation line, and 100% clear title spot registration.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
+
+        <!-- Fullscreen Master Plan Lightbox Modal -->
+        <div id="master-plan-modal" class="master-plan-modal" aria-hidden="true" role="dialog" aria-modal="true">
+            <div class="modal-backdrop"></div>
+            <div class="modal-container">
+                <div class="modal-header">
+                    <div class="modal-title-group">
+                        <h3 class="modal-title">Vara Farm Haven — Official Master Plan Blueprint</h3>
+                        <p class="modal-subtitle">Balanagar (M), Mahabubnagar (D) &bull; High Resolution Layout View</p>
+                    </div>
+                    <div class="modal-actions">
+                        <a href="assets/images/FarmHaven_Master Plan_Web.jpg" download="FarmHaven_Master_Plan.jpg" class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-download"></i> Download HD Plan
+                        </a>
+                        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close Fullscreen View">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-body" data-lenis-prevent>
+                    <img src="assets/images/FarmHaven_Master Plan_Web.jpg" alt="Vara Farm Haven Full Master Plan" class="modal-blueprint-img">
+                </div>
+            </div>
+        </div>
 
         <!-- ==========================================
              22. GALLERY SECTION
@@ -1483,7 +1396,7 @@
                     <h2 class="section-heading gallery-heading">See the Haven</h2>
                     <p class="gallery-lead">
                         A curated visual tour of Vara Farm Haven — explore aerial landscapes, internal roads, lush
-                        greenery, farm villas, site visits, and resort amenities.
+                        greenery, farm villas, and resort amenities.
                     </p>
                 </div>
 
@@ -1505,17 +1418,14 @@
                     <button class="gallery-filter-btn" data-filter="weekend" role="tab" aria-selected="false">Villa
                         &amp; Stay</button>
                     <span class="filter-sep" aria-hidden="true">&middot;</span>
-                    <button class="gallery-filter-btn" data-filter="sitevisits" role="tab" aria-selected="false">Site
-                        Visits</button>
-                    <span class="filter-sep" aria-hidden="true">&middot;</span>
                     <button class="gallery-filter-btn" data-filter="amenities" role="tab"
                         aria-selected="false">Amenities</button>
                 </div>
 
-                <!-- Bento Grid Layout (Featured Project Cards) -->
+                <!-- Bento Grid Layout (Exclusively Real Uploaded Project Assets) -->
                 <div class="gallery-grid bento-grid reveal reveal-delay-2">
                     <!-- ==================== AERIAL & SITE ==================== -->
-                    <!-- Card 01: 3D Aerial View (Hero 2x2) -->
+                    <!-- Card 01: 3D Panoramic Bird's Eye View (Hero 2x2) -->
                     <article class="gallery-item bento-hero" data-category="aerial" tabindex="0" role="button"
                         aria-label="View Panoramic Bird's Eye View in Lightbox">
                         <div class="gallery-card">
@@ -1541,59 +1451,8 @@
                         </div>
                     </article>
 
-                    <!-- Card 02: Aerial Masterplan (Wide 2x1) -->
-                    <article class="gallery-item bento-wide" data-category="aerial" tabindex="0" role="button"
-                        aria-label="View 3D Layout Masterplan in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/aerial_masterplan.jpg" alt="3D Aerial Masterplan"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Master Plan</span>
-                                    <h3 class="gallery-item-title">3D Layout Masterplan</h3>
-                                    <p class="gallery-item-sub">4.5 Acres Farmland Layout</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 03: Demarcated Farm Plots (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="aerial" tabindex="0" role="button"
-                        aria-label="View Demarcated Farm Plots in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/plot_view.jpg" alt="Demarcated Farm Plotting"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Plotting</span>
-                                    <h3 class="gallery-item-title">Demarcated Farm Plots</h3>
-                                    <p class="gallery-item-sub">Clear Boundary Demarcations</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-
                     <!-- ==================== INFRASTRUCTURE ==================== -->
-                    <!-- Card 06: Grand Entrance Arch (Wide 2x1) -->
+                    <!-- Card 02: Grand Entrance Gate (Wide 2x1) -->
                     <article class="gallery-item bento-wide" data-category="roads" tabindex="0" role="button"
                         aria-label="View Grand Entrance Gate in Lightbox">
                         <div class="gallery-card">
@@ -1619,7 +1478,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 07: Inside Entrance Gate (Standard 1x1) -->
+                    <!-- Card 03: Inside Entrance Gate (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="roads" tabindex="0" role="button"
                         aria-label="View Internal Entry Boulevard in Lightbox">
                         <div class="gallery-card">
@@ -1644,7 +1503,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 08: NH 44 Highway (Standard 1x1) -->
+                    <!-- Card 04: NH 44 Highway Access (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="roads" tabindex="0" role="button"
                         aria-label="View NH 44 Highway Access in Lightbox">
                         <div class="gallery-card">
@@ -1669,58 +1528,8 @@
                         </div>
                     </article>
 
-                    <!-- Card 09: Internal Blacktop Roads (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="roads" tabindex="0" role="button"
-                        aria-label="View Internal Road Network in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/gallery_roads.jpg" alt="Internal Road Network"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Road Network</span>
-                                    <h3 class="gallery-item-title">Internal Blacktop Roads</h3>
-                                    <p class="gallery-item-sub">Wide All-Weather Avenue Access</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 10: Site Demarcated Roads (Wide 2x1) -->
-                    <article class="gallery-item bento-wide" data-category="roads" tabindex="0" role="button"
-                        aria-label="View Demarcated Road Avenues in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/gallery_sitedev.jpg" alt="Demarcated Road Avenues"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Infrastructure</span>
-                                    <h3 class="gallery-item-title">Demarcated Road Avenues</h3>
-                                    <p class="gallery-item-sub">33ft Wide Internal Access Corridors</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- ==================== GREENERY ==================== -->
-                    <!-- Card 11: Pergola View 1A (Wide 2x1) -->
+                    <!-- ==================== GREENERY & LANDSCAPE ==================== -->
+                    <!-- Card 05: Pergola View (Wide 2x1) -->
                     <article class="gallery-item bento-wide" data-category="greenery" tabindex="0" role="button"
                         aria-label="View Pergola &amp; Garden Walkway in Lightbox">
                         <div class="gallery-card">
@@ -1745,7 +1554,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 12: Pergola Park Sitting (Standard 1x1) -->
+                    <!-- Card 06: Pergola Park Sitting (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="greenery" tabindex="0" role="button"
                         aria-label="View Pergola Sitting Park in Lightbox">
                         <div class="gallery-card">
@@ -1770,7 +1579,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 13: Tree Fruits (Standard 1x1) -->
+                    <!-- Card 07: Organic Fruit Trees (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="greenery" tabindex="0" role="button"
                         aria-label="View Organic Fruit Trees in Lightbox">
                         <div class="gallery-card">
@@ -1779,8 +1588,8 @@
                             <div class="gallery-card-overlay">
                                 <div class="gallery-card-content">
                                     <span class="gallery-item-badge">Orchards</span>
-                                    <h3 class="gallery-item-title">Organic Fruit Trees</h3>
-                                    <p class="gallery-item-sub">Mango, Chiku &amp; Greenery</p>
+                                    <h3 class="gallery-item-title">Organic Fruit Plantation</h3>
+                                    <p class="gallery-item-sub">Mango, Chiku &amp; Flora</p>
                                 </div>
                                 <div class="gallery-zoom-icon" aria-hidden="true">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1795,43 +1604,17 @@
                         </div>
                     </article>
 
-                    <!-- Card 14: Garden Walkway (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="greenery" tabindex="0" role="button"
-                        aria-label="View Private Lawns &amp; Paths in Lightbox">
+                    <!-- Card 08: Vara Farm Haven Vista (Wide 2x1) -->
+                    <article class="gallery-item bento-wide" data-category="aerial" tabindex="0" role="button"
+                        aria-label="View Vara Farm Haven Vista in Lightbox">
                         <div class="gallery-card">
-                            <img src="assets/images/garden_walkway.jpg" alt="Private Lawns and Stone Walkways"
+                            <img src="assets/images/Cover Option1.jpg" alt="Vara Farm Haven Scenic Vista"
                                 loading="lazy" width="1200" height="750">
                             <div class="gallery-card-overlay">
                                 <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Landscape</span>
-                                    <h3 class="gallery-item-title">Private Lawns &amp; Paths</h3>
-                                    <p class="gallery-item-sub">Manicured Gardens &amp; Flora</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-
-                    <!-- Card 16: Central Park Lawns (Wide 2x1) -->
-                    <article class="gallery-item bento-wide" data-category="greenery" tabindex="0" role="button"
-                        aria-label="View Central Park Lawns in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/gallery_greenery.jpg" alt="Central Park Lawns"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Greenery</span>
-                                    <h3 class="gallery-item-title">Central Park Lawns</h3>
-                                    <p class="gallery-item-sub">Manicured Open Turf &amp; Shade</p>
+                                    <span class="gallery-item-badge">Landscape View</span>
+                                    <h3 class="gallery-item-title">Vara Farm Haven Vista</h3>
+                                    <p class="gallery-item-sub">Scenic Nature &amp; Serene Surroundings</p>
                                 </div>
                                 <div class="gallery-zoom-icon" aria-hidden="true">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1847,7 +1630,7 @@
                     </article>
 
                     <!-- ==================== VILLA & STAY ==================== -->
-                    <!-- Card 17: Mandala House Day View (Hero 2x2) -->
+                    <!-- Card 09: Mandala Farm Villa (Hero 2x2) -->
                     <article class="gallery-item bento-hero" data-category="weekend" tabindex="0" role="button"
                         aria-label="View Mandala Farm Villa Day View in Lightbox">
                         <div class="gallery-card">
@@ -1872,7 +1655,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 18: Mandala House 1 (Standard 1x1) -->
+                    <!-- Card 10: Timber Villa Design I (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="weekend" tabindex="0" role="button"
                         aria-label="View Timber Villa Architecture in Lightbox">
                         <div class="gallery-card">
@@ -1897,7 +1680,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 19: Mandala House 2 (Standard 1x1) -->
+                    <!-- Card 11: Eco Veranda & Deck (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="weekend" tabindex="0" role="button"
                         aria-label="View Eco Veranda &amp; Deck in Lightbox">
                         <div class="gallery-card">
@@ -1922,7 +1705,32 @@
                         </div>
                     </article>
 
-                    <!-- Card 20: Timber Interior (Standard 1x1) -->
+                    <!-- Card 12: Balcony Family Moments (Wide 2x1) -->
+                    <article class="gallery-item bento-wide" data-category="weekend" tabindex="0" role="button"
+                        aria-label="View Balcony Family Moments in Lightbox">
+                        <div class="gallery-card">
+                            <img src="assets/images/Balcony with Family.jpg" alt="Family Balcony Leisure at Vara Farm Haven"
+                                loading="lazy" width="1200" height="750">
+                            <div class="gallery-card-overlay">
+                                <div class="gallery-card-content">
+                                    <span class="gallery-item-badge">Farm Living</span>
+                                    <h3 class="gallery-item-title">Balcony Family Moments</h3>
+                                    <p class="gallery-item-sub">Private Verandas &amp; Serene Outlooks</p>
+                                </div>
+                                <div class="gallery-zoom-icon" aria-hidden="true">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                        <line x1="11" y1="8" x2="11" y2="14"></line>
+                                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 13: Timber Villa Living Room (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="weekend" tabindex="0" role="button"
                         aria-label="View Timber Villa Living Room in Lightbox">
                         <div class="gallery-card">
@@ -1947,7 +1755,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 21: Wooden House Interior (Standard 1x1) -->
+                    <!-- Card 14: Wooden House Dining (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="weekend" tabindex="0" role="button"
                         aria-label="View Wooden House Dining in Lightbox">
                         <div class="gallery-card">
@@ -1972,185 +1780,8 @@
                         </div>
                     </article>
 
-
-                    <!-- Card 24: Weekend Cottage (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="weekend" tabindex="0" role="button"
-                        aria-label="View Modern Weekend Cottage in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/weekend_home.jpg" alt="Modern Weekend Cottage"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Weekend Home</span>
-                                    <h3 class="gallery-item-title">Modern Weekend Cottage</h3>
-                                    <p class="gallery-item-sub">Architectural Timber Living</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 25: Lakeside Villa (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="weekend" tabindex="0" role="button"
-                        aria-label="View Lakeside Farmstay Villa in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/gallery_weekend.jpg" alt="Lakeside Farmstay Villa"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Villa</span>
-                                    <h3 class="gallery-item-title">Lakeside Farmstay Villa</h3>
-                                    <p class="gallery-item-sub">Scenic Waterfront Living</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- ==================== SITE VISITS ==================== -->
-                    <!-- Card 26: Customer Site Experience (Hero 2x2) -->
-                    <article class="gallery-item bento-hero" data-category="sitevisits" tabindex="0" role="button"
-                        aria-label="View Customer Site Experience in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/gallery_sitevisits.jpg" alt="Customer Site Visit Experience"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Site Visits</span>
-                                    <h3 class="gallery-item-title">Customer Site Experience</h3>
-                                    <p class="gallery-item-sub">Guided Land Tours &amp; Plot Selection</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 27: Weekend Family Outing (Wide 2x1) -->
-                    <article class="gallery-item bento-wide" data-category="sitevisits" tabindex="0" role="button"
-                        aria-label="View Weekend Family Outing in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/family_escape.jpg" alt="Weekend Family Outing at Vara Farm Haven"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Site Visits</span>
-                                    <h3 class="gallery-item-title">Weekend Family Outing</h3>
-                                    <p class="gallery-item-sub">Family Site Visits &amp; Farmland Discovery</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 28: Morning Farm Exploration (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="sitevisits" tabindex="0" role="button"
-                        aria-label="View Morning Farm Exploration in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/day_morning.jpg" alt="Morning Farm Exploration"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Site Visits</span>
-                                    <h3 class="gallery-item-title">Morning Farm Exploration</h3>
-                                    <p class="gallery-item-sub">Fresh Country Breeze &amp; Sunlit Walks</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 29: Family Outdoor Gathering (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="sitevisits" tabindex="0" role="button"
-                        aria-label="View Family Outdoor Gathering in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/day_play.jpg" alt="Family Outdoor Gathering"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Site Visits</span>
-                                    <h3 class="gallery-item-title">Family Outdoor Gathering</h3>
-                                    <p class="gallery-item-sub">Experiencing Nature &amp; Play</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 30: On-Site Farmland Tour (Wide 2x1) -->
-                    <article class="gallery-item bento-wide" data-category="sitevisits" tabindex="0" role="button"
-                        aria-label="View On-Site Farmland Tour in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/idea.jpg" alt="On-Site Farmland Tour"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Site Visits</span>
-                                    <h3 class="gallery-item-title">On-Site Farmland Tour</h3>
-                                    <p class="gallery-item-sub">Personalized Site Walkthroughs</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
                     <!-- ==================== AMENITIES ==================== -->
-                    <!-- Card 31: Crystal Swimming Pool (Hero 2x2) -->
+                    <!-- Card 15: Crystal Swimming Pool (Hero 2x2) -->
                     <article class="gallery-item bento-hero" data-category="amenities" tabindex="0" role="button"
                         aria-label="View Crystal Swimming Pool in Lightbox">
                         <div class="gallery-card">
@@ -2175,82 +1806,7 @@
                         </div>
                     </article>
 
-                    <!-- Card 32: Children's Play & Pergola Zone (Wide 2x1) -->
-                    <article class="gallery-item bento-wide" data-category="amenities" tabindex="0" role="button"
-                        aria-label="View Children's Play &amp; Pergola Zone in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/Play and Pargola Master.jpg"
-                                alt="Play and Pergola Master Area" loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Amenities</span>
-                                    <h3 class="gallery-item-title">Children's Play &amp; Pergola Zone</h3>
-                                    <p class="gallery-item-sub">Family Recreation &amp; Playgrounds</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 33: Playground 3D Front (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="amenities" tabindex="0" role="button"
-                        aria-label="View Adventure Playground in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/Playground_3D_Front View.png" alt="Playground 3D Front View"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Play Area</span>
-                                    <h3 class="gallery-item-title">Adventure Playground</h3>
-                                    <p class="gallery-item-sub">Safe &amp; Fun Kids Play Park</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 34: Pool Gazebo (Standard 1x1) -->
-                    <article class="gallery-item bento-standard" data-category="amenities" tabindex="0" role="button"
-                        aria-label="View Poolside Gazebo Lounge in Lightbox">
-                        <div class="gallery-card">
-                            <img src="assets/images/pool_gazebo.jpg" alt="Resort Pool and Outdoor Gazebo"
-                                loading="lazy" width="1200" height="750">
-                            <div class="gallery-card-overlay">
-                                <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Clubhouse</span>
-                                    <h3 class="gallery-item-title">Poolside Gazebo Lounge</h3>
-                                    <p class="gallery-item-sub">Community Gathering Space</p>
-                                </div>
-                                <div class="gallery-zoom-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2.5">
-                                        <circle cx="11" cy="11" r="8"></circle>
-                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                        <line x1="11" y1="8" x2="11" y2="14"></line>
-                                        <line x1="8" y1="11" x2="14" y2="11"></line>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Card 35: Poolside Villa Sanctuary (Wide 2x1) -->
+                    <!-- Card 16: Poolside Villa Sanctuary (Wide 2x1) -->
                     <article class="gallery-item bento-wide" data-category="amenities" tabindex="0" role="button"
                         aria-label="View Poolside Villa Sanctuary in Lightbox">
                         <div class="gallery-card">
@@ -2275,17 +1831,17 @@
                         </div>
                     </article>
 
-                    <!-- Card 36: Community Clubhouse (Standard 1x1) -->
+                    <!-- Card 17: Children's Play & Pergola Zone (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="amenities" tabindex="0" role="button"
-                        aria-label="View Community Clubhouse Lawns in Lightbox">
+                        aria-label="View Children's Play &amp; Pergola Zone in Lightbox">
                         <div class="gallery-card">
-                            <img src="assets/images/gallery_amenities.jpg" alt="Community Clubhouse Lawns"
-                                loading="lazy" width="1200" height="750">
+                            <img src="assets/images/Play and Pargola Master.jpg"
+                                alt="Play and Pergola Master Area" loading="lazy" width="1200" height="750">
                             <div class="gallery-card-overlay">
                                 <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Clubhouse</span>
-                                    <h3 class="gallery-item-title">Community Clubhouse Lawns</h3>
-                                    <p class="gallery-item-sub">Lush Social Spaces &amp; Gazebos</p>
+                                    <span class="gallery-item-badge">Amenities</span>
+                                    <h3 class="gallery-item-title">Children's Play Zone</h3>
+                                    <p class="gallery-item-sub">Recreation &amp; Playgrounds</p>
                                 </div>
                                 <div class="gallery-zoom-icon" aria-hidden="true">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2300,17 +1856,17 @@
                         </div>
                     </article>
 
-                    <!-- Card 37: Kids Play Zone (Standard 1x1) -->
+                    <!-- Card 18: Adventure Playground (Standard 1x1) -->
                     <article class="gallery-item bento-standard" data-category="amenities" tabindex="0" role="button"
-                        aria-label="View Kids Outdoor Play Zone in Lightbox">
+                        aria-label="View Adventure Playground in Lightbox">
                         <div class="gallery-card">
-                            <img src="assets/images/play_zone.jpg" alt="Kids Outdoor Play Zone"
+                            <img src="assets/images/Playground_3D_Front View.png" alt="Playground 3D Front View"
                                 loading="lazy" width="1200" height="750">
                             <div class="gallery-card-overlay">
                                 <div class="gallery-card-content">
-                                    <span class="gallery-item-badge">Recreation</span>
-                                    <h3 class="gallery-item-title">Kids Outdoor Play Zone</h3>
-                                    <p class="gallery-item-sub">Safe Swings &amp; Play Structures</p>
+                                    <span class="gallery-item-badge">Play Area</span>
+                                    <h3 class="gallery-item-title">Adventure Playground</h3>
+                                    <p class="gallery-item-sub">Safe &amp; Fun Kids Play Park</p>
                                 </div>
                                 <div class="gallery-zoom-icon" aria-hidden="true">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2390,7 +1946,7 @@
                                     alt="Managing Director - Vara Real Estate &amp; Developers" loading="lazy"
                                     width="600" height="750" class="about-founder-img">
                                 <div class="founder-badge">
-                                    <span>Managing Director</span>
+                                    <span>varalakshmi meduri </span>
                                 </div>
                             </div>
                         </div>
@@ -2458,7 +2014,11 @@
                                 </div>
                                 <div class="contact-details-text">
                                     <span class="contact-label">Direct Lines</span>
-                                    <a href="tel:+9104035994551" class="contact-value">+91 040 3599 4551</a> / <a href="tel:+919000256699" class="contact-value">+91 90002 56699</a>
+                                    <div class="contact-phones">
+                                        <a href="tel:+9104035994551" class="contact-value">+91 040 3599 4551</a>
+                                        <span class="contact-sep">/</span>
+                                        <a href="tel:+919000256699" class="contact-value">+91 90002 56699</a>
+                                    </div>
                                 </div>
                             </div>
 
@@ -2556,6 +2116,15 @@
                                     <label for="message" class="form-label">Message</label>
                                     <textarea id="message" name="message" class="form-input form-textarea" rows="3"
                                         placeholder="Tell us what you're looking for..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group" id="group-captcha">
+                                    <div class="captcha-wrapper">
+                                        <div class="g-recaptcha" data-sitekey="6LctZ54tAAAAAG-8mmLjYAE1po72XNLV3ovaTFJd"></div>
+                                    </div>
+                                    <span class="form-error" id="error-captcha">Please verify that you are not a robot.</span>
                                 </div>
                             </div>
 
@@ -2809,6 +2378,14 @@
                 <span class="floating-contact-widget__tooltip" aria-hidden="true">Call Us</span>
             </div>
             <div class="floating-contact-widget__item">
+                <a href="https://wa.me/919000256699" class="floating-contact-widget__link floating-contact-widget__link--whatsapp" id="fcw-link-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" tabindex="-1">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" fill="#ffffff" stroke="none"></path>
+                    </svg>
+                </a>
+                <span class="floating-contact-widget__tooltip" aria-hidden="true">WhatsApp</span>
+            </div>
+            <div class="floating-contact-widget__item">
                 <a href="https://www.facebook.com/profile.php?id=61593460148020" class="floating-contact-widget__link floating-contact-widget__link--facebook" id="fcw-link-facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook" tabindex="-1">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M14.5 8.5h2.25V5.34C16.36 5.24 15.26 5 14 5c-2.5 0-4.14 1.53-4.14 4.34V11.5H7.5v3.5h2.36V22h3.53v-7h2.34l.37-3.5h-2.71V9.66c0-1.01.27-1.16 1.11-1.16z" fill="#ffffff" stroke="none"></path>
@@ -2869,6 +2446,7 @@
     </button>
 
     <!-- JavaScript Files -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="js/lenis.min.js"></script>

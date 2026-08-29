@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Preserve inner HTML structure while splitting text nodes into word reveal elements
             const innerHTML = heading.innerHTML;
-            const lineHtmls = innerHTML.split(/<br\s*\/?>/i);
+            const lineHtmls = innerHTML.split(/<br[^>]*>/i);
 
             let newContent = '';
             lineHtmls.forEach((lineHtml, lineIdx) => {
@@ -216,42 +216,255 @@ document.addEventListener('DOMContentLoaded', () => {
         statsObserver.observe(statsGrid);
     }
 
-    // 4. Connectivity Map Interactive Hover Effects (Section 17)
+    // 4. Connectivity Section Controller (Roadmap Showcase & Modal)
     const connectivitySection = document.querySelector('#connectivity');
     if (connectivitySection) {
         const connectivityItems = connectivitySection.querySelectorAll('.connectivity-item');
+        const roadmapModal = document.getElementById('roadmap-modal');
+        const expandBtn = document.getElementById('connectivity-map-expand-btn');
+        const modalCloseBtn = document.getElementById('roadmap-modal-close-btn');
+        const modalBackdrop = document.getElementById('roadmap-modal-backdrop');
 
+        // Corridor Cards Interactive Focus
         connectivityItems.forEach(item => {
-            const nodeTargetId = item.getAttribute('data-node');
-
             item.addEventListener('mouseenter', () => {
                 connectivityItems.forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
-
-                if (nodeTargetId) {
-                    const targetNode = connectivitySection.querySelector(`#node-${nodeTargetId}`);
-                    const targetInteractiveNode = connectivitySection.querySelector(`#node-${nodeTargetId}-node`);
-                    if (targetNode) {
-                        targetNode.style.filter = 'drop-shadow(0 0 10px #B0D236)';
-                        targetNode.style.transition = 'filter 0.3s ease';
-                    }
-                    if (targetInteractiveNode) {
-                        targetInteractiveNode.style.transform = 'scale(1.25)';
-                        targetInteractiveNode.style.transition = 'transform 0.3s ease';
-                    }
-                }
             });
 
-            item.addEventListener('mouseleave', () => {
-                item.classList.remove('active');
-                if (nodeTargetId) {
-                    const targetNode = connectivitySection.querySelector(`#node-${nodeTargetId}`);
-                    const targetInteractiveNode = connectivitySection.querySelector(`#node-${nodeTargetId}-node`);
-                    if (targetNode) targetNode.style.filter = '';
-                    if (targetInteractiveNode) targetInteractiveNode.style.transform = '';
-                }
+            item.addEventListener('click', () => {
+                connectivityItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
             });
         });
+
+        // Open Roadmap Fullscreen Lightbox Modal
+        const openRoadmapModal = () => {
+            if (roadmapModal) {
+                roadmapModal.classList.add('active');
+                roadmapModal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        const closeRoadmapModal = () => {
+            if (roadmapModal) {
+                roadmapModal.classList.remove('active');
+                roadmapModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+        };
+
+        if (expandBtn) expandBtn.addEventListener('click', openRoadmapModal);
+        if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeRoadmapModal);
+        if (modalBackdrop) modalBackdrop.addEventListener('click', closeRoadmapModal);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && roadmapModal && roadmapModal.classList.contains('active')) {
+                closeRoadmapModal();
+            }
+        });
+
+        // In-Place Map Zoom & Pan Controller
+        const mapWrapper = document.getElementById('connectivity-map-wrapper');
+        const mapStage = document.getElementById('roadmap-stage');
+        const zoomInBtn = document.getElementById('roadmap-zoom-in');
+        const zoomOutBtn = document.getElementById('roadmap-zoom-out');
+        const resetBtn = document.getElementById('roadmap-zoom-reset');
+        const zoomBadge = document.getElementById('roadmap-zoom-badge');
+        const hoverHint = document.getElementById('roadmap-hover-hint');
+
+        if (mapWrapper && mapStage) {
+            let zoomLevel = 1;
+            const minZoom = 1;
+            const maxZoom = 3.5;
+            const zoomStep = 0.35;
+            let panX = 0;
+            let panY = 0;
+            let isDragging = false;
+            let startX = 0;
+            let startY = 0;
+
+            const updateMapTransform = (animate = true) => {
+                mapStage.style.transition = (isDragging || !animate) ? 'none' : 'transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1)';
+                mapStage.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${zoomLevel})`;
+
+                if (zoomBadge) {
+                    zoomBadge.textContent = `${Math.round(zoomLevel * 100)}%`;
+                }
+
+                if (zoomInBtn) zoomInBtn.disabled = zoomLevel >= maxZoom;
+                if (zoomOutBtn) zoomOutBtn.disabled = zoomLevel <= minZoom;
+
+                if (zoomLevel > 1) {
+                    mapWrapper.classList.add('is-zoomed');
+                    if (hoverHint) hoverHint.innerHTML = '<i class="fa-solid fa-up-down-left-right"></i> Drag to explore &bull; Double-click to reset';
+                } else {
+                    mapWrapper.classList.remove('is-zoomed');
+                    if (hoverHint) hoverHint.innerHTML = '<i class="fa-solid fa-magnifying-glass-plus"></i> Click +/- or Double-Click to Zoom';
+                }
+            };
+
+            const clampPan = () => {
+                if (zoomLevel <= 1) {
+                    panX = 0;
+                    panY = 0;
+                    return;
+                }
+                const bounds = mapWrapper.getBoundingClientRect();
+                const maxPanX = (bounds.width * (zoomLevel - 1)) / 2 + 60;
+                const maxPanY = (bounds.height * (zoomLevel - 1)) / 2 + 60;
+                panX = Math.max(-maxPanX, Math.min(maxPanX, panX));
+                panY = Math.max(-maxPanY, Math.min(maxPanY, panY));
+            };
+
+            const setZoom = (newZoom, targetCenter = null) => {
+                const clampedZoom = Math.max(minZoom, Math.min(maxZoom, parseFloat(newZoom.toFixed(2))));
+                if (clampedZoom === zoomLevel) return;
+
+                if (targetCenter && clampedZoom > 1) {
+                    const rect = mapWrapper.getBoundingClientRect();
+                    const mouseX = targetCenter.x - rect.left - rect.width / 2;
+                    const mouseY = targetCenter.y - rect.top - rect.height / 2;
+                    const zoomRatio = clampedZoom / zoomLevel;
+                    panX = mouseX - (mouseX - panX) * zoomRatio;
+                    panY = mouseY - (mouseY - panY) * zoomRatio;
+                } else if (clampedZoom === 1) {
+                    panX = 0;
+                    panY = 0;
+                }
+
+                zoomLevel = clampedZoom;
+                clampPan();
+                updateMapTransform(true);
+            };
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    setZoom(zoomLevel + zoomStep);
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    setZoom(zoomLevel - zoomStep);
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    zoomLevel = 1;
+                    panX = 0;
+                    panY = 0;
+                    updateMapTransform(true);
+                });
+            }
+
+            // Double click to toggle zoom
+            mapWrapper.addEventListener('dblclick', (e) => {
+                if (e.target.closest('.roadmap-zoom-controls')) return;
+                if (zoomLevel > 1) {
+                    setZoom(1);
+                } else {
+                    setZoom(1.8, { x: e.clientX, y: e.clientY });
+                }
+            });
+
+            // Mouse Drag to Pan
+            const onMouseDown = (e) => {
+                if (e.target.closest('.roadmap-zoom-controls') || e.target.closest('.btn-map-expand')) return;
+                if (zoomLevel <= 1) return;
+                isDragging = true;
+                startX = e.clientX - panX;
+                startY = e.clientY - panY;
+                mapWrapper.classList.add('is-dragging');
+                e.preventDefault();
+            };
+
+            const onMouseMove = (e) => {
+                if (!isDragging) return;
+                panX = e.clientX - startX;
+                panY = e.clientY - startY;
+                clampPan();
+                updateMapTransform(false);
+            };
+
+            const onMouseUp = () => {
+                if (!isDragging) return;
+                isDragging = false;
+                mapWrapper.classList.remove('is-dragging');
+                updateMapTransform(true);
+            };
+
+            mapWrapper.addEventListener('mousedown', onMouseDown);
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+
+            // Touch Drag & Pinch to Pan/Zoom
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let initialPinchDist = 0;
+            let initialZoomOnPinch = 1;
+
+            mapWrapper.addEventListener('touchstart', (e) => {
+                if (e.target.closest('.roadmap-zoom-controls')) return;
+                if (e.touches.length === 1 && zoomLevel > 1) {
+                    isDragging = true;
+                    touchStartX = e.touches[0].clientX - panX;
+                    touchStartY = e.touches[0].clientY - panY;
+                    mapWrapper.classList.add('is-dragging');
+                } else if (e.touches.length === 2) {
+                    isDragging = false;
+                    initialPinchDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    initialZoomOnPinch = zoomLevel;
+                }
+            }, { passive: true });
+
+            mapWrapper.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging) {
+                    panX = e.touches[0].clientX - touchStartX;
+                    panY = e.touches[0].clientY - touchStartY;
+                    clampPan();
+                    updateMapTransform(false);
+                } else if (e.touches.length === 2 && initialPinchDist > 0) {
+                    const currentDist = Math.hypot(
+                        e.touches[0].clientX - e.touches[1].clientX,
+                        e.touches[0].clientY - e.touches[1].clientY
+                    );
+                    const pinchScale = currentDist / initialPinchDist;
+                    zoomLevel = Math.max(minZoom, Math.min(maxZoom, parseFloat((initialZoomOnPinch * pinchScale).toFixed(2))));
+                    clampPan();
+                    updateMapTransform(false);
+                }
+            }, { passive: true });
+
+            mapWrapper.addEventListener('touchend', (e) => {
+                if (e.touches.length === 0) {
+                    isDragging = false;
+                    initialPinchDist = 0;
+                    mapWrapper.classList.remove('is-dragging');
+                    updateMapTransform(true);
+                }
+            }, { passive: true });
+
+            // Wheel zoom with Ctrl or direct scroll on the map
+            mapWrapper.addEventListener('wheel', (e) => {
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    const delta = e.deltaY < 0 ? 0.25 : -0.25;
+                    setZoom(zoomLevel + delta, { x: e.clientX, y: e.clientY });
+                }
+            }, { passive: false });
+
+            // Initial UI state
+            updateMapTransform(false);
+        }
     }
 
     // 5. Section 19: A Day Here Horizontal Track Controls
@@ -368,15 +581,42 @@ document.addEventListener('DOMContentLoaded', () => {
                 whatsappGroup?.classList.remove('is-invalid');
             }
 
-            if (isValid) {
-                const successMsg = document.getElementById('form-success-msg');
-                if (successMsg) {
-                    successMsg.classList.add('is-visible');
-                    enquiryForm.reset();
-                    // Smoothly bring success notification into view
-                    successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
+            // Captcha Validation
+            const captchaGroup = document.getElementById('group-captcha');
+            const captchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+            if (!captchaResponse) {
+                captchaGroup?.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                captchaGroup?.classList.remove('is-invalid');
             }
+
+            if (!isValid) return;
+
+            const submitBtn = enquiryForm.querySelector('.btn-submit');
+            if (submitBtn) submitBtn.disabled = true;
+
+            fetch('contact_validate.php', {
+                method: 'POST',
+                body: new FormData(enquiryForm)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        enquiryForm.reset();
+                        if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+                        window.location.href = 'thank-you.html';
+                    } else {
+                        alert(data.message || 'Something went wrong. Please try again.');
+                        if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+                        if (submitBtn) submitBtn.disabled = false;
+                    }
+                })
+                .catch(() => {
+                    alert('Something went wrong. Please try again.');
+                    if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+                    if (submitBtn) submitBtn.disabled = false;
+                });
         });
 
         // Clear invalid state on field input change

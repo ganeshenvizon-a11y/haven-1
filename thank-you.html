@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Vara Farm Haven</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description"
+        content="Thank you for your enquiry about Vara Farm Haven. Our team will get back to you shortly to confirm your visit.">
+
+    <!-- Google Fonts: Manrope -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/lenis.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <style>
+        .thankyou-section {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 1.5rem 5rem;
+            text-align: center;
+        }
+
+        .thankyou-card {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .thankyou-icon {
+            width: 84px;
+            height: 84px;
+            margin: 0 auto 1.75rem;
+            border-radius: 50%;
+            background: var(--vara-green, #005837);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 88, 55, 0.25);
+        }
+
+        .thankyou-eyebrow {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--vara-green, #005837);
+            margin-bottom: 1rem;
+        }
+
+        .thankyou-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.25rem;
+        }
+
+        .thankyou-text {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
+        }
+
+        .thankyou-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==========================================
+         NAVIGATION
+         ========================================== -->
+    <header class="navbar" role="banner">
+        <div class="container nav-container">
+            <!-- Brand Logo -->
+            <a href="index.html" class="brand-logo" aria-label="Vara Farm Haven Home">
+                <img src="assets/logo/Vara Logo.png" alt="Vara Logo" width="220" height="58">
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav role="navigation" aria-label="Primary Navigation">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="index.html#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#land" class="nav-link">The Land</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#amenities" class="nav-link">Amenities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#weekend-home" class="nav-link">Weekend Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#master-plan" class="nav-link">Master Plan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#enquiry" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Nav Action Button -->
+            <div class="nav-actions">
+                <a href="index.html#enquiry" class="btn btn-primary">Book a Visit</a>
+                <button class="mobile-menu-toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Modal -->
+    <div class="mobile-nav-modal" data-lenis-prevent aria-hidden="true">
+        <div class="mobile-nav-content">
+            <ul class="mobile-nav-groups">
+                <li class="mobile-nav-group">
+                    <a href="index.html#home" class="mobile-nav-link mobile-group-title">Home</a>
+                </li>
+                <li class="mobile-nav-group">
+                    <a href="index.html#land" class="mobile-nav-link mobile-group-title">The Land</a>
+                </li>
+                <li class="mobile-nav-group">
+                    <a href="index.html#amenities" class="mobile-nav-link mobile-group-title">Amenities</a>
+                </li>
+                <li class="mobile-nav-group">
+                    <a href="index.html#weekend-home" class="mobile-nav-link mobile-group-title">Weekend Home</a>
+                </li>
+                <li class="mobile-nav-group">
+                    <a href="index.html#master-plan" class="mobile-nav-link mobile-group-title">Master Plan</a>
+                </li>
+                <li class="mobile-nav-group">
+                    <a href="index.html#enquiry" class="mobile-nav-link mobile-group-title">Contact</a>
+                </li>
+            </ul>
+            <div class="mobile-nav-ctas">
+                <a href="index.html#enquiry" class="btn btn-primary">Book a Visit</a>
+            </div>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="thankyou-section">
+            <div class="container thankyou-card">
+                <div class="thankyou-icon">
+                    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+                <span class="thankyou-eyebrow">Visit Request Received</span>
+                <h1 class="thankyou-title">Thank You for Reaching Out!</h1>
+                <p class="thankyou-text">
+                    We've received your enquiry and one of our Vara Farm Haven specialists will get in touch with
+                    you shortly to confirm your scheduled visit.
+                </p>
+                <div class="thankyou-actions">
+                    <a href="index.html" class="btn btn-primary" role="button">
+                        <span>Back to Home</span>
+                    </a>
+                    <a href="index.html#gallery" class="btn btn-secondary-dark" role="button">
+                        <span>Explore Gallery</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         FOOTER SECTION
+         ========================================== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-card-container">
+                <!-- Top Section: Invitation Heading -->
+                <div class="footer-top-section">
+                    <div class="footer-top-left">
+                        <h2 class="footer-invite-title">
+                            Drop by for fresh air.<br>
+                            <span>At any time.</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <!-- Footer Main Grid -->
+                <div class="footer-grid">
+                    <!-- Brand Column -->
+                    <div class="footer-brand-col">
+                        <a href="index.html#home" class="footer-logo-link" aria-label="Vara Farm Haven Home">
+                            <img src="assets/logo/Vara Logo.png" alt="Vara Logo" width="220" height="58" loading="lazy">
+                        </a>
+                        <p class="footer-brand-tagline">
+                            Own Land.<br>Build Homes.<br><span class="tagline-mute">Grow Memories.</span>
+                        </p>
+                        <p class="footer-brand-subtext">
+                            TG RERA &amp; HMDA-approved plots &amp; luxury townships in Hyderabad.
+                        </p>
+                        <div class="footer-social-links" aria-label="Vara Real Estate Social Links">
+                            <a href="https://www.facebook.com/profile.php?id=61593460148020" target="_blank"
+                                rel="noopener" aria-label="Facebook" title="Facebook">
+                                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.instagram.com/vararealestates/?hl=en" target="_blank" rel="noopener"
+                                aria-label="Instagram" title="Instagram">
+                                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/vararealestates-developers-800184430" target="_blank"
+                                rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+                                <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@VaraRealEstateDevelopers" target="_blank" rel="noopener"
+                                aria-label="YouTube" title="YouTube">
+                                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Columns -->
+                    <div class="footer-nav-columns">
+                        <div class="footer-nav-col">
+                            <h4 class="footer-col-title">VARA HAVEN</h4>
+                            <ul class="footer-links">
+                                <li><a href="index.html#home">Home</a></li>
+                                <li><a href="index.html#land">The Land &amp; Pricing</a></li>
+                                <li><a href="index.html#why-5guntas">Why 5 Guntas</a></li>
+                                <li><a href="index.html#amenities">Amenities</a></li>
+                                <li><a href="index.html#weekend-home">Weekend Home</a></li>
+                                <li><a href="index.html#master-plan">Master Plan</a></li>
+                                <li><a href="index.html#enquiry">Book a Visit</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-nav-col">
+                            <h4 class="footer-col-title">EXPLORE</h4>
+                            <ul class="footer-links">
+                                <li><a href="index.html#about">About Vara</a></li>
+                                <li><a href="index.html#a-day-here">A Day Here</a></li>
+                                <li><a href="index.html#connectivity">Connectivity &amp; Map</a></li>
+                                <li><a href="index.html#gallery">Photo Gallery</a></li>
+                                <li><a href="index.html#enquiry">Enquiry Form</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-nav-col">
+                            <h4 class="footer-col-title">CONNECT</h4>
+                            <ul class="footer-links">
+                                <li><a href="tel:+9104035994551">+91 040 3599 4551</a></li>
+                                <li><a href="tel:+919000256699">+91 90002 56699</a></li>
+                                <li><a href="https://wa.me/919000256699" target="_blank" rel="noopener">WhatsApp
+                                        Us</a></li>
+                                <li><a href="index.html#enquiry">Schedule Visit</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom Bar -->
+                <div class="footer-bottom">
+                    <div class="footer-bottom-left">
+                        <p class="copyright-text">
+                            &copy; 2026 Vara Real Estate &amp; Developers Pvt. Ltd. All rights reserved.
+                        </p>
+                        <p class="footer-location-text">
+                            <strong>Office:</strong> Flat No 304, Kavya Deluxe Apartments, Madhura Nagar, Hyderabad
+                            500038 &bull; <strong>Project Site:</strong> Balanagar, Gunded Road towards Neredlapally
+                        </p>
+                    </div>
+                    <a href="https://www.envizonstudio.com" target="_blank" rel="noopener"
+                        class="footer-designer-link" aria-label="Design by Envizon Studio (www.envizonstudio.com)">
+                        <p class="footer-designer-credit">
+                            Design by <span class="designer-brand">Envizon Studio</span>
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         BACK TO TOP BUTTON (WITH SCROLL INDICATOR)
+         ========================================== -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg class="back-to-top-svg" width="48" height="48" viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="back-to-top-circle-bg" cx="24" cy="24" r="21" />
+            <circle class="back-to-top-circle-progress" cx="24" cy="24" r="21" />
+        </svg>
+        <svg class="back-to-top-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 13V3M8 3L3 8M8 3L13 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </svg>
+    </button>
+
+    <!-- JavaScript Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/lenis.min.js"></script>
+    <script src="js/lenis-init.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
