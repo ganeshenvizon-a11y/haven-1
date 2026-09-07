@@ -24,14 +24,15 @@ header('Content-Type: application/json');
 // TODO: fill in the real mailbox credentials before going live.
 // Never commit real passwords to git — move these into environment
 // variables or a git-ignored config file once you have them.
-$smtpHost   = 'smtp.hostinger.com';
-$smtpPort   = 587;
-$smtpUser   = 'CHANGE_ME@varafarmhaven.com';
-$smtpPass   = 'CHANGE_ME';
+$smtpHost   = 'mail.privateemail.com';         // Changed from Hostinger to Namecheap
+$smtpPort   = 587;                             // Keep 587 for TLS encryption
+$smtpUser   = 'admin@vararealestates.com';      // Your actual Namecheap email address
+$smtpPass   = 'Varameduri@2026'; // The password you created for this specific email
 
-$fromName  = 'Vara Farm Haven';
-$fromEmail = $smtpUser;
-$toEmail   = 'CHANGE_ME@varafarmhaven.com'; // enquiry inbox that should receive leads
+$fromName  = 'Vara Real Estates';              // Updated to match your current company name
+$fromEmail = $smtpUser;                        // This will automatically be admin@vararealestates.com
+$toEmail   = 'admin@vararealestates.com';      // The email address where you want to receive notifications
+ // enquiry inbox that should receive leads
 
 // -------------------------------
 // reCAPTCHA configuration
@@ -66,6 +67,7 @@ if (empty($verifyResponse['success'])) {
 $fullName       = htmlspecialchars(trim($_POST['fullName'] ?? ''));
 $mobileNumber   = htmlspecialchars(trim($_POST['mobileNumber'] ?? ''));
 $whatsappNumber = htmlspecialchars(trim($_POST['whatsappNumber'] ?? ''));
+$userEmail      = trim($_POST['email'] ?? '');
 $preferredDate  = htmlspecialchars(trim($_POST['preferredDate'] ?? ''));
 $preferredTime  = htmlspecialchars(trim($_POST['preferredTime'] ?? ''));
 $message        = htmlspecialchars(trim($_POST['message'] ?? ''));
@@ -82,8 +84,17 @@ if ($whatsappNumber !== '' && !preg_match($mobileRegex, $whatsappNumber)) {
     exit;
 }
 
-$subject = 'New Visit Enquiry — Vara Farm Haven';
-$htmlContent = "
+if (!filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
+    echo json_encode(['success' => false, 'message' => 'Please enter a valid email address.']);
+    exit;
+}
+$userEmail = htmlspecialchars($userEmail);
+
+// -------------------------------
+// Admin notification email
+// -------------------------------
+$adminSubject = 'New Visit Enquiry — Vara Farm Haven';
+$adminHtmlContent = "
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,6 +106,7 @@ $htmlContent = "
 <h2>New Visit Enquiry — Vara Farm Haven</h2>
 <ul>
     <li><b>Full Name:</b> $fullName</li>
+    <li><b>Email:</b> $userEmail</li>
     <li><b>Mobile Number:</b> $mobileNumber</li>
     <li><b>WhatsApp Number:</b> " . ($whatsappNumber !== '' ? $whatsappNumber : '—') . "</li>
     <li><b>Preferred Date:</b> " . ($preferredDate !== '' ? $preferredDate : '—') . "</li>
@@ -106,9 +118,38 @@ $htmlContent = "
 </html>
 ";
 
-$mail = new PHPMailer(true);
+// -------------------------------
+// User confirmation email
+// -------------------------------
+$userSubject = 'We\'ve received your visit request — Vara Farm Haven';
+$userHtmlContent = "
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Visit Request Received</title>
+</head>
+<body>
+<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;'>
+<h2>Thank you, $fullName!</h2>
+<p>We've received your visit request for Vara Farm Haven. Our team will reach out to you shortly to confirm your scheduled visit.</p>
+<h3>Your submitted details</h3>
+<ul>
+    <li><b>Mobile Number:</b> $mobileNumber</li>
+    <li><b>WhatsApp Number:</b> " . ($whatsappNumber !== '' ? $whatsappNumber : '—') . "</li>
+    <li><b>Preferred Date:</b> " . ($preferredDate !== '' ? $preferredDate : '—') . "</li>
+    <li><b>Preferred Time:</b> " . ($preferredTime !== '' ? $preferredTime : '—') . "</li>
+    <li><b>Message:</b> " . ($message !== '' ? nl2br($message) : '—') . "</li>
+</ul>
+<p>If any of these details are incorrect, just reply to this email.</p>
+</div>
+</body>
+</html>
+";
 
-try {
+function sendVaraFarmEmail($smtpHost, $smtpPort, $smtpUser, $smtpPass, $fromEmail, $fromName, $toAddress, $replyToEmail, $replyToName, $subject, $htmlBody)
+{
+    $mail = new PHPMailer(true);
     $mail->isSMTP();
     $mail->SMTPDebug = 0;
     $mail->Host = $smtpHost;
@@ -119,17 +160,25 @@ try {
     $mail->Password = $smtpPass;
 
     $mail->setFrom($fromEmail, $fromName);
-    $mail->addAddress($toEmail);
-    $mail->addReplyTo($fromEmail, $fromName);
+    $mail->addAddress($toAddress);
+    $mail->addReplyTo($replyToEmail, $replyToName);
 
     $mail->isHTML(true);
     $mail->Subject = $subject;
-    $mail->Body = $htmlContent;
+    $mail->Body = $htmlBody;
 
     $mail->send();
+}
+
+try {
+    // 1. Notify the admin inbox of the new enquiry (reply-to set to the user).
+    sendVaraFarmEmail($smtpHost, $smtpPort, $smtpUser, $smtpPass, $fromEmail, $fromName, $toEmail, $userEmail, $fullName, $adminSubject, $adminHtmlContent);
+
+    // 2. Send a confirmation copy to the user who filled in the form.
+    sendVaraFarmEmail($smtpHost, $smtpPort, $smtpUser, $smtpPass, $fromEmail, $fromName, $userEmail, $fromEmail, $fromName, $userSubject, $userHtmlContent);
 
     echo json_encode(['success' => true, 'message' => 'Your enquiry has been sent successfully.']);
 } catch (Exception $e) {
-    error_log('Vara Farm Haven enquiry mail failed: ' . $mail->ErrorInfo);
+    error_log('Vara Farm Haven enquiry mail failed: ' . $e->getMessage());
     echo json_encode(['success' => false, 'message' => 'Email could not be sent. Please try again later.']);
 }

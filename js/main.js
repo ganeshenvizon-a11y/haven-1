@@ -581,6 +581,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 whatsappGroup?.classList.remove('is-invalid');
             }
 
+            // Email Validation
+            const emailInput = document.getElementById('email');
+            const emailGroup = document.getElementById('group-email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput || !emailRegex.test(emailInput.value.trim())) {
+                emailGroup?.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                emailGroup?.classList.remove('is-invalid');
+            }
+
             // Captcha Validation
             const captchaGroup = document.getElementById('group-captcha');
             const captchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
