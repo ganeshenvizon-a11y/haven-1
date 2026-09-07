@@ -14,9 +14,22 @@ require __DIR__ . '/../PHPMailer/src/PHPMailer.php';
 require __DIR__ . '/../PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
 header('Content-Type: application/json');
+
+// Convert any fatal error into a JSON response (and a log line) instead of
+// letting the function crash with a raw 500 / FUNCTION_INVOCATION_FAILED.
+register_shutdown_function(function () {
+    $error = error_get_last();
+    if ($error !== null && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR], true)) {
+        error_log('Vara Farm Haven enquiry fatal error: ' . $error['message'] . ' in ' . $error['file'] . ':' . $error['line']);
+        if (!headers_sent()) {
+            http_response_code(500);
+            header('Content-Type: application/json');
+        }
+        echo json_encode(['success' => false, 'message' => 'Email could not be sent. Please try again later.']);
+    }
+});
 
 // -------------------------------
 // SMTP / recipient configuration
@@ -179,7 +192,7 @@ try {
     sendVaraFarmEmail($smtpHost, $smtpPort, $smtpUser, $smtpPass, $fromEmail, $fromName, $userEmail, $fromEmail, $fromName, $userSubject, $userHtmlContent);
 
     echo json_encode(['success' => true, 'message' => 'Your enquiry has been sent successfully.']);
-} catch (Exception $e) {
+} catch (\Throwable $e) {
     error_log('Vara Farm Haven enquiry mail failed: ' . $e->getMessage());
     echo json_encode(['success' => false, 'message' => 'Email could not be sent. Please try again later.']);
 }
