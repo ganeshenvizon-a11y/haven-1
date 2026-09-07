@@ -607,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = enquiryForm.querySelector('.btn-submit');
             if (submitBtn) submitBtn.disabled = true;
 
-            fetch('contact_validate.php', {
+            fetch('/api/contact_validate.php', {
                 method: 'POST',
                 body: new FormData(enquiryForm)
             })

@@ -9,9 +9,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require __DIR__ . '/../PHPMailer/src/Exception.php';
+require __DIR__ . '/../PHPMailer/src/PHPMailer.php';
+require __DIR__ . '/../PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -21,13 +21,14 @@ header('Content-Type: application/json');
 // -------------------------------
 // SMTP / recipient configuration
 // -------------------------------
-// TODO: fill in the real mailbox credentials before going live.
-// Never commit real passwords to git — move these into environment
-// variables or a git-ignored config file once you have them.
+// SMTP password is read from the SMTP_PASS environment variable
+// (set it in the Vercel project's Settings -> Environment Variables).
+// Never hardcode real passwords here — this file is committed to a
+// public git repository.
 $smtpHost   = 'mail.privateemail.com';         // Changed from Hostinger to Namecheap
 $smtpPort   = 587;                             // Keep 587 for TLS encryption
 $smtpUser   = 'admin@vararealestates.com';      // Your actual Namecheap email address
-$smtpPass   = 'Varameduri@2026'; // The password you created for this specific email
+$smtpPass   = getenv('SMTP_PASS') ?: '';       // Set SMTP_PASS in Vercel env vars
 
 $fromName  = 'Vara Real Estates';              // Updated to match your current company name
 $fromEmail = $smtpUser;                        // This will automatically be admin@vararealestates.com
