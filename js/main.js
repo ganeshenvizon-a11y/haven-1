@@ -624,6 +624,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'generate_lead', {
+                                event_category: 'engagement',
+                                form_id: 'enquiry-form'
+                            });
+                        }
                         enquiryForm.reset();
                         if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
                         window.location.href = 'thank-you.html';
@@ -833,6 +839,41 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     initFloatingContactWidget();
+
+    // 10. GA4 Event Tracking (phone, WhatsApp, brochure download, Book a Visit CTA clicks)
+    const initAnalyticsTracking = () => {
+        if (typeof gtag !== 'function') return;
+
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (!link) return;
+
+            const href = link.getAttribute('href') || '';
+
+            if (href.startsWith('tel:')) {
+                gtag('event', 'phone_click', {
+                    event_category: 'engagement',
+                    link_url: href
+                });
+            } else if (href.includes('wa.me')) {
+                gtag('event', 'whatsapp_click', {
+                    event_category: 'engagement',
+                    link_url: href
+                });
+            } else if (href.includes('Brochure')) {
+                gtag('event', 'brochure_download', {
+                    event_category: 'engagement',
+                    link_url: href
+                });
+            } else if (href === '#enquiry' && link.classList.contains('btn-primary')) {
+                gtag('event', 'book_a_visit_click', {
+                    event_category: 'engagement'
+                });
+            }
+        });
+    };
+
+    initAnalyticsTracking();
 });
 
 
