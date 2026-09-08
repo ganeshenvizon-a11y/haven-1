@@ -607,9 +607,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = enquiryForm.querySelector('.btn-submit');
             if (submitBtn) submitBtn.disabled = true;
 
-            fetch('/api/contact_validate.php', {
+            fetch('/api/contact_validate', {
                 method: 'POST',
-                body: new FormData(enquiryForm)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullName: fullNameInput.value.trim(),
+                    mobileNumber: mobileInput.value.trim(),
+                    whatsappNumber: whatsappInput ? whatsappInput.value.trim() : '',
+                    email: emailInput.value.trim(),
+                    preferredDate: document.getElementById('preferred-date')?.value || '',
+                    preferredTime: document.getElementById('preferred-time')?.value || '',
+                    message: document.getElementById('message')?.value.trim() || '',
+                    'g-recaptcha-response': captchaResponse
+                })
             })
                 .then(response => response.json())
                 .then(data => {

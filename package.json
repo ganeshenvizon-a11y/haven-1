@@ -1,0 +1,7 @@
+{
+  "name": "vara-farm-haven",
+  "private": true,
+  "dependencies": {
+    "nodemailer": "^10.0.1"
+  }
+}
