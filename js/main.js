@@ -581,6 +581,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 whatsappGroup?.classList.remove('is-invalid');
             }
 
+            // Email Validation
+            const emailInput = document.getElementById('email');
+            const emailGroup = document.getElementById('group-email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput || !emailRegex.test(emailInput.value.trim())) {
+                emailGroup?.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                emailGroup?.classList.remove('is-invalid');
+            }
+
             // Captcha Validation
             const captchaGroup = document.getElementById('group-captcha');
             const captchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
@@ -596,13 +607,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const submitBtn = enquiryForm.querySelector('.btn-submit');
             if (submitBtn) submitBtn.disabled = true;
 
-            fetch('contact_validate.php', {
+            fetch('/api/contact_validate', {
                 method: 'POST',
-                body: new FormData(enquiryForm)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    fullName: fullNameInput.value.trim(),
+                    mobileNumber: mobileInput.value.trim(),
+                    whatsappNumber: whatsappInput ? whatsappInput.value.trim() : '',
+                    email: emailInput.value.trim(),
+                    preferredDate: document.getElementById('preferred-date')?.value || '',
+                    preferredTime: document.getElementById('preferred-time')?.value || '',
+                    message: document.getElementById('message')?.value.trim() || '',
+                    'g-recaptcha-response': captchaResponse
+                })
             })
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'generate_lead', {
+                                event_category: 'engagement',
+                                form_id: 'enquiry-form'
+                            });
+                        }
                         enquiryForm.reset();
                         if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
                         window.location.href = 'thank-you.html';
@@ -812,6 +839,41 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     initFloatingContactWidget();
+
+    // 10. GA4 Event Tracking (phone, WhatsApp, brochure download, Book a Visit CTA clicks)
+    const initAnalyticsTracking = () => {
+        if (typeof gtag !== 'function') return;
+
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (!link) return;
+
+            const href = link.getAttribute('href') || '';
+
+            if (href.startsWith('tel:')) {
+                gtag('event', 'phone_click', {
+                    event_category: 'engagement',
+                    link_url: href
+                });
+            } else if (href.includes('wa.me')) {
+                gtag('event', 'whatsapp_click', {
+                    event_category: 'engagement',
+                    link_url: href
+                });
+            } else if (href.includes('Brochure')) {
+                gtag('event', 'brochure_download', {
+                    event_category: 'engagement',
+                    link_url: href
+                });
+            } else if (href === '#enquiry' && link.classList.contains('btn-primary')) {
+                gtag('event', 'book_a_visit_click', {
+                    event_category: 'engagement'
+                });
+            }
+        });
+    };
+
+    initAnalyticsTracking();
 });
 
 

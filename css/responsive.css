@@ -676,6 +676,36 @@
         text-align: center;
     }
 
+    /* FAQ Section Mobile */
+    .faq-header {
+        margin-bottom: 32px;
+    }
+
+    .faq-heading {
+        font-size: clamp(26px, 7vw, 36px);
+        line-height: 1.15;
+        margin-bottom: 12px;
+    }
+
+    .faq-subhead {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .faq-question {
+        padding: 16px 18px;
+        font-size: 15.5px;
+        gap: 12px;
+    }
+
+    .faq-answer {
+        padding: 0 18px 18px;
+    }
+
+    .faq-answer p {
+        font-size: 14.5px;
+    }
+
     /* Enquiry Section Mobile */
     .enquiry-grid {
         grid-template-columns: 1fr;
