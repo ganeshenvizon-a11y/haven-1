@@ -774,7 +774,7 @@ h6 {
 
 .land-stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 28px;
 }
 
@@ -2410,33 +2410,15 @@ h6 {
     margin-top: 4px;
 }
 
-/* Pricing & Dimensions */
+/* Dimensions */
 .panel-pricing-row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-bottom: 12px;
     border-bottom: 1px solid var(--vara-border);
     gap: 10px;
     flex-wrap: wrap;
-}
-
-.price-main {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-}
-
-.price-amount {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--vara-ink);
-}
-
-.price-rate {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--vara-slate);
 }
 
 .dimensions-tag {
