@@ -1,0 +1,716 @@
+/* ==========================================================================
+   VARA FARM HAVEN — /gallery PAGE STYLESHEET
+   Page-specific styles only. Shares tokens, navbar, footer, buttons and the
+   reveal/lightbox system with the rest of the site via style.css /
+   animations.css — nothing shared is redefined here.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Gallery Hero
+   -------------------------------------------------------------------------- */
+.gp-hero-section {
+    padding: 128px 0 0 0;
+    background: var(--vara-paper);
+}
+
+.gp-hero-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    min-height: 380px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #0f1813;
+}
+
+.gp-hero-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(9, 20, 15, 0.78) 0%, rgba(9, 20, 15, 0.4) 45%, rgba(9, 20, 15, 0.15) 75%);
+}
+
+.gp-hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(28px, 5vw, 72px);
+    color: var(--vara-white);
+    max-width: 640px;
+}
+
+.gp-hero-eyebrow {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--vara-lime);
+    margin-bottom: 14px;
+}
+
+.gp-hero-heading {
+    color: var(--vara-white);
+    margin-bottom: 16px;
+}
+
+.gp-hero-subtext {
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 480px;
+}
+
+.gp-hero-play-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.gp-hero-play-btn {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--vara-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.gp-hero-play-wrap:hover .gp-hero-play-btn {
+    transform: scale(1.08);
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.4);
+}
+
+.gp-hero-play-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--vara-white);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   2. Filter Navigation
+   -------------------------------------------------------------------------- */
+.gp-filters-section {
+    padding: 40px 0 8px 0;
+    background: var(--vara-paper);
+}
+
+.gp-filters-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--vara-border);
+    padding-bottom: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.gp-filters-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.gp-filter-btn {
+    flex: 0 0 auto;
+    background: transparent;
+    border: 1px solid var(--vara-border);
+    border-radius: 30px;
+    padding: 9px 20px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--vara-slate);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.gp-filter-btn:hover {
+    color: var(--vara-green);
+    border-color: var(--vara-green);
+}
+
+.gp-filter-btn.active {
+    background: var(--vara-green);
+    border-color: var(--vara-green);
+    color: var(--vara-white);
+}
+
+/* --------------------------------------------------------------------------
+   3. Masonry / Bento Gallery Grid
+   -------------------------------------------------------------------------- */
+.gp-gallery-section {
+    padding: 32px 0 clamp(60px, 6vw, 90px) 0;
+    background: var(--vara-paper);
+}
+
+.gp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: clamp(210px, 24vh, 250px);
+    grid-auto-flow: dense;
+    gap: 20px;
+}
+
+.gp-card {
+    position: relative;
+    grid-column: span 1;
+    grid-row: span 1;
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #141B17;
+    outline: none;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.gp-card:hover,
+.gp-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+}
+
+.gp-card--wide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.gp-card--hero {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.gp-card-media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.gp-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gp-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(10, 15, 12, 0.85) 0%,
+            rgba(10, 15, 12, 0.15) 45%,
+            rgba(10, 15, 12, 0) 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px;
+    color: var(--vara-white);
+}
+
+.gp-card-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--vara-lime);
+    background: rgba(0, 0, 0, 0.45);
+    padding: 3px 9px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.gp-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 2px 0;
+}
+
+.gp-card--hero .gp-card-title {
+    font-size: 22px;
+}
+
+.gp-card-caption {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.gp-card-zoom-icon {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--vara-white);
+    transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.gp-card:hover .gp-card-zoom-icon {
+    transform: scale(1.1);
+    background: var(--vara-green);
+    border-color: var(--vara-green);
+}
+
+/* Video Card Specifics */
+.gp-video-indicator {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--vara-white);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 9px 4px 7px;
+    border-radius: 4px;
+}
+
+.gp-video-indicator svg {
+    width: 10px;
+    height: 10px;
+}
+
+.gp-video-duration {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--vara-white);
+    background: rgba(0, 0, 0, 0.55);
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+}
+
+.gp-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--vara-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+    transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.gp-card--hero .gp-play-btn {
+    width: 68px;
+    height: 68px;
+}
+
+.gp-card:hover .gp-play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: var(--vara-white);
+}
+
+/* --------------------------------------------------------------------------
+   4. Featured Videos Section
+   -------------------------------------------------------------------------- */
+.gp-featured-section {
+    background: var(--vara-sand);
+    padding: clamp(60px, 6vw, 90px) 0;
+}
+
+.gp-featured-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.gp-featured-eyebrow {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--vara-green);
+    margin-bottom: 14px;
+}
+
+.gp-featured-heading {
+    margin-bottom: 10px;
+}
+
+.gp-featured-desc {
+    font-size: 16px;
+    color: var(--vara-slate);
+}
+
+.gp-featured-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 0 0 auto;
+}
+
+.gp-featured-nav-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--vara-border);
+    color: var(--vara-ink);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex: 0 0 auto;
+}
+
+.gp-featured-nav-btn:hover {
+    background: var(--vara-green);
+    border-color: var(--vara-green);
+    color: var(--vara-white);
+}
+
+.gp-featured-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.gp-featured-card {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    background: #141B17;
+}
+
+.gp-featured-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.gp-featured-card:hover img {
+    transform: scale(1.05);
+}
+
+.gp-featured-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(9, 20, 15, 0.85) 0%, rgba(9, 20, 15, 0.1) 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px;
+    color: var(--vara-white);
+}
+
+.gp-featured-card-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.gp-featured-card .gp-play-btn {
+    width: 56px;
+    height: 56px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Video Modal
+   -------------------------------------------------------------------------- */
+.video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 300ms ease, visibility 300ms ease;
+}
+
+.video-modal.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.video-modal .modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(9, 12, 10, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.video-modal .modal-container {
+    position: relative;
+    z-index: 10;
+    width: min(92vw, 1080px);
+    background: #0f1813;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transform: scale(0.96);
+    transition: transform 300ms ease;
+}
+
+.video-modal.is-active .modal-container {
+    transform: scale(1);
+}
+
+.video-modal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-modal .modal-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--vara-white);
+    margin: 0;
+}
+
+.video-modal .modal-body {
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.video-modal video {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* --------------------------------------------------------------------------
+   6. CTA Band
+   -------------------------------------------------------------------------- */
+.gp-cta-section {
+    background: var(--vara-green);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    color: var(--vara-white);
+    overflow: hidden;
+    padding: clamp(48px, 5vw, 64px) 0;
+}
+
+.gp-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.gp-cta-eyebrow {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--vara-lime);
+    margin-bottom: 10px;
+}
+
+.gp-cta-heading {
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--vara-white);
+    margin: 0 0 8px 0;
+}
+
+.gp-cta-text {
+    font-size: 15.5px;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+}
+
+.gp-cta-btn {
+    background: var(--vara-white);
+    color: var(--vara-green);
+    border: 1px solid var(--vara-white);
+    flex: 0 0 auto;
+}
+
+.gp-cta-btn:hover {
+    background: var(--vara-lime);
+    border-color: var(--vara-lime);
+    color: var(--vara-ink);
+    transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   7. Empty State
+   -------------------------------------------------------------------------- */
+.gp-empty-state {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--vara-slate);
+    font-size: 15px;
+    grid-column: 1 / -1;
+}
+
+.gp-empty-state.is-visible {
+    display: block;
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) {
+    .gp-hero-frame {
+        aspect-ratio: 4 / 5;
+        min-height: 460px;
+    }
+
+    .gp-hero-content {
+        max-width: 100%;
+        justify-content: flex-start;
+        padding-top: clamp(40px, 8vw, 64px);
+    }
+
+    .gp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gp-card--hero {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+    .gp-card--wide {
+        grid-column: span 2;
+    }
+
+    .gp-featured-track {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .gp-hero-section {
+        padding-top: 108px;
+    }
+
+    .gp-hero-frame {
+        border-radius: var(--radius-md);
+    }
+
+    .gp-hero-play-btn {
+        width: 60px;
+        height: 60px;
+    }
+
+    .gp-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 280px;
+        gap: 16px;
+    }
+
+    .gp-card,
+    .gp-card--wide,
+    .gp-card--hero {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .gp-card--hero {
+        grid-row: span 2;
+    }
+
+    .gp-featured-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .gp-featured-track {
+        grid-template-columns: 1fr;
+        grid-auto-flow: column;
+        grid-auto-columns: 82%;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+    }
+
+    .gp-featured-track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .gp-featured-card {
+        scroll-snap-align: start;
+    }
+
+    .gp-cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .gp-cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .video-modal .modal-container {
+        width: 94vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .gp-filter-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .gp-hero-heading {
+        font-size: clamp(28px, 8vw, 40px);
+    }
+}
