@@ -309,6 +309,26 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Nature & Lifestyle',
             duration: '01:58',
             videoUrl: PLACEHOLDER_VIDEO_URL
+        },
+        {
+            id: 'vid-venture-01',
+            type: 'video',
+            category: 'aerial',
+            size: 'standard',
+            thumbnail: 'assets/images/aerial_masterplan.webp',
+            title: 'Vara Farm Haven — Venture Video 01',
+            duration: '00:48',
+            videoUrl: 'assets/video/VARA_VARA REAL & DEVELOPERS_VENTURE _VIDEO _01_00000288.webm'
+        },
+        {
+            id: 'vid-venture-02',
+            type: 'video',
+            category: 'aerial',
+            size: 'standard',
+            thumbnail: 'assets/images/plot_view.webp',
+            title: 'Vara Farm Haven — Venture Video 02',
+            duration: '00:48',
+            videoUrl: 'assets/video/VARA_VARA REAL & DEVELOPERS_VENTURE _VIDEO _01_00001848.webm'
         }
     ];
 
@@ -321,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'img-highway-connectivity', 'img-weekend-home', 'img-timber-villa-design',
         'vid-nature-lifestyle', 'img-eco-veranda-deck', 'img-timber-living-room',
         'img-wooden-house-dining', 'img-childrens-play-zone', 'img-adventure-playground',
-        'vid-complete-walkthrough', 'vid-amenities-tour'
+        'vid-complete-walkthrough', 'vid-amenities-tour', 'vid-venture-01', 'vid-venture-02'
     ];
 
     // Featured Videos section pulls from the same galleryVideos data — single source of truth.
