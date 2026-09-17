@@ -2137,9 +2137,12 @@ h6 {
     border-color: var(--vara-lime);
 }
 
-.pin-booked .pin-badge {
-    background: #c84b31;
-    opacity: 0.85;
+.pin-booked .pin-badge,
+.pin-sold .pin-badge {
+    background: #c84b31 !important;
+    border-color: #FFFFFF !important;
+    opacity: 0.95;
+    box-shadow: 0 3px 10px rgba(200, 75, 49, 0.45);
 }
 
 .pin-amenity .pin-badge {
@@ -2207,9 +2210,11 @@ h6 {
 }
 
 .available-box { background: var(--vara-green); }
+.sold-box { background: #c84b31; }
 .estate-box { background: #2b7a78; border: 1.5px solid var(--vara-lime); }
 .amenity-box { background: #1b608a; }
 .road-box { background: #3a423d; }
+.dot-sold { background: #c84b31; }
 
 .legend-label {
     font-size: 12px;
@@ -2284,12 +2289,35 @@ h6 {
     color: var(--vara-lime);
 }
 
-.plot-chip-btn.chip-booked {
-    border-color: rgba(200, 75, 49, 0.3);
+.plot-chip-btn.chip-booked,
+.plot-chip-btn.chip-sold {
+    border-color: rgba(200, 75, 49, 0.35);
+    background: rgba(200, 75, 49, 0.05);
 }
 
-.plot-chip-btn.chip-booked small {
+.plot-chip-btn.chip-booked small,
+.plot-chip-btn.chip-sold small {
     color: #c84b31;
+    font-weight: 700;
+}
+
+.plot-chip-btn.chip-booked:hover,
+.plot-chip-btn.chip-sold:hover {
+    background: rgba(200, 75, 49, 0.12);
+    border-color: #c84b31;
+    color: #c84b31;
+}
+
+.plot-chip-btn.chip-booked.active,
+.plot-chip-btn.chip-sold.active {
+    background: #c84b31;
+    border-color: #c84b31;
+    color: #FFFFFF;
+}
+
+.plot-chip-btn.chip-booked.active small,
+.plot-chip-btn.chip-sold.active small {
+    color: #ffe6e0;
 }
 
 .plot-chip-btn.chip-amenity {
@@ -2352,7 +2380,8 @@ h6 {
     border: 1px solid rgba(0, 88, 55, 0.3);
 }
 
-.badge-booked {
+.badge-booked,
+.badge-sold {
     background: rgba(200, 75, 49, 0.12);
     color: #A83822;
     border: 1px solid rgba(200, 75, 49, 0.35);
@@ -2454,6 +2483,26 @@ h6 {
     color: var(--vara-ink);
 }
 
+.panel-sold-notice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(200, 75, 49, 0.08);
+    border: 1px solid rgba(200, 75, 49, 0.28);
+    border-radius: var(--radius-sm);
+    color: #A83822;
+    font-size: 12.5px;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.panel-sold-notice i {
+    font-size: 15px;
+    color: #c84b31;
+    flex-shrink: 0;
+}
+
 .panel-description {
     font-size: 14px;
     line-height: 1.6;
@@ -2498,6 +2547,19 @@ h6 {
     flex-direction: column;
     gap: 8px;
     margin-top: 4px;
+}
+
+.btn-sold-waitlist {
+    background: rgba(200, 75, 49, 0.08);
+    color: #A83822 !important;
+    border: 1.5px solid #c84b31 !important;
+    font-weight: 700;
+    transition: all var(--transition-fast);
+}
+
+.btn-sold-waitlist:hover {
+    background: #c84b31 !important;
+    color: #FFFFFF !important;
 }
 
 .panel-actions .btn {

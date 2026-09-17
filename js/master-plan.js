@@ -5,77 +5,77 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Official Plot Dataset matching FarmHaven_Master Plan_Web.jpg
+    // Official Plot Dataset matching FarmHaven_Master Plan_Web.webp
     const plotsData = {
         "plot-1": {
             number: "01",
             name: "Plot 01",
             areaSqYds: "1,276.5",
             guntas: "10.55",
-            status: "Available",
+            status: "Sold Out",
             tier: "10plus",
             facing: "North-West Facing",
             isCorner: true,
-            dimensions: "134'-4\" x 87'-4\" / 122' x 83'-11\"",
-            roadAccess: "25 FT Wide Road & North Perimeter",
-            nearby: ["Grand Estate Corner", "25 FT Wide Road", "Temple Zone Nearby", "Avenue Plantation"],
-            description: "Flagship 10.55 Gunta corner farm estate on the North-West sector, offering expansive private grounds for a luxury weekend villa, private orchard, and lawn."
+            dimensions: "134'-4\" x 87'-4\"",
+            roadAccess: "25 FT Wide Road & North Boundary",
+            nearby: ["Grand Estate Corner", "25 FT Wide Road", "North Perimeter Trees", "Avenue Plantation"],
+            description: "Flagship 10.55 Gunta corner farm estate on the North-West sector, featuring private grounds for a luxury weekend villa, orchard, and lawn. [SOLD OUT - Successfully Booked]"
         },
         "plot-2": {
             number: "02",
             name: "Plot 02",
             areaSqYds: "1,210",
             guntas: "10.00",
-            status: "Available",
+            status: "Sold Out",
             tier: "10plus",
             facing: "West Facing",
             isCorner: false,
-            dimensions: "122'-1\" x 81'-1\" / 68'-5\"",
-            roadAccess: "25 FT Wide Road Frontage",
+            dimensions: "134'-9\" x 80'-7\"",
+            roadAccess: "25 FT Wide Internal Road Frontage",
             nearby: ["Grand Estate", "25 FT Wide Road", "Avenue Plantation", "Deep Boundary"],
-            description: "Substantial 10 Gunta private farm plot with direct frontage on the 25-ft wide internal avenue, ideal for customized farmhouse construction."
+            description: "Substantial 10 Gunta private farm plot with direct frontage on the 25-ft wide internal avenue, ideal for customized farmhouse construction. [SOLD OUT - Successfully Booked]"
         },
         "plot-3": {
             number: "03",
             name: "Plot 03",
             areaSqYds: "1,210",
             guntas: "10.00",
-            status: "Available",
+            status: "Sold Out",
             tier: "10plus",
             facing: "South-West Facing",
             isCorner: true,
-            dimensions: "122'-1\" x 80'-7\" / 134'-9\" x 68'-1\"",
-            roadAccess: "25 FT Wide Road & South Avenue",
+            dimensions: "134'-9\" x 80'-7\"",
+            roadAccess: "25 FT Wide Internal Road Frontage",
             nearby: ["Corner Estate", "25 FT Wide Road", "Perimeter Greenery", "Uninterrupted Horizons"],
-            description: "10 Gunta South-West corner estate enjoying uninterrupted horizon views, perimeter tree lines, and peaceful seclusion."
+            description: "10 Gunta South-West corner estate enjoying uninterrupted horizon views, perimeter tree lines, and peaceful seclusion. [SOLD OUT - Successfully Booked]"
         },
         "plot-4": {
             number: "04",
             name: "Plot 04",
-            areaSqYds: "605",
-            guntas: "5.00",
-            status: "Available",
+            areaSqYds: "554.2",
+            guntas: "4.58",
+            status: "Sold Out",
             tier: "5",
-            facing: "West Facing",
+            facing: "South Facing",
             isCorner: false,
-            dimensions: "67'-3\" x 80'-3\"",
-            roadAccess: "25 FT Wide Road",
+            dimensions: "51'-2\" / 60'-6\" x 80'-7\"",
+            roadAccess: "25 FT Wide Internal Road",
             nearby: ["25 FT Wide Road", "Near 40 FT Main Road", "Avenue Plantation", "Drip Provision"],
-            description: "Perfect 5 Gunta square plot with direct access to internal 25-ft road, ready for weekend cottage, gazebo, and organic gardening."
+            description: "Prime 4.58 Gunta farm plot with 80'-7\" depth and direct access to internal 25-ft road, ready for weekend cottage and organic gardening. [SOLD OUT - Successfully Booked]"
         },
         "plot-5": {
             number: "05",
             name: "Plot 05",
-            areaSqYds: "554.2",
-            guntas: "4.58",
-            status: "Available",
+            areaSqYds: "605",
+            guntas: "5.00",
+            status: "Sold Out",
             tier: "5",
-            facing: "East Facing",
+            facing: "East / North Corner",
             isCorner: true,
-            dimensions: "51'-2\" / 60'-6\" x 67'-11\"",
+            dimensions: "67'-3\" / 67'-7\" x 80'-7\"",
             roadAccess: "40 FT Main BT Road & 25 FT Road",
             nearby: ["40 FT Main BT Road", "25 FT Road", "Quick Main Gate Access", "Morning Sunlight"],
-            description: "East-facing corner plot directly accessible from the 40-ft main blacktop avenue, offering unbeatable convenience and morning sunlight."
+            description: "Corner 5 Gunta farm plot directly accessible from the 40-ft main blacktop boulevard and 25-ft internal avenue. [SOLD OUT - Successfully Booked]"
         },
         "plot-6": {
             number: "06",
@@ -84,12 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
             guntas: "7.87",
             status: "Available",
             tier: "5plus",
-            facing: "North-East Facing",
+            facing: "South-East Facing",
             isCorner: true,
-            dimensions: "25'-10\" x 55\" (Custom Curve)",
-            roadAccess: "25 FT Wide Road",
+            dimensions: "44'-2\" / 56' x 24'-5\" & 25 FT Road",
+            roadAccess: "25 FT Wide Internal Road",
             nearby: ["Temple Green Zone", "25 FT Wide Road", "40 FT Road Nearby", "Serene Garden View"],
-            description: "Unique 7.87 Gunta garden-view estate nestled next to the peaceful Temple zone and surrounded by manicured avenue trees."
+            description: "Unique 7.87 Gunta garden-view estate nestled next to the peaceful Temple zone and fronting the 25-ft internal avenue road."
         },
         "plot-7": {
             number: "07",
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tier: "5",
             facing: "North-West Facing",
             isCorner: false,
-            dimensions: "34'-5\" x 25'-5\" / 58'-6\"",
+            dimensions: "35'-5\" / 38'-3\" x 58'-6\" / 36'-1\"",
             roadAccess: "25 FT Wide Road Frontage",
             nearby: ["Temple Adjacent", "25 FT Wide Road", "Shaded Avenue", "Peaceful Location"],
             description: "Prime 5 Gunta plot situated right beside the peaceful community Temple zone, offering easy access to the 25-ft avenue road."
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tier: "amenity",
             facing: "East Facing (40 FT BT Road)",
             isCorner: true,
-            dimensions: "36'-1\" x 36'-1\" Temple Area",
+            dimensions: "36'-1\" Sacred Greens Sanctuary",
             roadAccess: "40 FT Main BT Road & 25 FT Road",
             nearby: ["Community Temple", "Meditation Garden", "40 FT Main BT Road", "Avenue Trees"],
             description: "Dedicated sacred temple and tranquil meditation garden providing a serene spiritual sanctuary and morning gathering point for all residents."
@@ -287,6 +287,20 @@ document.addEventListener('DOMContentLoaded', () => {
             nearby: ["North-East Corner", "33 FT Road", "Avenue Trees", "Deep Boundary"],
             description: "Prestigious 8.16 Gunta North-East corner estate with dual road exposure and deep 108'-6\" boundary for a sprawling country manor."
         },
+        "plot-20": {
+            number: "20",
+            name: "Plot 20 — Amenities Sector",
+            areaSqYds: "Dedicated Facility",
+            guntas: "Recreation Hub",
+            status: "Amenity",
+            tier: "amenity",
+            facing: "South-East Sector",
+            isCorner: true,
+            dimensions: "Weekend Farmhouse, Pool, Pergola & Kids Play Area",
+            roadAccess: "33 FT Proposed Road & 40 FT BT Road",
+            nearby: ["Model Weekend Home", "Swimming Pool", "Garden Pergola", "Kids Play Area"],
+            description: "Designated Plot 20 is the recreational centerpiece of Vara Farm Haven — featuring an open-air swimming pool, shaded garden pergola, safe children's open playground, and model weekend farmhouse."
+        },
         "plot-21": {
             number: "21",
             name: "Plot 21",
@@ -296,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tier: "5plus",
             facing: "West Facing",
             isCorner: true,
-            dimensions: "125' / 130' x 66'-6\"",
+            dimensions: "133'-9\" / 130' x 66'-6\"",
             roadAccess: "33 FT Proposed Road",
             nearby: ["Swimming Pool", "Kids Play Zone", "Pergola", "Weekend Home"],
             description: "Exclusive 7.94 Gunta estate immediately adjacent to the Clubhouse, Swimming Pool, Pergola, and Kids Play Zone."
@@ -310,10 +324,10 @@ document.addEventListener('DOMContentLoaded', () => {
             tier: "5plus",
             facing: "West Facing",
             isCorner: false,
-            dimensions: "120' / 125' x 66'-6\"",
+            dimensions: "120'-3\" / 133'-9\" x 66'-6\"",
             roadAccess: "33 FT Proposed Road",
             nearby: ["33 FT Road", "Quick Pool Access", "Perimeter Trees"],
-            description: "Generous 7.63 Gunta plot offering 120-ft depth and easy strolling distance to all community leisure facilities."
+            description: "Generous 7.63 Gunta plot offering deep boundary and easy strolling distance to all community leisure facilities."
         },
         "plot-23": {
             number: "23",
@@ -324,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tier: "5plus",
             facing: "West Facing",
             isCorner: false,
-            dimensions: "107'-5\" / 120' x 66'-6\"",
+            dimensions: "107'-8\" / 120'-3\" x 66'-6\"",
             roadAccess: "33 FT Proposed Road",
             nearby: ["33 FT Road", "Avenue Plantation", "East Boundary", "Wide Frontage"],
             description: "Expansive 7.33 Gunta plot featuring 107+ foot depth, ideal for a private luxury farmhouse with swimming pool or lawn."
@@ -338,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tier: "5plus",
             facing: "West Facing",
             isCorner: false,
-            dimensions: "95'-7\" / 107'-5\" x 66'-6\"",
+            dimensions: "95'-7\" / 107'-8\" x 66'-6\"",
             roadAccess: "33 FT Proposed Road",
             nearby: ["33 FT Road", "Avenue Trees", "Close to Amenities"],
             description: "Spacious 6.56 Gunta farm plot with western orientation and quick walk to community recreation facilities."
@@ -358,18 +372,18 @@ document.addEventListener('DOMContentLoaded', () => {
             description: "Spectacular 8.50 Gunta North-East estate enjoying exceptional privacy, dual road frontage, and superior Vastu orientation."
         },
         "amenities-hub": {
-            number: "Amenities",
-            name: "Amenities Sector",
+            number: "20",
+            name: "Plot 20 — Amenities Sector",
             areaSqYds: "Dedicated Facility",
             guntas: "Recreation Hub",
             status: "Amenity",
             tier: "amenity",
             facing: "South-East Sector",
             isCorner: true,
-            dimensions: "Pool, Pergola, Kids Play & Weekend Home",
-            roadAccess: "33 FT Road & 40 FT BT Road",
-            nearby: ["Swimming Pool", "Garden Pergola", "Kids Play Area", "Model Weekend Home"],
-            description: "The heart of recreation and relaxation at Vara Farm Haven — featuring an open-air swimming pool, shaded garden pergola, safe children's open play zone, and model weekend home."
+            dimensions: "Weekend Farmhouse, Pool, Pergola & Kids Play Area",
+            roadAccess: "33 FT Proposed Road & 40 FT BT Road",
+            nearby: ["Model Weekend Home", "Swimming Pool", "Garden Pergola", "Kids Play Area"],
+            description: "Designated Plot 20 is the recreational centerpiece of Vara Farm Haven — featuring an open-air swimming pool, shaded garden pergola, safe children's open playground, and model weekend farmhouse."
         }
     };
 
@@ -418,8 +432,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const isAmenity = data.status === "Amenity";
-        const statusClass = isAmenity ? "badge-amenity" : "badge-available";
-        const statusText = isAmenity ? "COMMUNITY AMENITY" : "AVAILABLE";
+        const isSold = data.status === "Sold Out";
+        let statusClass = "badge-available";
+        let statusText = "AVAILABLE";
+
+        if (isAmenity) {
+            statusClass = "badge-amenity";
+            statusText = "COMMUNITY AMENITY";
+        } else if (isSold) {
+            statusClass = "badge-sold";
+            statusText = "SOLD OUT";
+        }
 
         const nearbyChipsHTML = data.nearby.map(item => `<span class="nearby-chip"><i class="fa-solid fa-circle-check"></i> ${item}</span>`).join('');
 
@@ -431,6 +454,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 ${data.isCorner ? '<span class="corner-label"><i class="fa-solid fa-compass"></i> Corner Estate</span>' : ''}
             </div>
+
+            ${isSold ? `
+                <div class="panel-sold-notice">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span><strong>Plot ${data.number} is Sold Out:</strong> This prime farm plot has already been claimed. Join the waitlist below to be notified if similar acreage becomes available.</span>
+                </div>
+            ` : ''}
 
             <div class="panel-metrics">
                 <div class="metric-box">
@@ -469,7 +499,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
 
             <div class="panel-actions">
-                ${!isAmenity ? `
+                ${isSold ? `
+                    <a href="#enquiry" class="btn btn-sold-waitlist panel-book-btn" data-plot="${data.number}">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>Inquire for Waitlist / Similar Plots</span>
+                    </a>
+                ` : !isAmenity ? `
                     <a href="#enquiry" class="btn btn-primary panel-book-btn" data-plot="${data.number}">
                         <span>Enquire About ${data.name}</span>
                         <i class="fa-solid fa-arrow-right"></i>
@@ -488,11 +523,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Pre-fill enquiry form upon clicking Book/Enquire
         const bookBtn = detailPanel.querySelector('.panel-book-btn');
-        if (bookBtn && !isAmenity) {
+        if (bookBtn) {
             bookBtn.addEventListener('click', () => {
                 const messageInput = document.querySelector('#enquiry textarea[name="message"]');
                 if (messageInput) {
-                    messageInput.value = `Hello, I am interested in Plot ${data.number} (${data.guntas} Guntas / ${data.areaSqYds} Sq. Yards, Dimensions: ${data.dimensions}, ${data.facing}). Please share the latest availability and booking details.`;
+                    if (isSold) {
+                        messageInput.value = `Hello, I noticed Plot ${data.number} (${data.guntas} Guntas, ${data.facing}) is Sold Out. Please notify me if a similar plot becomes available or share upcoming phase inventory.`;
+                    } else if (!isAmenity) {
+                        messageInput.value = `Hello, I am interested in Plot ${data.number} (${data.guntas} Guntas / ${data.areaSqYds} Sq. Yards, Dimensions: ${data.dimensions}, ${data.facing}). Please share the latest availability and booking details.`;
+                    }
                 }
             });
         }
@@ -532,7 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chip.addEventListener('click', () => selectPlotHandler(plotId, true));
     });
 
-    // 3. Gunta-wise Filter Buttons Handler (5, 5+, 10 or 10+)
+    // 3. Gunta-wise Filter Buttons Handler (5, 5+, 10 or 10+, Sold Out)
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
@@ -555,6 +594,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     matches = data.tier === '5plus';
                 } else if (filterValue === '10plus') {
                     matches = data.tier === '10plus';
+                } else if (filterValue === 'sold') {
+                    matches = data.status === 'Sold Out';
                 }
 
                 if (matches) {
@@ -578,6 +619,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     matches = data.tier === '5plus';
                 } else if (filterValue === '10plus') {
                     matches = data.tier === '10plus';
+                } else if (filterValue === 'sold') {
+                    matches = data.status === 'Sold Out';
                 }
 
                 chip.style.display = matches ? 'inline-flex' : 'none';
