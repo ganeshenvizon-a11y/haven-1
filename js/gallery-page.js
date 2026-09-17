@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const PLACEHOLDER_VIDEO_URL = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
 
-    const heroVideoUrl = PLACEHOLDER_VIDEO_URL;
-
     const categoryLabels = {
         aerial: 'Aerial & Site',
         infrastructure: 'Infrastructure',
@@ -551,16 +549,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             openLightbox(item);
         }
-    }
-
-    // ==========================================
-    // 7. Hero "Watch Our Story" Button
-    // ==========================================
-    const heroPlayBtn = document.getElementById('gp-hero-play-btn');
-    if (heroPlayBtn) {
-        heroPlayBtn.addEventListener('click', () => {
-            openVideoModal('Vara Farm Haven — Our Story', heroVideoUrl);
-        });
     }
 
     // ==========================================
