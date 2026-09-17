@@ -8,6 +8,46 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // ==========================================
+    // Nav Intro — tied to the hero video's first 16 seconds. While the
+    // video is under 16s: scrolling past 25% of the hero's height reveals
+    // the navbar, scrolling back above that line hides it again. Once the
+    // video passes 16s (or a time-based fallback fires) the navbar stays
+    // visible under normal nav rules.
+    // ==========================================
+    const navbar = document.querySelector('.navbar.gp-nav-intro');
+    const heroFrame = document.querySelector('.gp-hero-frame');
+    const heroVideo = document.querySelector('.gp-hero-video');
+
+    if (navbar && heroFrame) {
+        let introActive = true;
+
+        const endIntro = () => {
+            if (!introActive) return;
+            introActive = false;
+            navbar.classList.remove('gp-nav-intro');
+            window.removeEventListener('scroll', evaluateNavIntro);
+            clearTimeout(introFallbackTimer);
+        };
+
+        const evaluateNavIntro = () => {
+            if (!introActive) return;
+            const scrolledPastHero = window.scrollY > heroFrame.offsetHeight * 0.25;
+            navbar.classList.toggle('gp-nav-intro', !scrolledPastHero);
+        };
+
+        window.addEventListener('scroll', evaluateNavIntro, { passive: true });
+
+        if (heroVideo) {
+            heroVideo.addEventListener('timeupdate', () => {
+                if (heroVideo.currentTime >= 16) endIntro();
+            });
+        }
+
+        // Fallback in case autoplay is blocked or the video never fires timeupdate.
+        const introFallbackTimer = setTimeout(endIntro, 16000);
+    }
+
     const gallerySection = document.getElementById('gp-gallery-section');
     if (!gallerySection) return;
 
