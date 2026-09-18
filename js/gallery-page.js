@@ -2,9 +2,6 @@
  * Vara Farm Haven — /gallery Page Controller
  * Data-driven masonry gallery: category filters, image lightbox (reuses the
  * site's existing .gallery-lightbox styles), video cards + video modal.
- *
- * TO REPLACE PLACEHOLDER VIDEOS: update the `videoUrl` field on any entry in
- * `galleryVideos` below (and `heroVideoUrl`) with the final hosted video URL.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -54,8 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 0. Data — Images, Videos & Category Labels
     // ==========================================
-    const PLACEHOLDER_VIDEO_URL = 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4';
-
     const categoryLabels = {
         project: 'Project Images',
         aerial: 'Aerial & Site',
@@ -329,107 +324,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    // Placeholder videos — swap `videoUrl` per item once final assets are ready.
+    // Uploaded project videos
     const galleryVideos = [
         {
-            id: 'vid-aerial-tour',
+            id: 'vid-walkthrough',
             type: 'video',
             category: 'aerial',
             size: 'hero',
             thumbnail: 'assets/images/Bird View2_V2_HDExt.webp',
-            title: 'Aerial Tour of Vara Farm Haven',
-            duration: '02:18',
-            videoUrl: PLACEHOLDER_VIDEO_URL
-        },
-        {
-            id: 'vid-weekend-home-experience',
-            type: 'video',
-            category: 'villa',
-            size: 'wide',
-            thumbnail: 'assets/images/Mandala House_Day Mode_Ext.webp',
-            title: 'Weekend Home Experience',
-            duration: '01:45',
-            videoUrl: PLACEHOLDER_VIDEO_URL
-        },
-        {
-            id: 'vid-a-day-at-vfh',
-            type: 'video',
-            category: 'greenery',
-            size: 'wide',
-            thumbnail: 'assets/images/Pargola Park Sitting Woman.webp',
-            title: 'A Day at Vara Farm Haven',
-            duration: '01:32',
-            videoUrl: PLACEHOLDER_VIDEO_URL
-        },
-        {
-            id: 'vid-complete-walkthrough',
-            type: 'video',
-            category: 'aerial',
-            size: 'standard',
-            thumbnail: 'assets/images/Cover Option1.webp',
-            title: 'Complete Project Walkthrough',
-            duration: '03:26',
-            videoUrl: PLACEHOLDER_VIDEO_URL
-        },
-        {
-            id: 'vid-amenities-tour',
-            type: 'video',
-            category: 'amenities',
-            size: 'standard',
-            thumbnail: 'assets/images/Swimming Pool.webp',
-            title: 'Amenities Tour',
-            duration: '02:14',
-            videoUrl: PLACEHOLDER_VIDEO_URL
-        },
-        {
-            id: 'vid-nature-lifestyle',
-            type: 'video',
-            category: 'greenery',
-            size: 'wide',
-            thumbnail: 'assets/images/Pergola VIew1A.webp',
-            title: 'Nature & Lifestyle',
-            duration: '01:58',
-            videoUrl: PLACEHOLDER_VIDEO_URL
+            title: 'Vara Real & Developers — Project Walkthrough',
+            duration: '01:30',
+            videoUrl: 'assets/video/VARA REAL & DEVELOPERS_WALKTHROUGH VIDEO_ FINAL_4K.webm'
         },
         {
             id: 'vid-venture-01',
             type: 'video',
             category: 'aerial',
-            size: 'standard',
+            size: 'wide',
             thumbnail: 'assets/images/aerial_masterplan.webp',
             title: 'Vara Farm Haven — Venture Video 01',
-            duration: '00:48',
+            duration: '00:15',
             videoUrl: 'assets/video/VARA_VARA REAL & DEVELOPERS_VENTURE _VIDEO _01_00000288.webm'
         },
         {
             id: 'vid-venture-02',
             type: 'video',
             category: 'aerial',
-            size: 'standard',
+            size: 'wide',
             thumbnail: 'assets/images/plot_view.webp',
             title: 'Vara Farm Haven — Venture Video 02',
-            duration: '00:48',
+            duration: '00:19',
             videoUrl: 'assets/video/VARA_VARA REAL & DEVELOPERS_VENTURE _VIDEO _01_00001848.webm'
         }
     ];
 
-    // Display order for the main grid (interleaves images & videos)
+    // Display order for the main grid (interleaves images & uploaded videos)
     const gridOrder = [
-        'vid-aerial-tour', 'img-aerial-view', 'img-grand-entrance', 'img-tree-lined-roads',
+        'vid-walkthrough', 'img-aerial-view', 'img-grand-entrance', 'img-tree-lined-roads',
         'img-project-bhoomi-puja', 'img-project-master-plan-review', 'img-project-customer-booking',
-        'img-green-landscapes', 'img-clubhouse-amenities', 'vid-weekend-home-experience',
-        'img-vara-farm-haven', 'vid-a-day-at-vfh', 'img-lifestyle-community',
+        'img-green-landscapes', 'img-clubhouse-amenities',
+        'img-vara-farm-haven', 'img-lifestyle-community', 'vid-venture-01',
         'img-project-grand-launch-event', 'img-project-appreciation-gift', 'img-project-milestone-celebration',
         'img-resort-amenities', 'img-nature-all-around', 'img-evening-views',
         'img-highway-connectivity', 'img-weekend-home', 'img-timber-villa-design',
-        'vid-nature-lifestyle', 'img-eco-veranda-deck', 'img-timber-living-room',
+        'img-eco-veranda-deck', 'img-timber-living-room',
         'img-project-launch-gathering', 'img-project-launch-celebration',
-        'img-wooden-house-dining', 'img-childrens-play-zone', 'img-adventure-playground',
-        'vid-complete-walkthrough', 'vid-amenities-tour', 'vid-venture-01', 'vid-venture-02'
+        'img-wooden-house-dining', 'vid-venture-02', 'img-childrens-play-zone', 'img-adventure-playground'
     ];
 
     // Featured Videos section pulls from the same galleryVideos data — single source of truth.
-    const featuredVideoIds = ['vid-complete-walkthrough', 'vid-amenities-tour', 'vid-nature-lifestyle'];
+    const featuredVideoIds = ['vid-walkthrough', 'vid-venture-01', 'vid-venture-02'];
 
     const allItemsById = {};
     galleryImages.forEach(item => { allItemsById[item.id] = item; });
