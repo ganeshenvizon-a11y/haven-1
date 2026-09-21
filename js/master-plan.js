@@ -152,14 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Plot 10",
             areaSqYds: "605",
             guntas: "5.00",
-            status: "Available",
+            status: "Sold Out",
             tier: "5",
             facing: "West Facing",
             isCorner: false,
             dimensions: "82' x 66'-6\"",
             roadAccess: "40 FT Main BT Road",
             nearby: ["40 FT Main BT Road", "Central Location", "Avenue Trees"],
-            description: "Centrally positioned 5 Gunta farm plot on the 40-ft boulevard, optimal level ground ready for immediate plantation and weekend home."
+            description: "Centrally positioned 5 Gunta farm plot on the 40-ft boulevard, optimal level ground ready for immediate plantation and weekend home. [SOLD OUT - Successfully Booked]"
         },
         "plot-11": {
             number: "11",
@@ -208,14 +208,14 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Plot 14",
             areaSqYds: "605",
             guntas: "5.00",
-            status: "Available",
+            status: "Sold Out",
             tier: "5",
             facing: "South-East Corner",
             isCorner: true,
             dimensions: "82' x 66'-6\"",
             roadAccess: "33 FT Proposed Road & 40 FT BT Road",
             nearby: ["Amenities Zone Adjacent", "Weekend Home & Pool Walk", "33 FT Road"],
-            description: "Premium 5 Gunta corner plot located directly opposite the luxury Amenities Sector (Pool, Pergola, Weekend Home)."
+            description: "Premium 5 Gunta corner plot located directly opposite the luxury Amenities Sector (Pool, Pergola, Weekend Home). [SOLD OUT - Successfully Booked]"
         },
         "plot-15": {
             number: "15",
@@ -408,6 +408,40 @@ document.addEventListener('DOMContentLoaded', () => {
     let startX = 0;
     let startY = 0;
 
+    // Dynamic Hero Section Rate Extractor & Currency Formatters
+    const getHeroRatePerGunta = () => {
+        const heroRateEl = document.getElementById('hero-rate-val') ||
+                           document.querySelector('.hero .property-strip .spec-item:nth-child(5) .spec-value') ||
+                           document.querySelector('.hero .property-strip');
+        if (heroRateEl) {
+            const rawText = heroRateEl.textContent || '';
+            const digitsOnly = rawText.replace(/[^0-9]/g, '');
+            const parsed = parseFloat(digitsOnly);
+            if (!isNaN(parsed) && parsed > 1000) {
+                return parsed;
+            }
+        }
+        // Fallback default per-gunta rate if DOM query returns empty
+        return 899999;
+    };
+
+    const formatCurrencyINR = (amount) => {
+        return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            maximumFractionDigits: 0
+        }).format(Math.round(amount));
+    };
+
+    const formatInLakhs = (amount) => {
+        if (amount >= 10000000) {
+            return `~₹${(amount / 10000000).toFixed(2)} Cr`;
+        } else if (amount >= 100000) {
+            return `~₹${(amount / 100000).toFixed(2)} Lakhs`;
+        }
+        return '';
+    };
+
     // 1. Render Plot Details Panel
     const renderPlotDetails = (plotId) => {
         const data = plotsData[plotId];
@@ -444,6 +478,15 @@ document.addEventListener('DOMContentLoaded', () => {
             statusText = "SOLD OUT";
         }
 
+        // Dynamically compute plot price based on Hero section rate
+        const heroRate = getHeroRatePerGunta();
+        const formattedHeroRate = formatCurrencyINR(heroRate);
+        const guntasNum = parseFloat(data.guntas);
+        const hasValidPrice = !isNaN(guntasNum) && guntasNum > 0 && !isAmenity;
+        const totalPlotPrice = hasValidPrice ? Math.round(guntasNum * heroRate) : null;
+        const formattedTotalPrice = hasValidPrice ? formatCurrencyINR(totalPlotPrice) : "";
+        const formattedLakhs = hasValidPrice ? formatInLakhs(totalPlotPrice) : "";
+
         const nearbyChipsHTML = data.nearby.map(item => `<span class="nearby-chip"><i class="fa-solid fa-circle-check"></i> ${item}</span>`).join('');
 
         detailPanel.innerHTML = `
@@ -476,6 +519,35 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="metric-unit">ORIENTATION</span>
                 </div>
             </div>
+
+            <!-- Dynamic Price Section for Available Plots (Calculated from Hero Section Rate) -->
+            ${!isSold && hasValidPrice ? `
+            <div class="panel-price-section">
+                <div class="panel-price-header">
+                    <div class="panel-price-title">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>Investment Value</span>
+                    </div>
+                    <span class="panel-price-rate-pill">
+                        <i class="fa-solid fa-tag"></i> Rate: <strong>${formattedHeroRate}</strong>/Gunta
+                    </span>
+                </div>
+                <div class="panel-price-body">
+                    <div class="panel-price-main">
+                        <span class="panel-price-val">${formattedTotalPrice}</span>
+                        <span class="panel-price-words">${formattedLakhs}</span>
+                    </div>
+                    <div class="panel-price-calc-note">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>${data.guntas} Guntas &times; ${formattedHeroRate} per Gunta</span>
+                    </div>
+                </div>
+                <div class="panel-price-footer">
+                    <span class="panel-price-disclaimer">*Base plot price dynamically calculated from Hero launch rate.</span>
+                    <span class="price-badge-avail"><i class="fa-solid fa-unlock"></i> Ready for Booking</span>
+                </div>
+            </div>
+            ` : ''}
 
             <div class="panel-pricing-row">
                 <div class="dimensions-tag">
@@ -530,7 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (isSold) {
                         messageInput.value = `Hello, I noticed Plot ${data.number} (${data.guntas} Guntas, ${data.facing}) is Sold Out. Please notify me if a similar plot becomes available or share upcoming phase inventory.`;
                     } else if (!isAmenity) {
-                        messageInput.value = `Hello, I am interested in Plot ${data.number} (${data.guntas} Guntas / ${data.areaSqYds} Sq. Yards, Dimensions: ${data.dimensions}, ${data.facing}). Please share the latest availability and booking details.`;
+                        messageInput.value = `Hello, I am interested in Plot ${data.number} (${data.guntas} Guntas / ${data.areaSqYds} Sq. Yards, Estimated Price: ${formattedTotalPrice}, Dimensions: ${data.dimensions}, ${data.facing}). Please share the latest availability and booking details.`;
                     }
                 }
             });
