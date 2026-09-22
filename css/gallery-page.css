@@ -24,8 +24,9 @@
 .gp-hero-frame {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100dvh;
     min-height: 480px;
+    max-height: 960px;
     overflow: hidden;
     background: #0f1813;
 }
@@ -129,6 +130,11 @@
 
 .gp-card--hero {
     grid-column: span 2;
+    grid-row: span 2;
+}
+
+.gp-card--tall {
+    grid-column: span 1;
     grid-row: span 2;
 }
 
@@ -254,8 +260,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 54px;
-    height: 54px;
+    width: clamp(46px, 5vw, 56px);
+    height: clamp(46px, 5vw, 56px);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.92);
     color: var(--vara-green);
@@ -267,8 +273,8 @@
 }
 
 .gp-card--hero .gp-play-btn {
-    width: 68px;
-    height: 68px;
+    width: clamp(56px, 7vw, 68px);
+    height: clamp(56px, 7vw, 68px);
 }
 
 .gp-card:hover .gp-play-btn {
@@ -340,14 +346,26 @@
 }
 
 .gp-featured-track {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 0 16px 0;
+}
+
+.gp-featured-track::-webkit-scrollbar {
+    display: none;
 }
 
 .gp-featured-card {
+    flex: 0 0 calc((100% - 48px) / 3);
+    min-width: 280px;
+    scroll-snap-align: start;
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     border-radius: var(--radius-md);
     overflow: hidden;
     cursor: pointer;
@@ -396,6 +414,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: clamp(10px, 2.5vh, 24px);
+    box-sizing: border-box;
     opacity: 0;
     visibility: hidden;
     transition: opacity 300ms ease, visibility 300ms ease;
@@ -417,7 +437,10 @@
 .video-modal .modal-container {
     position: relative;
     z-index: 10;
-    width: min(92vw, 1080px);
+    width: min(94vw, 1080px, calc((90dvh - 54px) * 16 / 9));
+    max-height: calc(100dvh - 20px);
+    display: flex;
+    flex-direction: column;
     background: #0f1813;
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--radius-lg);
@@ -432,30 +455,76 @@
 }
 
 .video-modal .modal-header {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 16px 20px;
+    gap: 14px;
+    padding: clamp(10px, 1.8vh, 16px) clamp(14px, 2.5vw, 20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0f1813;
 }
 
 .video-modal .modal-title {
-    font-size: 15px;
+    font-size: clamp(13.5px, 1.5vw, 15px);
     font-weight: 700;
     color: var(--vara-white);
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video-modal .modal-close-btn {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--vara-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.video-modal .modal-close-btn:hover {
+    background: var(--vara-green);
+    border-color: var(--vara-green);
+    color: var(--vara-white);
 }
 
 .video-modal .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 0;
     aspect-ratio: 16 / 9;
+    max-height: calc(90dvh - 54px);
     background: #000;
+    overflow: hidden;
+}
+
+.video-modal.is-vertical .modal-container {
+    width: min(92vw, 420px, calc((88dvh - 54px) * 9 / 16));
+    max-height: calc(100dvh - 20px);
+}
+
+.video-modal.is-vertical .modal-body {
+    aspect-ratio: 9 / 16;
+    max-height: calc(88dvh - 54px);
 }
 
 .video-modal video {
     width: 100%;
     height: 100%;
+    max-height: 100%;
+    object-fit: contain;
     display: block;
 }
 
@@ -540,7 +609,8 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 1023px) {
     .gp-hero-frame {
-        min-height: 460px;
+        min-height: 400px;
+        max-height: 700px;
     }
 
     .gp-grid {
@@ -556,21 +626,33 @@
         grid-column: span 2;
     }
 
-    .gp-featured-track {
-        grid-template-columns: repeat(2, 1fr);
+    .gp-card--tall {
+        grid-column: span 1;
+        grid-row: span 2;
+    }
+
+    .gp-featured-card {
+        flex: 0 0 calc((100% - 20px) / 2);
+        min-width: 250px;
     }
 }
 
 @media (max-width: 767px) {
+    .gp-hero-frame {
+        height: clamp(240px, 56.25vw, 65dvh);
+        min-height: 240px;
+    }
+
     .gp-grid {
         grid-template-columns: 1fr;
-        grid-auto-rows: 280px;
+        grid-auto-rows: clamp(220px, 58vw, 300px);
         gap: 16px;
     }
 
     .gp-card,
     .gp-card--wide,
-    .gp-card--hero {
+    .gp-card--hero,
+    .gp-card--tall {
         grid-column: span 1;
         grid-row: span 1;
     }
@@ -582,24 +664,17 @@
     .gp-featured-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 16px;
     }
 
     .gp-featured-track {
-        grid-template-columns: 1fr;
-        grid-auto-flow: column;
-        grid-auto-columns: 82%;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
+        gap: 16px;
         padding-bottom: 8px;
-        scrollbar-width: none;
-    }
-
-    .gp-featured-track::-webkit-scrollbar {
-        display: none;
     }
 
     .gp-featured-card {
-        scroll-snap-align: start;
+        flex: 0 0 min(82vw, 320px);
+        min-width: 240px;
     }
 
     .gp-cta-inner {
@@ -614,7 +689,12 @@
     }
 
     .video-modal .modal-container {
-        width: 94vw;
+        width: min(94vw, calc((92dvh - 50px) * 16 / 9));
+        border-radius: var(--radius-md);
+    }
+
+    .video-modal.is-vertical .modal-container {
+        width: min(92vw, 380px, calc((90dvh - 50px) * 9 / 16));
     }
 }
 
@@ -622,5 +702,84 @@
     .gp-filter-btn {
         padding: 8px 16px;
         font-size: 13px;
+    }
+
+    .gp-featured-card {
+        flex: 0 0 85vw;
+        min-width: 220px;
+    }
+
+    .gp-featured-header {
+        margin-bottom: 24px;
+    }
+
+    .gp-featured-desc {
+        font-size: 14px;
+    }
+
+    .gp-featured-card-title {
+        font-size: 14.5px;
+    }
+
+    .gp-play-btn {
+        width: 46px;
+        height: 46px;
+    }
+
+    .gp-play-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .video-modal .modal-header {
+        padding: 10px 14px;
+    }
+
+    .video-modal .modal-title {
+        font-size: 13.5px;
+    }
+
+    .video-modal .modal-close-btn {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Landscape Phones & Short Viewports */
+@media (max-height: 520px) {
+    .video-modal {
+        padding: 6px;
+    }
+
+    .video-modal .modal-container {
+        width: min(96vw, calc((96dvh - 38px) * 16 / 9));
+        max-height: 98dvh;
+        border-radius: var(--radius-sm);
+    }
+
+    .video-modal.is-vertical .modal-container {
+        width: min(92vw, calc((96dvh - 38px) * 9 / 16));
+        max-height: 98dvh;
+    }
+
+    .video-modal .modal-header {
+        padding: 6px 12px;
+    }
+
+    .video-modal .modal-title {
+        font-size: 12.5px;
+    }
+
+    .video-modal .modal-close-btn {
+        width: 26px;
+        height: 26px;
+    }
+
+    .video-modal .modal-body {
+        max-height: calc(96dvh - 38px);
+    }
+
+    .video-modal.is-vertical .modal-body {
+        max-height: calc(96dvh - 38px);
     }
 }

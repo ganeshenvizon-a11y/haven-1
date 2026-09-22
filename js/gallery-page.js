@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 0. Data — Images, Videos & Category Labels
     // ==========================================
     const categoryLabels = {
+        'brochure-launch': 'Brochure Launch',
         project: 'Project Images',
         aerial: 'Aerial & Site',
         infrastructure: 'Infrastructure',
@@ -62,6 +63,117 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reused verbatim from the Home page gallery's image assets (assets/images/) and project launch (assets/team/)
     const galleryImages = [
+        // Brochure Launch Event Images
+        {
+            id: 'img-brochure-launch-unveiling',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'wide',
+            src: 'assets/brochure-launch/DSC07138.webp',
+            alt: 'Official Vara Farm Haven Brochure Unveiling on Stage with Leadership and Dignitaries',
+            title: 'Official Brochure Unveiling',
+            caption: 'Leadership & Chief Guests Presenting the Project Brochure'
+        },
+        {
+            id: 'img-brochure-launch-poster-reveal',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'wide',
+            src: 'assets/brochure-launch/DSC07114.webp',
+            alt: 'Vara Farm Haven Project Reveal - Follow the V to a Fuller Life',
+            title: 'Farm Haven Project Reveal',
+            caption: 'Introducing "Follow the \'V\' to a Fuller Life"'
+        },
+        {
+            id: 'img-brochure-launch-tagline',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'standard',
+            src: 'assets/brochure-launch/DSC07100.webp',
+            alt: 'Unveiling the Vara Trust & Blessing pledge boards',
+            title: 'Land is a Blessing, Vara is a Trust',
+            caption: 'Brand Values & Mission Unveiling Ceremony'
+        },
+        {
+            id: 'img-brochure-launch-logo',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'standard',
+            src: 'assets/brochure-launch/DSC07085.webp',
+            alt: 'Grand unveiling of the Vara Real Estate brand identity',
+            title: 'VARA Brand Identity Launch',
+            caption: 'Grand Unveiling of the Official Company Logo'
+        },
+        {
+            id: 'img-brochure-launch-logo-celebration',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'standard',
+            src: 'assets/brochure-launch/DSC07089.webp',
+            alt: 'Key dignitaries holding the official Vara logo boards on stage',
+            title: 'Logo Unveiling Celebration',
+            caption: 'Key Dignitaries & Directors at the Launch Ceremony'
+        },
+        {
+            id: 'img-brochure-launch-presentation',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'standard',
+            src: 'assets/brochure-launch/DSC07148.webp',
+            alt: 'Leadership presenting copies of the newly released Farm Haven brochure',
+            title: 'Brochure Presentation',
+            caption: 'Unveiling the First Edition of the Project Brochure'
+        },
+        {
+            id: 'img-brochure-launch-gathering',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'wide',
+            src: 'assets/brochure-launch/DSC07154.webp',
+            alt: 'Women patrons, team members and families presenting brochures on stage',
+            title: 'Patrons & Families Gathering',
+            caption: 'Community & Women Patrons Celebrating the Launch'
+        },
+        {
+            id: 'img-brochure-launch-victory',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'wide',
+            src: 'assets/brochure-launch/DSC07165.webp',
+            alt: 'Women leadership and patrons showing the victory sign with brochures',
+            title: 'A Milestone Accomplished',
+            caption: 'Patrons & Stakeholders Celebrating Project Launch'
+        },
+        {
+            id: 'img-brochure-launch-masterplan',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'standard',
+            src: 'assets/brochure-launch/DSC07171.webp',
+            alt: 'Team unveiling the Vara Farm Haven Master Plan Layout boards',
+            title: 'Master Plan Layout Reveal',
+            caption: 'Unveiling the Approved Master Plan Layout'
+        },
+        {
+            id: 'img-brochure-launch-team',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'wide',
+            src: 'assets/brochure-launch/DSC07180.webp',
+            alt: 'Executive and sales team holding up the Vara Farm Haven brochures on stage',
+            title: 'The Vara Leadership Team',
+            caption: 'Executive & Sales Leadership Launch Celebration'
+        },
+        {
+            id: 'img-brochure-launch-keynote',
+            type: 'image',
+            category: 'brochure-launch',
+            size: 'tall',
+            src: 'assets/brochure-launch/DSC07375.webp',
+            alt: 'Keynote address by the Director at the Vara Farm Haven launch ceremony',
+            title: "Director's Keynote Address",
+            caption: 'Sharing the Vision of Vara Farm Haven'
+        },
         {
             id: 'img-project-bhoomi-puja',
             type: 'image',
@@ -327,6 +439,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Uploaded project videos
     const galleryVideos = [
         {
+            id: 'vid-brochure-launch-success',
+            type: 'video',
+            category: 'brochure-launch',
+            size: 'wide',
+            thumbnail: 'assets/brochure-launch/vara_brochure_video_thumb.webp',
+            title: 'Vara Logo & Brochure Launch — Event Highlights',
+            duration: '01:15',
+            videoUrl: 'assets/video/vara_brochure_launch_video.webm',
+            isVertical: true
+        },
+        {
             id: 'vid-walkthrough',
             type: 'video',
             category: 'aerial',
@@ -360,20 +483,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Display order for the main grid (interleaves images & uploaded videos)
     const gridOrder = [
-        'vid-walkthrough', 'img-aerial-view', 'img-grand-entrance', 'img-tree-lined-roads',
-        'img-project-bhoomi-puja', 'img-project-master-plan-review', 'img-project-customer-booking',
-        'img-green-landscapes', 'img-clubhouse-amenities',
+        'vid-walkthrough', 'img-brochure-launch-unveiling', 'img-aerial-view', 'img-grand-entrance',
+        'vid-brochure-launch-success', 'img-brochure-launch-poster-reveal', 'img-tree-lined-roads',
+        'img-project-bhoomi-puja', 'img-project-master-plan-review', 'img-brochure-launch-logo',
+        'img-project-customer-booking', 'img-green-landscapes', 'img-clubhouse-amenities',
+        'img-brochure-launch-gathering', 'img-brochure-launch-tagline', 'img-brochure-launch-keynote',
         'img-vara-farm-haven', 'img-lifestyle-community', 'vid-venture-01',
-        'img-project-grand-launch-event', 'img-project-appreciation-gift', 'img-project-milestone-celebration',
+        'img-brochure-launch-victory', 'img-project-grand-launch-event', 'img-project-appreciation-gift',
+        'img-brochure-launch-presentation', 'img-brochure-launch-masterplan',
+        'img-project-milestone-celebration', 'img-brochure-launch-logo-celebration',
         'img-resort-amenities', 'img-nature-all-around', 'img-evening-views',
-        'img-highway-connectivity', 'img-weekend-home', 'img-timber-villa-design',
-        'img-eco-veranda-deck', 'img-timber-living-room',
+        'img-brochure-launch-team', 'img-highway-connectivity', 'img-weekend-home',
+        'img-timber-villa-design', 'img-eco-veranda-deck', 'img-timber-living-room',
         'img-project-launch-gathering', 'img-project-launch-celebration',
         'img-wooden-house-dining', 'vid-venture-02', 'img-childrens-play-zone', 'img-adventure-playground'
     ];
 
     // Featured Videos section pulls from the same galleryVideos data — single source of truth.
-    const featuredVideoIds = ['vid-walkthrough', 'vid-venture-01', 'vid-venture-02'];
+    const featuredVideoIds = ['vid-walkthrough', 'vid-brochure-launch-success', 'vid-venture-01', 'vid-venture-02'];
 
     const allItemsById = {};
     galleryImages.forEach(item => { allItemsById[item.id] = item; });
@@ -403,6 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sizeClass = (size) => {
         if (size === 'hero') return 'gp-card--hero';
         if (size === 'wide') return 'gp-card--wide';
+        if (size === 'tall') return 'gp-card--tall';
         return '';
     };
 
@@ -512,6 +640,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Support deep-linking via URL hash e.g. gallery.html#brochure-launch
+    const initialHash = window.location.hash.replace('#', '');
+    if (initialHash) {
+        const matchingBtn = Array.from(filterBtns).find(b => b.getAttribute('data-filter') === initialHash);
+        if (matchingBtn) {
+            filterBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            matchingBtn.classList.add('active');
+            matchingBtn.setAttribute('aria-selected', 'true');
+            currentFilter = initialHash;
+        }
+    }
+
     applyFilter();
 
     // ==========================================
@@ -605,10 +748,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoModalClose = document.getElementById('gp-video-modal-close');
     const videoModalBackdrop = videoModal ? videoModal.querySelector('.modal-backdrop') : null;
 
-    const openVideoModal = (title, url) => {
+    const openVideoModal = (title, url, isVertical = false) => {
         if (!videoModal || !videoModalPlayer) return;
         if (videoModalTitle) videoModalTitle.textContent = title;
         videoModalPlayer.src = url;
+        videoModal.classList.toggle('is-vertical', Boolean(isVertical));
         videoModal.classList.add('is-active');
         videoModal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -617,7 +761,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeVideoModal = () => {
         if (!videoModal || !videoModalPlayer) return;
-        videoModal.classList.remove('is-active');
+        videoModal.classList.remove('is-active', 'is-vertical');
         videoModal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
         videoModalPlayer.pause();
@@ -633,7 +777,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     function handleCardActivate(item) {
         if (item.type === 'video') {
-            openVideoModal(item.title, item.videoUrl);
+            openVideoModal(item.title, item.videoUrl, item.isVertical);
         } else {
             openLightbox(item);
         }
@@ -660,11 +804,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="gp-featured-card-title">${video.title}</h3>
                 </div>
             `;
-            card.addEventListener('click', () => openVideoModal(video.title, video.videoUrl));
+            card.addEventListener('click', () => openVideoModal(video.title, video.videoUrl, video.isVertical));
             card.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    openVideoModal(video.title, video.videoUrl);
+                    openVideoModal(video.title, video.videoUrl, video.isVertical);
                 }
             });
             featuredTrack.appendChild(card);
