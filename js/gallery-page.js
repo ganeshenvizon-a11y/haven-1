@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 0. Data — Images, Videos & Category Labels
     // ==========================================
     const categoryLabels = {
+        'bhoomi-pooja': 'Bhoomi Pooja',
         'brochure-launch': 'Brochure Launch',
         project: 'Project Images',
         aerial: 'Aerial & Site',
@@ -63,6 +64,67 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reused verbatim from the Home page gallery's image assets (assets/images/) and project launch (assets/team/)
     const galleryImages = [
+        // Bhoomi Pooja Ceremony Images
+        {
+            id: 'img-bhoomi-pooja-grand-gathering',
+            type: 'image',
+            category: 'bhoomi-pooja',
+            size: 'wide',
+            src: 'assets/bhoomi pooja/GOO02707.webp',
+            alt: 'Grand gathering of directors, patrons and guests on the launch stage at Vara Farm Haven Bhoomi Pooja',
+            title: 'Bhoomi Pooja Stage Gathering',
+            caption: 'Leadership, Guests & Patrons at the Inauguration Stage'
+        },
+        {
+            id: 'img-bhoomi-pooja-sacred-rituals',
+            type: 'image',
+            category: 'bhoomi-pooja',
+            size: 'standard',
+            src: 'assets/bhoomi pooja/GOO02157.webp',
+            alt: 'Bhoomi Pooja sacred ritual offerings and prayers on the farmland at Vara Farm Haven',
+            title: 'Sacred Ritual Offerings',
+            caption: 'Traditional Prayers & Blessings for the Farmland'
+        },
+        {
+            id: 'img-bhoomi-pooja-sankalpam',
+            type: 'image',
+            category: 'bhoomi-pooja',
+            size: 'standard',
+            src: 'assets/bhoomi pooja/GOO02230.webp',
+            alt: 'Traditional ceremonial puja and sankalpam rituals performed with family members',
+            title: 'Ceremonial Sankalpam',
+            caption: 'Families Participating in Auspicious Rituals'
+        },
+        {
+            id: 'img-bhoomi-pooja-women-patrons',
+            type: 'image',
+            category: 'bhoomi-pooja',
+            size: 'standard',
+            src: 'assets/bhoomi pooja/GOO02434.webp',
+            alt: 'Women patrons and guests gathered on stage at the Vara Farm Haven Bhoomi Pooja ceremony',
+            title: 'Women Patrons at Launch',
+            caption: 'Celebrating the Bhoomi Pooja Milestone'
+        },
+        {
+            id: 'img-bhoomi-pooja-family-celebration',
+            type: 'image',
+            category: 'bhoomi-pooja',
+            size: 'standard',
+            src: 'assets/bhoomi pooja/GOO02751.webp',
+            alt: 'Smiling families and plot buyers with the Farm Haven brochure at the Bhoomi Pooja event',
+            title: 'Family Celebrations on Site',
+            caption: 'Welcoming Patrons to the Farm Haven Community'
+        },
+        {
+            id: 'img-bhoomi-pooja-patrons-site',
+            type: 'image',
+            category: 'bhoomi-pooja',
+            size: 'wide',
+            src: 'assets/bhoomi pooja/GOO02746.webp',
+            alt: 'Families and patrons gathered on site holding the Vara Farm Haven brochure during Bhoomi Pooja',
+            title: 'Patrons & Families on Site',
+            caption: 'Plot Owners & Well-Wishers Celebrating Together'
+        },
         // Brochure Launch Event Images
         {
             id: 'img-brochure-launch-unveiling',
@@ -485,12 +547,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const gridOrder = [
         'vid-walkthrough', 'img-brochure-launch-unveiling', 'img-aerial-view', 'img-grand-entrance',
         'vid-brochure-launch-success', 'img-brochure-launch-poster-reveal', 'img-tree-lined-roads',
-        'img-project-bhoomi-puja', 'img-project-master-plan-review', 'img-brochure-launch-logo',
+        'img-bhoomi-pooja-grand-gathering', 'img-project-bhoomi-puja', 'img-bhoomi-pooja-sacred-rituals',
+        'img-bhoomi-pooja-sankalpam', 'img-project-master-plan-review', 'img-brochure-launch-logo',
         'img-project-customer-booking', 'img-green-landscapes', 'img-clubhouse-amenities',
-        'img-brochure-launch-gathering', 'img-brochure-launch-tagline', 'img-brochure-launch-keynote',
-        'img-vara-farm-haven', 'img-lifestyle-community', 'vid-venture-01',
-        'img-brochure-launch-victory', 'img-project-grand-launch-event', 'img-project-appreciation-gift',
-        'img-brochure-launch-presentation', 'img-brochure-launch-masterplan',
+        'img-brochure-launch-gathering', 'img-bhoomi-pooja-women-patrons', 'img-brochure-launch-tagline',
+        'img-brochure-launch-keynote', 'img-vara-farm-haven', 'img-lifestyle-community',
+        'img-bhoomi-pooja-family-celebration', 'vid-venture-01',
+        'img-brochure-launch-victory', 'img-project-grand-launch-event', 'img-bhoomi-pooja-patrons-site',
+        'img-project-appreciation-gift', 'img-brochure-launch-presentation', 'img-brochure-launch-masterplan',
         'img-project-milestone-celebration', 'img-brochure-launch-logo-celebration',
         'img-resort-amenities', 'img-nature-all-around', 'img-evening-views',
         'img-brochure-launch-team', 'img-highway-connectivity', 'img-weekend-home',
