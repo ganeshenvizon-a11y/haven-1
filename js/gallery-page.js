@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         amenities: 'Amenities'
     };
 
-    // Reused verbatim from the Home page gallery's image assets (assets/images/) and project launch (assets/team/)
+    // Curated photo and video assets across all project categories
     const galleryImages = [
         // Bhoomi Pooja Ceremony Images
         {
@@ -86,16 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             caption: 'Traditional Prayers & Blessings for the Farmland'
         },
         {
-            id: 'img-bhoomi-pooja-sankalpam',
-            type: 'image',
-            category: 'bhoomi-pooja',
-            size: 'standard',
-            src: 'assets/bhoomi pooja/GOO02230.webp',
-            alt: 'Traditional ceremonial puja and sankalpam rituals performed with family members',
-            title: 'Ceremonial Sankalpam',
-            caption: 'Families Participating in Auspicious Rituals'
-        },
-        {
             id: 'img-bhoomi-pooja-women-patrons',
             type: 'image',
             category: 'bhoomi-pooja',
@@ -104,16 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alt: 'Women patrons and guests gathered on stage at the Vara Farm Haven Bhoomi Pooja ceremony',
             title: 'Women Patrons at Launch',
             caption: 'Celebrating the Bhoomi Pooja Milestone'
-        },
-        {
-            id: 'img-bhoomi-pooja-family-celebration',
-            type: 'image',
-            category: 'bhoomi-pooja',
-            size: 'standard',
-            src: 'assets/bhoomi pooja/GOO02751.webp',
-            alt: 'Smiling families and plot buyers with the Farm Haven brochure at the Bhoomi Pooja event',
-            title: 'Family Celebrations on Site',
-            caption: 'Welcoming Patrons to the Farm Haven Community'
         },
         {
             id: 'img-bhoomi-pooja-patrons-site',
@@ -167,26 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
             caption: 'Grand Unveiling of the Official Company Logo'
         },
         {
-            id: 'img-brochure-launch-logo-celebration',
-            type: 'image',
-            category: 'brochure-launch',
-            size: 'standard',
-            src: 'assets/brochure-launch/DSC07089.webp',
-            alt: 'Key dignitaries holding the official Vara logo boards on stage',
-            title: 'Logo Unveiling Celebration',
-            caption: 'Key Dignitaries & Directors at the Launch Ceremony'
-        },
-        {
-            id: 'img-brochure-launch-presentation',
-            type: 'image',
-            category: 'brochure-launch',
-            size: 'standard',
-            src: 'assets/brochure-launch/DSC07148.webp',
-            alt: 'Leadership presenting copies of the newly released Farm Haven brochure',
-            title: 'Brochure Presentation',
-            caption: 'Unveiling the First Edition of the Project Brochure'
-        },
-        {
             id: 'img-brochure-launch-gathering',
             type: 'image',
             category: 'brochure-launch',
@@ -236,16 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Director's Keynote Address",
             caption: 'Sharing the Vision of Vara Farm Haven'
         },
-        {
-            id: 'img-project-bhoomi-puja',
-            type: 'image',
-            category: 'project',
-            size: 'wide',
-            src: 'assets/team/GOO02812.webp',
-            alt: 'Project Launch and Bhoomi Pooja Ceremony at Vara Farm Haven',
-            title: 'Project Launch & Bhoomi Pooja',
-            caption: 'Welcome Ceremony with Family & Patrons'
-        },
+        // Project Images
         {
             id: 'img-project-master-plan-review',
             type: 'image',
@@ -267,16 +218,6 @@ document.addEventListener('DOMContentLoaded', () => {
             caption: 'Plot Booking & Documentation'
         },
         {
-            id: 'img-project-grand-launch-event',
-            type: 'image',
-            category: 'project',
-            size: 'wide',
-            src: 'assets/team/GOO02709.webp',
-            alt: 'Grand gathering of plot owners and team at Vara Farm Haven project launch',
-            title: 'Grand Launch Event',
-            caption: 'Gathering of Plot Buyers & Team at Site'
-        },
-        {
             id: 'img-project-appreciation-gift',
             type: 'image',
             category: 'project',
@@ -286,36 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Token of Appreciation',
             caption: 'Customer Welcome & Booking Celebration'
         },
-        {
-            id: 'img-project-milestone-celebration',
-            type: 'image',
-            category: 'project',
-            size: 'standard',
-            src: 'assets/team/GOO02767.webp',
-            alt: 'Team members celebrating project launch milestone on site',
-            title: 'Project Milestones',
-            caption: 'Leadership & Well-Wishers on Site'
-        },
-        {
-            id: 'img-project-launch-gathering',
-            type: 'image',
-            category: 'project',
-            size: 'wide',
-            src: 'assets/team/GOO02555.webp',
-            alt: 'Vara Farm Haven team and families at the project launch stage',
-            title: 'Bhoomi Pooja Gathering',
-            caption: 'Leadership & Families at Launch Stage'
-        },
-        {
-            id: 'img-project-launch-celebration',
-            type: 'image',
-            category: 'project',
-            size: 'wide',
-            src: 'assets/team/GOO02314.webp',
-            alt: 'Families and community attending the launch day ceremony',
-            title: 'Launch Day Celebrations',
-            caption: 'Community & Families at Bhoomi Pooja'
-        },
+        // Aerial & Site Images
         {
             id: 'img-aerial-view',
             type: 'image',
@@ -336,6 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Vara Farm Haven',
             caption: 'Spacious Plots & Scenic Vista'
         },
+        // Infrastructure Images
         {
             id: 'img-grand-entrance',
             type: 'image',
@@ -366,6 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Highway Connectivity',
             caption: 'NH-44 Express Access'
         },
+        // Greenery Images
         {
             id: 'img-green-landscapes',
             type: 'image',
@@ -396,6 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Nature All Around',
             caption: 'Organic Fruit Plantation'
         },
+        // Villa & Stay Images
         {
             id: 'img-weekend-home',
             type: 'image',
@@ -456,6 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Wooden House Dining',
             caption: 'Eco-Luxury Furnishings'
         },
+        // Amenities Images
         {
             id: 'img-resort-amenities',
             type: 'image',
@@ -540,6 +456,16 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Vara Farm Haven — Venture Video 02',
             duration: '00:19',
             videoUrl: 'assets/video/VARA_VARA REAL & DEVELOPERS_VENTURE _VIDEO _01_00001848.webm'
+        },
+        {
+            id: 'vid-bhoomi-pooja-team',
+            type: 'video',
+            category: 'bhoomi-pooja',
+            size: 'wide',
+            thumbnail: 'assets/bhoomi pooja/vara_bhoomi_pooja_team_thumb.webp',
+            title: 'Bhoomi Pooja Ceremony & Team Gathering',
+            duration: '00:17',
+            videoUrl: 'assets/bhoomi pooja/VARA_@VARA TEAM.webm'
         }
     ];
 
@@ -547,24 +473,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const gridOrder = [
         'vid-walkthrough', 'img-brochure-launch-unveiling', 'img-aerial-view', 'img-grand-entrance',
         'vid-brochure-launch-success', 'img-brochure-launch-poster-reveal', 'img-tree-lined-roads',
-        'img-bhoomi-pooja-grand-gathering', 'img-project-bhoomi-puja', 'img-bhoomi-pooja-sacred-rituals',
-        'img-bhoomi-pooja-sankalpam', 'img-project-master-plan-review', 'img-brochure-launch-logo',
+        'img-bhoomi-pooja-grand-gathering', 'vid-bhoomi-pooja-team', 'img-bhoomi-pooja-sacred-rituals',
+        'img-project-master-plan-review', 'img-brochure-launch-logo',
         'img-project-customer-booking', 'img-green-landscapes', 'img-clubhouse-amenities',
         'img-brochure-launch-gathering', 'img-bhoomi-pooja-women-patrons', 'img-brochure-launch-tagline',
         'img-brochure-launch-keynote', 'img-vara-farm-haven', 'img-lifestyle-community',
-        'img-bhoomi-pooja-family-celebration', 'vid-venture-01',
-        'img-brochure-launch-victory', 'img-project-grand-launch-event', 'img-bhoomi-pooja-patrons-site',
-        'img-project-appreciation-gift', 'img-brochure-launch-presentation', 'img-brochure-launch-masterplan',
-        'img-project-milestone-celebration', 'img-brochure-launch-logo-celebration',
+        'vid-venture-01', 'img-brochure-launch-victory', 'img-bhoomi-pooja-patrons-site',
+        'img-project-appreciation-gift', 'img-brochure-launch-masterplan',
         'img-resort-amenities', 'img-nature-all-around', 'img-evening-views',
         'img-brochure-launch-team', 'img-highway-connectivity', 'img-weekend-home',
         'img-timber-villa-design', 'img-eco-veranda-deck', 'img-timber-living-room',
-        'img-project-launch-gathering', 'img-project-launch-celebration',
         'img-wooden-house-dining', 'vid-venture-02', 'img-childrens-play-zone', 'img-adventure-playground'
     ];
 
     // Featured Videos section pulls from the same galleryVideos data — single source of truth.
-    const featuredVideoIds = ['vid-walkthrough', 'vid-brochure-launch-success', 'vid-venture-01', 'vid-venture-02'];
+    const featuredVideoIds = ['vid-walkthrough', 'vid-brochure-launch-success', 'vid-bhoomi-pooja-team', 'vid-venture-01', 'vid-venture-02'];
 
     const allItemsById = {};
     galleryImages.forEach(item => { allItemsById[item.id] = item; });
@@ -614,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.setAttribute('aria-label', `Play video: ${item.title}`);
             card.innerHTML = `
                 <div class="gp-card-media image-reveal">
-                    <img src="${thumb}" alt="${item.title} — video thumbnail" loading="lazy" width="800" height="600">
+                    <img src="${thumb}" alt="${item.title} — video thumbnail" loading="lazy" decoding="async" width="800" height="600">
                 </div>
                 <span class="gp-video-indicator">${videoBadgeSvg}Video</span>
                 <span class="gp-video-duration">${item.duration}</span>
@@ -628,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.setAttribute('aria-label', `View image: ${item.title}`);
             card.innerHTML = `
                 <div class="gp-card-media image-reveal">
-                    <img src="${item.src}" alt="${item.alt}" loading="lazy" width="800" height="600">
+                    <img src="${item.src}" alt="${item.alt}" loading="lazy" decoding="async" width="800" height="600">
                 </div>
                 <div class="gp-card-zoom-icon" aria-hidden="true">${zoomIconSvg}</div>
                 <div class="gp-card-overlay">
@@ -651,7 +574,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     if (gridEl) {
-        orderedItems.forEach(item => gridEl.appendChild(buildCard(item)));
+        const frag = document.createDocumentFragment();
+        orderedItems.forEach(item => frag.appendChild(buildCard(item)));
+        gridEl.appendChild(frag);
     }
 
     // ==========================================

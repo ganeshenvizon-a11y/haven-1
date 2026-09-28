@@ -115,6 +115,8 @@
     background: #141B17;
     outline: none;
     transition: transform var(--transition-base), box-shadow var(--transition-base);
+    content-visibility: auto;
+    contain-intrinsic-size: 300px 240px;
 }
 
 .gp-card:hover,
@@ -183,6 +185,7 @@
     font-weight: 700;
     line-height: 1.25;
     margin: 0 0 2px 0;
+    color: #fff;
 }
 
 .gp-card--hero .gp-card-title {
@@ -477,12 +480,12 @@
 
 .video-modal .modal-close-btn {
     flex: 0 0 auto;
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--vara-white);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -490,10 +493,24 @@
     transition: all var(--transition-fast);
 }
 
+.video-modal .modal-close-btn svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    pointer-events: none;
+    transition: transform var(--transition-fast);
+}
+
 .video-modal .modal-close-btn:hover {
-    background: var(--vara-green);
-    border-color: var(--vara-green);
-    color: var(--vara-white);
+    background: #e53935;
+    border-color: #e53935;
+    color: #ffffff;
+    transform: scale(1.08);
+}
+
+.video-modal .modal-close-btn:hover svg {
+    transform: rotate(90deg);
 }
 
 .video-modal .modal-body {
