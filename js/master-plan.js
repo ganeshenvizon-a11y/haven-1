@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         "plot-4": {
             number: "04",
             name: "Plot 04",
-            areaSqYds: "554.2",
-            guntas: "4.58",
+            areaSqYds: "605",
+            guntas: "5.00",
             status: "Sold Out",
             tier: "5",
             facing: "South Facing",
@@ -61,13 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
             dimensions: "51'-2\" / 60'-6\" x 80'-7\"",
             roadAccess: "25 FT Wide Internal Road",
             nearby: ["25 FT Wide Road", "Near 40 FT Main Road", "Avenue Plantation", "Drip Provision"],
-            description: "Prime 4.58 Gunta farm plot with 80'-7\" depth and direct access to internal 25-ft road, ready for weekend cottage and organic gardening. [SOLD OUT - Successfully Booked]"
+            description: "Prime 5 Gunta farm plot with 80'-7\" depth and direct access to internal 25-ft road, ready for weekend cottage and organic gardening. [SOLD OUT - Successfully Booked]"
         },
         "plot-5": {
             number: "05",
             name: "Plot 05",
-            areaSqYds: "605",
-            guntas: "5.00",
+            areaSqYds: "554.2",
+            guntas: "4.58",
             status: "Sold Out",
             tier: "5",
             facing: "East / North Corner",
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dimensions: "67'-3\" / 67'-7\" x 80'-7\"",
             roadAccess: "40 FT Main BT Road & 25 FT Road",
             nearby: ["40 FT Main BT Road", "25 FT Road", "Quick Main Gate Access", "Morning Sunlight"],
-            description: "Corner 5 Gunta farm plot directly accessible from the 40-ft main blacktop boulevard and 25-ft internal avenue. [SOLD OUT - Successfully Booked]"
+            description: "Corner 4.58 Gunta farm plot directly accessible from the 40-ft main blacktop boulevard and 25-ft internal avenue. [SOLD OUT - Successfully Booked]"
         },
         "plot-6": {
             number: "06",
@@ -138,28 +138,28 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Plot 09",
             areaSqYds: "605",
             guntas: "5.00",
-            status: "Available",
-            tier: "5",
-            facing: "West Facing",
-            isCorner: false,
-            dimensions: "82' x 66'-6\"",
-            roadAccess: "40 FT Main BT Road",
-            nearby: ["40 FT Main BT Road", "Avenue Trees", "Drip Irrigation Line", "Level Ground"],
-            description: "Prime 5 Gunta plot facing the 40-ft wide blacktop avenue with deep 82-ft frontage and ready underground irrigation line."
-        },
-        "plot-10": {
-            number: "10",
-            name: "Plot 10",
-            areaSqYds: "605",
-            guntas: "5.00",
             status: "Sold Out",
             tier: "5",
             facing: "West Facing",
             isCorner: false,
             dimensions: "82' x 66'-6\"",
             roadAccess: "40 FT Main BT Road",
+            nearby: ["40 FT Main BT Road", "Avenue Trees", "Drip Irrigation Line", "Level Ground"],
+            description: "Prime 5 Gunta plot facing the 40-ft wide blacktop avenue with deep 82-ft frontage and ready underground irrigation line. [SOLD OUT - Successfully Booked]"
+        },
+        "plot-10": {
+            number: "10",
+            name: "Plot 10",
+            areaSqYds: "605",
+            guntas: "5.00",
+            status: "Available",
+            tier: "5",
+            facing: "West Facing",
+            isCorner: false,
+            dimensions: "82' x 66'-6\"",
+            roadAccess: "40 FT Main BT Road",
             nearby: ["40 FT Main BT Road", "Central Location", "Avenue Trees"],
-            description: "Centrally positioned 5 Gunta farm plot on the 40-ft boulevard, optimal level ground ready for immediate plantation and weekend home. [SOLD OUT - Successfully Booked]"
+            description: "Centrally positioned 5 Gunta farm plot on the 40-ft boulevard, optimal level ground ready for immediate plantation and weekend home."
         },
         "plot-11": {
             number: "11",
