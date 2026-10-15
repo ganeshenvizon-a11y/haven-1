@@ -50,12 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger);
 
         // Sync GSAP ScrollTrigger with Lenis smooth scroll if present
-        if (window.lenis) {
+        if (window.lenis && !window.__lenisRafAttached) {
             window.lenis.on('scroll', ScrollTrigger.update);
             gsap.ticker.add((time) => {
                 window.lenis.raf(time * 1000);
             });
             gsap.ticker.lagSmoothing(0);
+            window.__lenisRafAttached = true;
         }
 
         // Query all section headings across the entire website
@@ -860,7 +861,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     event_category: 'engagement',
                     link_url: href
                 });
-            } else if (href.includes('Brochure')) {
+            } else if (href.toLowerCase().includes('brochure')) {
                 gtag('event', 'brochure_download', {
                     event_category: 'engagement',
                     link_url: href

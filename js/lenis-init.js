@@ -26,12 +26,24 @@
     // Make lenis globally accessible for other controllers
     window.lenis = lenis;
 
-    // 3. RequestAnimationFrame Loop
-    function raf(time) {
-        lenis.raf(time);
+    // 3. Animation Frame Loop & GSAP ScrollTrigger Integration
+    if (typeof gsap !== 'undefined' && gsap.ticker) {
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+        window.__lenisRafAttached = true;
+    } else {
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+
+    if (typeof ScrollTrigger !== 'undefined') {
+        lenis.on('scroll', ScrollTrigger.update);
+    }
 
     // 4. Smooth Anchor Navigation Interception
     document.addEventListener('click', (e) => {
@@ -58,12 +70,6 @@
                 immediate: false
             });
         }
-    });
-
-    // 5. Sync Scroll Observer Events for reveal animations and parallax
-    lenis.on('scroll', () => {
-        // Triggers native window scroll updates to ensure all IntersectionObservers & scroll listeners remain active
-        window.dispatchEvent(new Event('scroll'));
     });
 
     // 6. Handle Mobile Nav Modal (stop lenis when open, start when closed)
