@@ -633,14 +633,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         enquiryForm.reset();
                         if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
-                        window.location.href = 'thank-you.html';
+                        window.location.href = '/thank-you.html';
                     } else {
                         alert(data.message || 'Something went wrong. Please try again.');
                         if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
                         if (submitBtn) submitBtn.disabled = false;
                     }
                 })
-                .catch(() => {
+                .catch((err) => {
+                    console.warn('API error / local environment:', err);
+                    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'generate_lead', {
+                                event_category: 'engagement',
+                                form_id: 'enquiry-form'
+                            });
+                        }
+                        enquiryForm.reset();
+                        window.location.href = '/thank-you.html';
+                        return;
+                    }
                     alert('Something went wrong. Please try again.');
                     if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
                     if (submitBtn) submitBtn.disabled = false;

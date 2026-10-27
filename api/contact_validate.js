@@ -19,14 +19,10 @@ const toEmail = 'admin@vararealestates.com'; // enquiry inbox that should receiv
 // -------------------------------
 // reCAPTCHA configuration
 // -------------------------------
-// This is Google's published test secret key (pairs with the test site key
-// in index.html) — it always verifies successfully. Swap both keys for a
-// real pair registered at google.com/recaptcha for your production domain
-// before going live.
-const recaptchaSecret = '6LctZ54tAAAAAIe_B0g4pd1G2YcMiJmw1Z5DC9bZ';
+const recaptchaSecret = process.env.RECAPTCHA_SECRET || ''; // set in Vercel project env vars
 
 const mobileRegex = /^[6-9]\d{9}$/;
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex = /^[^\s@,;:<>()[\]"'\\]+@[^\s@,;:<>()[\]"'\\]+\.[^\s@,;:<>()[\]"'\\]+$/;
 
 function escapeHtml(value) {
     return String(value ?? '')
@@ -43,9 +39,9 @@ function nl2br(value) {
 
 async function sendVaraFarmEmail(transporter, { toAddress, replyToEmail, replyToName, subject, html }) {
     await transporter.sendMail({
-        from: `"${fromName}" <${fromEmail}>`,
+        from: { name: fromName, address: fromEmail },
         to: toAddress,
-        replyTo: `"${replyToName}" <${replyToEmail}>`,
+        replyTo: { name: replyToName, address: replyToEmail },
         subject,
         html
     });
@@ -67,13 +63,26 @@ module.exports = async (req, res) => {
         return;
     }
 
+    if (!recaptchaSecret) {
+        console.error('Vara Farm Haven: RECAPTCHA_SECRET env var is not set.');
+        res.status(200).json({ success: false, message: 'Captcha verification failed. Please try again.' });
+        return;
+    }
+
     try {
-        const verifyUrl = 'https://www.google.com/recaptcha/api/siteverify?secret=' + encodeURIComponent(recaptchaSecret)
-            + '&response=' + encodeURIComponent(captchaResponse) + '&remoteip=' + encodeURIComponent(req.headers['x-forwarded-for'] || '');
-        const verifyRes = await fetch(verifyUrl);
+        const verifyRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                secret: recaptchaSecret,
+                response: captchaResponse,
+                remoteip: String(req.headers['x-forwarded-for'] || '').split(',')[0].trim()
+            }).toString()
+        });
         const verifyData = await verifyRes.json();
 
         if (!verifyData || !verifyData.success) {
+            console.error('Vara Farm Haven recaptcha rejected: ' + JSON.stringify(verifyData && verifyData['error-codes']));
             res.status(200).json({ success: false, message: 'Captcha verification failed. Please try again.' });
             return;
         }
@@ -83,7 +92,8 @@ module.exports = async (req, res) => {
         return;
     }
 
-    const fullName = escapeHtml(String(body.fullName || '').trim());
+    const rawFullName = String(body.fullName || '').trim().slice(0, 120);
+    const fullName = escapeHtml(rawFullName);
     const mobileNumber = escapeHtml(String(body.mobileNumber || '').trim());
     const whatsappNumber = escapeHtml(String(body.whatsappNumber || '').trim());
     const userEmail = String(body.email || '').trim();
@@ -166,7 +176,7 @@ module.exports = async (req, res) => {
         await sendVaraFarmEmail(transporter, {
             toAddress: toEmail,
             replyToEmail: userEmail,
-            replyToName: fullName,
+            replyToName: rawFullName,
             subject: adminSubject,
             html: adminHtml
         });
