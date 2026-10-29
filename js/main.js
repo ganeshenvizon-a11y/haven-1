@@ -540,6 +540,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 5.5. Lazy-load reCAPTCHA when a widget nears the viewport (skipped if the page already includes api.js)
+    const initRecaptchaLazyLoad = () => {
+        const widgets = document.querySelectorAll('.g-recaptcha');
+        if (!widgets.length || document.querySelector('script[src*="recaptcha/api.js"]')) return;
+
+        const onFormFocus = (e) => {
+            if (e.target.closest && e.target.closest('form')) loadRecaptcha();
+        };
+
+        const loadRecaptcha = () => {
+            document.removeEventListener('focusin', onFormFocus);
+            if (document.querySelector('script[src*="recaptcha/api.js"]')) return;
+            const script = document.createElement('script');
+            script.src = 'https://www.google.com/recaptcha/api.js';
+            script.async = true;
+            script.defer = true;
+            document.body.appendChild(script);
+        };
+
+        if (!('IntersectionObserver' in window)) {
+            loadRecaptcha();
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            if (entries.some(entry => entry.isIntersecting)) {
+                observer.disconnect();
+                loadRecaptcha();
+            }
+        }, { rootMargin: '800px 0px' });
+        widgets.forEach(widget => observer.observe(widget));
+
+        // Fallback: load on first form interaction
+        document.addEventListener('focusin', onFormFocus);
+    };
+    initRecaptchaLazyLoad();
+
     // 6. Enquiry Form Validation & Submission (Section 45)
     const enquiryForm = document.getElementById('enquiry-form');
     if (enquiryForm) {
