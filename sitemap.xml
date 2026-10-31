@@ -1,16 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
        <loc>https://www.vararealestates.com/</loc>
-       <lastmod>2026-09-19T06:20:10+00:00</lastmod>
+       <lastmod>2026-10-29T00:00:00+00:00</lastmod>
        <priority>1.0000</priority>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/small-white-house-with-blue-roof-grassy-field-surrounded-by-trees.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Entrance_3_Front-view%202.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Bird%20View2_V2_Ext.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/FarmHaven_Master%20Plan_Display.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/vara%20road%20map-01%201.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/NH%2044%20Highway.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Swimming%20Pool%20and%20House1%20%281%29.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Mandala%20House_Day%20Mode_Ext.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Swimming%20Pool.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Playground_3D_Front%20View.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Pergola%20VIew1A.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Tree_Fruits.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Inside%20Entrance%20Gate.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Cover%20Option1.webp</image:loc>
+       </image:image>
   </url>
   <url>
        <loc>https://www.vararealestates.com/gallery.html</loc>
-       <lastmod>2026-09-19T06:20:10+00:00</lastmod>
+       <lastmod>2026-10-29T00:00:00+00:00</lastmod>
        <priority>0.8000</priority>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Bird%20View2_V2_HDExt.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Entrance_3_Front-view%202.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Inside%20Entrance%20Gate.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/aerial_masterplan.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/plot_view.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Mandala%20House_Day%20Mode_Ext.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Mandala%20House_1.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Mandala%20House_2.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Balcony%20with%20Family.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/photorealistic-timber-house-interior-with-wooden-decor-furnishings.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/photorealistic-wooden-house-interior-with-timber-decor-furnishings.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Swimming%20Pool.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Swimming%20Pool%20and%20House1%20%281%29.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Play%20and%20Pargola%20Master.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Playground_3D_Front%20View.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Pergola%20VIew1A.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Pargola%20Park%20Sitting%20Woman.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Tree_Fruits.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/NH%2044%20Highway.webp</image:loc>
+       </image:image>
+       <image:image>
+            <image:loc>https://www.vararealestates.com/assets/images/Cover%20Option1.webp</image:loc>
+       </image:image>
   </url>
   <url>
        <loc>https://www.vararealestates.com/blog/</loc>
