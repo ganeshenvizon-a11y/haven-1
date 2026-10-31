@@ -264,28 +264,28 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Plot 18",
             areaSqYds: "605",
             guntas: "5.00",
-            status: "Available",
+            status: "Sold Out",
             tier: "5",
             facing: "East Facing",
             isCorner: false,
             dimensions: "82' x 66'-6\"",
             roadAccess: "33 FT Proposed Road",
             nearby: ["33 FT Road", "Avenue Plantation", "East Sunshine", "Open Horizons"],
-            description: "Prime East-facing 5 Gunta plot enjoying pure morning light and gentle breezes, ready for immediate planting."
+            description: "Prime East-facing 5 Gunta plot enjoying pure morning light and gentle breezes, ready for immediate planting. [SOLD OUT - Successfully Booked]"
         },
         "plot-19": {
             number: "19",
             name: "Plot 19",
             areaSqYds: "987.4",
             guntas: "8.16",
-            status: "Available",
+            status: "Booked",
             tier: "5plus",
             facing: "North-East Corner",
             isCorner: true,
             dimensions: "82' x 108'-6\"",
             roadAccess: "33 FT Proposed Road & North Perimeter",
             nearby: ["North-East Corner", "33 FT Road", "Avenue Trees", "Deep Boundary"],
-            description: "Prestigious 8.16 Gunta North-East corner estate with dual road exposure and deep 108'-6\" boundary for a sprawling country manor."
+            description: "Prestigious 8.16 Gunta North-East corner estate with dual road exposure and deep 108'-6\" boundary for a sprawling country manor. [BOOKED - Reservation Confirmed]"
         },
         "plot-20": {
             number: "20",
@@ -362,14 +362,14 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Plot 25",
             areaSqYds: "1,028.5",
             guntas: "8.50",
-            status: "Available",
+            status: "Booked",
             tier: "5plus",
             facing: "North-East Corner",
             isCorner: true,
             dimensions: "74'-9\" / 95'-7\" x 108'-6\"",
             roadAccess: "33 FT Proposed Road & North Avenue",
             nearby: ["Grand Estate", "North-East Corner", "33 FT Road", "Avenue Trees"],
-            description: "Spectacular 8.50 Gunta North-East estate enjoying exceptional privacy, dual road frontage, and superior Vastu orientation."
+            description: "Spectacular 8.50 Gunta North-East estate enjoying exceptional privacy, dual road frontage, and superior Vastu orientation. [BOOKED - Reservation Confirmed]"
         },
         "amenities-hub": {
             number: "20",
@@ -435,6 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isAmenity = data.status === "Amenity";
         const isSold = data.status === "Sold Out";
+        const isBooked = data.status === "Booked";
         let statusClass = "badge-available";
         let statusText = "AVAILABLE";
 
@@ -444,6 +445,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (isSold) {
             statusClass = "badge-sold";
             statusText = "SOLD OUT";
+        } else if (isBooked) {
+            statusClass = "badge-booked";
+            statusText = "BOOKED";
         }
 
         const nearbyChipsHTML = data.nearby.map(item => `<span class="nearby-chip"><i class="fa-solid fa-circle-check"></i> ${item}</span>`).join('');
@@ -461,6 +465,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="panel-sold-notice">
                     <i class="fa-solid fa-circle-check"></i>
                     <span><strong>Plot ${data.number} is Sold Out:</strong> This prime farm plot has already been claimed. Join the waitlist below to be notified if similar acreage becomes available.</span>
+                </div>
+            ` : isBooked ? `
+                <div class="panel-sold-notice panel-booked-notice">
+                    <i class="fa-solid fa-clock"></i>
+                    <span><strong>Plot ${data.number} is Booked:</strong> Token advance has been placed for this plot. Join the priority waitlist or enquire to be notified if it becomes available again.</span>
                 </div>
             ` : ''}
 
@@ -506,6 +515,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         <i class="fa-solid fa-bell"></i>
                         <span>Inquire for Waitlist / Similar Plots</span>
                     </a>
+                ` : isBooked ? `
+                    <a href="#enquiry" class="btn btn-booked-waitlist panel-book-btn" data-plot="${data.number}">
+                        <i class="fa-solid fa-bell"></i>
+                        <span>Inquire for Waitlist / Backup Interest</span>
+                    </a>
                 ` : !isAmenity ? `
                     <a href="#enquiry" class="btn btn-primary panel-book-btn" data-plot="${data.number}">
                         <span>Enquire About ${data.name}</span>
@@ -531,6 +545,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (messageInput) {
                     if (isSold) {
                         messageInput.value = `Hello, I noticed Plot ${data.number} (${data.guntas} Guntas, ${data.facing}) is Sold Out. Please notify me if a similar plot becomes available or share upcoming phase inventory.`;
+                    } else if (isBooked) {
+                        messageInput.value = `Hello, I noticed Plot ${data.number} (${data.guntas} Guntas, ${data.facing}) is Booked. Please register my interest on the priority waitlist if this booking becomes available or share similar options.`;
                     } else if (!isAmenity) {
                         messageInput.value = `Hello, I am interested in Plot ${data.number} (${data.guntas} Guntas / ${data.areaSqYds} Sq. Yards, Dimensions: ${data.dimensions}, ${data.facing}). Please share the latest availability and booking details.`;
                     }
@@ -596,6 +612,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     matches = data.tier === '5plus';
                 } else if (filterValue === '10plus') {
                     matches = data.tier === '10plus';
+                } else if (filterValue === 'booked') {
+                    matches = data.status === 'Booked';
                 } else if (filterValue === 'sold') {
                     matches = data.status === 'Sold Out';
                 }
@@ -621,6 +639,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     matches = data.tier === '5plus';
                 } else if (filterValue === '10plus') {
                     matches = data.tier === '10plus';
+                } else if (filterValue === 'booked') {
+                    matches = data.status === 'Booked';
                 } else if (filterValue === 'sold') {
                     matches = data.status === 'Sold Out';
                 }

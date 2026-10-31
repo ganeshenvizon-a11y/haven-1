@@ -1262,8 +1262,11 @@ src="https://www.facebook.com/tr?id=2233074987476377&ev=PageView&noscript=1"
                         <button class="plot-filter-btn filter-10plus" data-filter="10plus">
                             <span class="filter-dot dot-estate"></span> 10 or 10+ Guntas (3)
                         </button>
+                        <button class="plot-filter-btn filter-booked" data-filter="booked">
+                            <span class="filter-dot dot-booked"></span> Booked (2)
+                        </button>
                         <button class="plot-filter-btn filter-sold" data-filter="sold">
-                            <span class="filter-dot dot-sold"></span> Sold Out (7)
+                            <span class="filter-dot dot-sold"></span> Sold Out (8)
                         </button>
                     </div>
 
@@ -1391,13 +1394,13 @@ src="https://www.facebook.com/tr?id=2233074987476377&ev=PageView&noscript=1"
                                         <span class="pin-badge">17</span>
                                     </div>
 
-                                    <!-- Plot 18 (5 Gts) -->
-                                    <div class="plot-pin pin-available" style="left: 58.99%; top: 42.00%;" data-plot-id="plot-18" tabindex="0" role="button" aria-label="Plot 18, 5 Guntas">
+                                    <!-- Plot 18 (5 Gts - Sold Out) -->
+                                    <div class="plot-pin pin-available pin-sold" style="left: 58.99%; top: 42.00%;" data-plot-id="plot-18" tabindex="0" role="button" aria-label="Plot 18, 5 Guntas (Sold Out)">
                                         <span class="pin-badge">18</span>
                                     </div>
 
-                                    <!-- Plot 19 (8.16 Gts) -->
-                                    <div class="plot-pin pin-available" style="left: 58.99%; top: 29.09%;" data-plot-id="plot-19" tabindex="0" role="button" aria-label="Plot 19, 8.16 Guntas">
+                                    <!-- Plot 19 (8.16 Gts - Booked) -->
+                                    <div class="plot-pin pin-available pin-booked" style="left: 58.99%; top: 29.09%;" data-plot-id="plot-19" tabindex="0" role="button" aria-label="Plot 19, 8.16 Guntas (Booked)">
                                         <span class="pin-badge">19</span>
                                     </div>
 
@@ -1426,8 +1429,8 @@ src="https://www.facebook.com/tr?id=2233074987476377&ev=PageView&noscript=1"
                                         <span class="pin-badge">24</span>
                                     </div>
 
-                                    <!-- Plot 25 (8.50 Gts) -->
-                                    <div class="plot-pin pin-available" style="left: 72.52%; top: 29.09%;" data-plot-id="plot-25" tabindex="0" role="button" aria-label="Plot 25, 8.50 Guntas">
+                                    <!-- Plot 25 (8.50 Gts - Booked) -->
+                                    <div class="plot-pin pin-available pin-booked" style="left: 72.52%; top: 29.09%;" data-plot-id="plot-25" tabindex="0" role="button" aria-label="Plot 25, 8.50 Guntas (Booked)">
                                         <span class="pin-badge">25</span>
                                     </div>
                                 </div>
@@ -1441,8 +1444,12 @@ src="https://www.facebook.com/tr?id=2233074987476377&ev=PageView&noscript=1"
                                 <span class="legend-label">Available Plot</span>
                             </div>
                             <div class="legend-item">
+                                <span class="legend-box booked-box"></span>
+                                <span class="legend-label">Booked (Plots 19, 25)</span>
+                            </div>
+                            <div class="legend-item">
                                 <span class="legend-box sold-box"></span>
-                                <span class="legend-label">Sold Out (Plots 01–05, 09, 14)</span>
+                                <span class="legend-label">Sold Out (Plots 01–05, 09, 14, 18)</span>
                             </div>
                             <div class="legend-item">
                                 <span class="legend-box estate-box"></span>
@@ -1464,32 +1471,32 @@ src="https://www.facebook.com/tr?id=2233074987476377&ev=PageView&noscript=1"
                                 <span><i class="fa-solid fa-hand-pointer"></i> Tap Any Plot to Inspect:</span>
                             </div>
                             <div class="plot-chips-tray" role="group" aria-label="Quick Select Plots">
-                                <button class="plot-chip-btn chip-booked active" data-plot-id="plot-1">01 <small>10.55G &bull; Sold</small></button>
-                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-2">02 <small>10G &bull; Sold</small></button>
-                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-3">03 <small>10G &bull; Sold</small></button>
-                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-4">04 <small>5G &bull; Sold</small></button>
-                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-5">05 <small>4.58G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-sold active" data-plot-id="plot-1">01 <small>10.55G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-sold" data-plot-id="plot-2">02 <small>10G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-sold" data-plot-id="plot-3">03 <small>10G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-sold" data-plot-id="plot-4">04 <small>5G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-sold" data-plot-id="plot-5">05 <small>4.58G &bull; Sold</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-6">06 <small>7.87G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-7">07 <small>5G</small></button>
                                 <button class="plot-chip-btn chip-amenity" data-plot-id="temple-zone"><i class="fa-solid fa-place-of-worship"></i> Temple</button>
                                 <button class="plot-chip-btn" data-plot-id="plot-8">08 <small>8.16G</small></button>
-                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-9">09 <small>5G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-sold" data-plot-id="plot-9">09 <small>5G &bull; Sold</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-10">10 <small>5G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-11">11 <small>5G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-12">12 <small>5G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-13">13 <small>5G</small></button>
-                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-14">14 <small>5G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-sold" data-plot-id="plot-14">14 <small>5G &bull; Sold</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-15">15 <small>5G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-16">16 <small>5G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-17">17 <small>5G</small></button>
-                                <button class="plot-chip-btn" data-plot-id="plot-18">18 <small>5G</small></button>
-                                <button class="plot-chip-btn" data-plot-id="plot-19">19 <small>8.16G</small></button>
+                                <button class="plot-chip-btn chip-sold" data-plot-id="plot-18">18 <small>5G &bull; Sold</small></button>
+                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-19">19 <small>8.16G &bull; Booked</small></button>
                                 <button class="plot-chip-btn chip-amenity" data-plot-id="plot-20">20 <small>Amenities</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-21">21 <small>7.94G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-22">22 <small>7.63G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-23">23 <small>7.33G</small></button>
                                 <button class="plot-chip-btn" data-plot-id="plot-24">24 <small>6.56G</small></button>
-                                <button class="plot-chip-btn" data-plot-id="plot-25">25 <small>8.50G</small></button>
+                                <button class="plot-chip-btn chip-booked" data-plot-id="plot-25">25 <small>8.50G &bull; Booked</small></button>
                             </div>
                         </div>
                     </div>

@@ -1946,7 +1946,7 @@ h6 {
 .dot-all { background: #FFFFFF; }
 .dot-available { background: #BFE340; }
 .dot-estate { background: #F6BA35; }
-.dot-booked { background: #FF8F80; }
+.dot-booked { background: #d97706; }
 
 .plot-filter-btn.active {
     background: #FFFFFF;
@@ -2149,12 +2149,18 @@ h6 {
     border-color: var(--vara-lime);
 }
 
-.pin-booked .pin-badge,
 .pin-sold .pin-badge {
     background: #c84b31 !important;
     border-color: #FFFFFF !important;
     opacity: 0.95;
     box-shadow: 0 3px 10px rgba(200, 75, 49, 0.45);
+}
+
+.pin-booked .pin-badge {
+    background: #d97706 !important;
+    border-color: #FFFFFF !important;
+    opacity: 0.95;
+    box-shadow: 0 3px 10px rgba(217, 119, 6, 0.45);
 }
 
 .pin-amenity .pin-badge {
@@ -2222,6 +2228,7 @@ h6 {
 }
 
 .available-box { background: var(--vara-green); }
+.booked-box { background: #d97706; }
 .sold-box { background: #c84b31; }
 .estate-box { background: #2b7a78; border: 1.5px solid var(--vara-lime); }
 .amenity-box { background: #1b608a; }
@@ -2301,35 +2308,56 @@ h6 {
     color: var(--vara-lime);
 }
 
-.plot-chip-btn.chip-booked,
 .plot-chip-btn.chip-sold {
     border-color: rgba(200, 75, 49, 0.35);
     background: rgba(200, 75, 49, 0.05);
 }
 
-.plot-chip-btn.chip-booked small,
 .plot-chip-btn.chip-sold small {
     color: #c84b31;
     font-weight: 700;
 }
 
-.plot-chip-btn.chip-booked:hover,
 .plot-chip-btn.chip-sold:hover {
     background: rgba(200, 75, 49, 0.12);
     border-color: #c84b31;
     color: #c84b31;
 }
 
-.plot-chip-btn.chip-booked.active,
 .plot-chip-btn.chip-sold.active {
     background: #c84b31;
     border-color: #c84b31;
     color: #FFFFFF;
 }
 
-.plot-chip-btn.chip-booked.active small,
 .plot-chip-btn.chip-sold.active small {
     color: #ffe6e0;
+}
+
+.plot-chip-btn.chip-booked {
+    border-color: rgba(217, 119, 6, 0.35);
+    background: rgba(217, 119, 6, 0.05);
+}
+
+.plot-chip-btn.chip-booked small {
+    color: #d97706;
+    font-weight: 700;
+}
+
+.plot-chip-btn.chip-booked:hover {
+    background: rgba(217, 119, 6, 0.12);
+    border-color: #d97706;
+    color: #d97706;
+}
+
+.plot-chip-btn.chip-booked.active {
+    background: #d97706;
+    border-color: #d97706;
+    color: #FFFFFF;
+}
+
+.plot-chip-btn.chip-booked.active small {
+    color: #fffbeb;
 }
 
 .plot-chip-btn.chip-amenity {
@@ -2392,11 +2420,16 @@ h6 {
     border: 1px solid rgba(0, 88, 55, 0.3);
 }
 
-.badge-booked,
 .badge-sold {
     background: rgba(200, 75, 49, 0.12);
     color: #A83822;
     border: 1px solid rgba(200, 75, 49, 0.35);
+}
+
+.badge-booked {
+    background: rgba(217, 119, 6, 0.12);
+    color: #B45309;
+    border: 1px solid rgba(217, 119, 6, 0.35);
 }
 
 .badge-amenity {
@@ -2512,6 +2545,18 @@ h6 {
 .panel-sold-notice i {
     font-size: 15px;
     color: #c84b31;
+    flex-shrink: 0;
+}
+
+.panel-booked-notice {
+    background: rgba(217, 119, 6, 0.08);
+    border: 1px solid rgba(217, 119, 6, 0.28);
+    color: #92400e;
+}
+
+.panel-booked-notice i {
+    font-size: 15px;
+    color: #d97706;
     flex-shrink: 0;
 }
 
@@ -2729,6 +2774,19 @@ h6 {
 
 .btn-sold-waitlist:hover {
     background: #c84b31 !important;
+    color: #FFFFFF !important;
+}
+
+.btn-booked-waitlist {
+    background: rgba(217, 119, 6, 0.08);
+    color: #B45309 !important;
+    border: 1.5px solid #d97706 !important;
+    font-weight: 700;
+    transition: all var(--transition-fast);
+}
+
+.btn-booked-waitlist:hover {
+    background: #d97706 !important;
     color: #FFFFFF !important;
 }
 
